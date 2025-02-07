@@ -8,7 +8,7 @@ repos:
   rev: 23.3.0
   hooks:
   - id: black
-    exclude: "src/postcodes_may_2023.py"
+    exclude: "src/uk_postcodes_parsing/postcodes_nov_2024.py"
 - repo: local
   hooks:
     - id: pytest-check
