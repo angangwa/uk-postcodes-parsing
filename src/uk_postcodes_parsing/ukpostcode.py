@@ -1,6 +1,7 @@
 """
 ukpostcode.py: main module for parsing UK postcodes from text.
 """
+
 import re
 import logging
 from dataclasses import dataclass, field

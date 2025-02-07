@@ -1,6 +1,7 @@
 """
 postcode_utils.py: Utilities for working with postcodes.
 """
+
 import re
 from typing import Union
 
