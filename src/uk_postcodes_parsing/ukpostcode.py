@@ -19,7 +19,7 @@ from uk_postcodes_parsing.postcode_utils import (
     to_sub_district,
 )
 from uk_postcodes_parsing.fix import fix, fix_with_options
-from uk_postcodes_parsing.postcodes_may_2023 import POSTCODE_MAY_2023
+from uk_postcodes_parsing.postcodes_nov_2024 import POSTCODE_NOV_2024
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("uk-postcodes-parsing.ukpostcode")
