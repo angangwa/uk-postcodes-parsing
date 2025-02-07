@@ -32,7 +32,7 @@ FIXABLE_POSTCODE_CORPUS_REGEX = re.compile(
 
 SPECIAL_CASE_POSTCODES = ("GIR", "NPT", "BX", "BF")
 
-logger.debug("Imported POSTCODE_NOV_2022 with length: %s", len(POSTCODE_MAY_2023))
+logger.debug("Imported POSTCODE_NOV_2022 with length: %s", len(POSTCODE_NOV_2024))
 
 
 @dataclass(order=True)
@@ -211,4 +211,4 @@ def is_in_ons_postcode_directory(postcode: str) -> bool:
     Returns:
         bool: True if the postcode is valid, False otherwise
     """
-    return postcode in POSTCODE_MAY_2023
+    return postcode in POSTCODE_NOV_2024
