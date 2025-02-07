@@ -27,7 +27,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint check with black
         run: |
-          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_may_2023.py
+          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
       - name: Test with pytest
         run: |
           pytest -v
