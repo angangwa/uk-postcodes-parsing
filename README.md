@@ -187,10 +187,15 @@ class Postcode:
 pytest tests/
 ```
 
-# Updating this library with newer version of ONS postcode directory
+# ONSPD Data Processing Pipeline
 
-This library has been updated with May 2023 ONS postcode directory. To update this to a newer, version, see: [process_onspd.ipynb](scripts/process_onspd.ipynb).
+This library includes tools to process ONS Postcode Directory (ONSPD) data into comprehensive databases with 25+ metadata fields per postcode. See the [ONSPD Usage Guide](docs/ONSPD_USAGE_GUIDE.md) and [ONSPD Technical Guide](docs/ONSPD_TECHNICAL_GUIDE.md) for details.
 
+```bash
+# Quick example: Create searchable database from ONSPD data
+cd onspd_tools
+python postcode_database_builder.py /path/to/onspd/multi_csv --output ../postcodes.db --validate
+```
 
 ## Similar work
 
