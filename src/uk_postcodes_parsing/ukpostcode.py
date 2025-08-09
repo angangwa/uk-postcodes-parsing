@@ -154,6 +154,8 @@ def parse(postcode: str, attempt_fix: bool = True) -> Optional[Postcode]:
     Returns:
         Postcode: Parsed postcode.
     """
+    if not postcode:
+        return None
     if postcode.strip().upper().startswith(SPECIAL_CASE_POSTCODES):  # Edge case logging
         logger.info("Found special case postcode: %s", postcode)
     if is_valid(postcode):
@@ -214,10 +216,13 @@ def is_in_ons_postcode_directory(postcode: str) -> bool:
     # Try SQLite database first (faster, more efficient)
     try:
         from .postcode_database import get_database
+
         db = get_database()
         result = db.lookup(postcode)
         return result is not None
     except Exception:
         # Fall back to Python file if database not available
-        logger.debug("SQLite database not available, falling back to Python file lookup")
+        logger.debug(
+            "SQLite database not available, falling back to Python file lookup"
+        )
         return postcode in POSTCODE_NOV_2024

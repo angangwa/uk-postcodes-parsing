@@ -8,10 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  Quality-checks:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v3
@@ -24,10 +25,51 @@ jobs:
           python -m pip install --upgrade pip
           pip install .
           pip install black pytest pandas
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint check with black
         run: |
           black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
-      - name: Test with pytest
+      - name: Run core tests
         run: |
-          pytest -v
+          pytest tests/test_all.py -v
+      - name: Run new functionality tests (mocked)
+        run: |
+          pytest tests/test_database_manager.py tests/test_postcode_database.py tests/test_spatial_queries.py tests/test_api_functions.py tests/test_integration.py tests/test_backward_compatibility.py -v
+
+  database-integration:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+          pip install pytest
+      - name: Test cross-platform database setup
+        run: |
+          python -c "
+          import uk_postcodes_parsing as ukp
+          import os
+          print(f'OS: {os.name}')
+          try:
+              success = ukp.setup_database()
+              print(f'Database setup: {success}')
+              if success:
+                  info = ukp.get_database_info()
+                  print(f'Database path: {info.get(\"path\", \"unknown\")}')
+                  print(f'Records: {info.get(\"record_count\", \"unknown\")}')
+                  print(f'Size: {info.get(\"size_mb\", \"unknown\")}MB')
+          except Exception as e:
+              print(f'Database setup failed: {e}')
+              exit(1)
+          "
+      - name: Test database functionality
+        run: |
+          pytest tests/test_api_functions.py tests/test_integration.py -v -k "not mock"

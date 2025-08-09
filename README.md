@@ -3,7 +3,7 @@
 [![Test](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml)
 [![Upload Python Package](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml)
 
-A Python package to parse UK postcodes from text. Useful in applications such as OCR and IDP.
+A Python package to parse UK postcodes from text with rich geographic and administrative data. Useful in applications such as OCR, IDP, mapping, and location services.
 
 ## Install
 
@@ -11,12 +11,23 @@ A Python package to parse UK postcodes from text. Useful in applications such as
 pip install uk-postcodes-parsing
 ```
 
+## ✨ What's New in v2.0
+
+**🎉 Rich Postcode Database Integration**
+- **1.8M postcodes** with 25 fields of geographic and administrative data
+- **Spatial queries**: Find nearest postcodes by coordinates
+- **Area searches**: Get postcodes by constituency, district, healthcare region, etc.
+- **Zero external dependencies**: Uses only Python standard library
+- **Auto-download**: Database downloads automatically on first use
+- **Backward compatible**: All existing code continues to work
+
 ## Capabilities
 
-- Search and parse UK postcode from text/OCR results
-  - Extract parts of the postcode: incode, outcode etc.
-  - Fix common mistakes in UK postcode OCR
-
+### 🔍 **Text Parsing & OCR** (Core functionality)
+- Extract postcodes from text/OCR results with high accuracy
+- Fix common OCR mistakes (O↔0, I↔1, etc.)
+- Parse postcode components: incode, outcode, area, district, etc.
+- Validate against 1.8M official UK postcodes
 
 | Postcode | .outcode | .incode | .area | .district | .subDistrict | .sector | .unit |
 |----------|----------|---------|-------|-----------|--------------|---------|-------|
@@ -27,26 +38,128 @@ pip install uk-postcodes-parsing
 | AA9 9AA  | AA9      | 9AA     | AA    | AA9       | `None`       | AA9 9   | AA    |
 | AA99 9AA | AA99     | 9AA     | AA    | AA99      | `None`       | AA99 9  | AA    |
 
+### 🗺️ **Rich Geographic Data** (New in v2.0)
+- **Coordinates**: Latitude/longitude with 99.3% coverage
+- **Administrative areas**: Country, region, district, county, ward, parish
+- **Political boundaries**: Parliamentary constituencies, electoral divisions  
+- **Healthcare regions**: NHS regions, Sub ICB Locations (formerly CCGs)
+- **Statistical areas**: Lower/Middle Output Areas, ITL regions
+- **Services**: Police force areas, postal districts
 
-- Utilities to validate postcode
-- Updated to November 2024: Validate postcode against ~1.8M UK postcodes from the ONS Postcode Directory
+### 📍 **Spatial Queries** (New in v2.0)
+- Find nearest postcodes to any coordinate
+- Search within radius (e.g., "postcodes within 5km")
+- Reverse geocoding (coordinates → postcode)
+- Distance calculations between postcodes
 
 
 ## Usage
 
-- Parsing text to get a list of postcodes.
+### 🔍 **Text Parsing & OCR** (Core functionality - backward compatible)
 
 ```python
->>> from uk_postcodes_parsing import ukpostcode
->>> corpus = "this is a check to see if we can get post codes liek thia ec1r 1ub , and that e3 4ss. But also eh16 50y and ei412"
->>> postcodes = ukpostcode.parse_from_corpus(corpus)
-INFO:uk-postcodes-parsing:Found 2 postcodes in corpus
->>> postcodes
-[Postcode(is_in_ons_postcode_directory=True, fix_distance=0, original='ec1r 1ub', postcode='EC1R 1UB', incode='1UB', outcode='EC1R', area='EC', district='EC1', sub_district='EC1R', sector='EC1R 1', unit='UB'),
- Postcode(is_in_ons_postcode_directory=True, fix_distance=0, original='e3 4ss', postcode='E3 4SS', incode='4SS', outcode='E3', area='E', district='E3', sub_district=None, sector='E3 4', unit='SS')]
+import uk_postcodes_parsing as ukp
+
+# Parse postcodes from text/OCR
+corpus = "Contact us at SW1A 1AA or try E3 4SS for the London office"
+postcodes = ukp.parse_from_corpus(corpus)
+print(f"Found {len(postcodes)} postcodes")
+# Output: Found 2 postcodes
+
+# Parse individual postcode
+postcode = ukp.parse("SW1A 1AA")
+print(f"Area: {postcode.area}, District: {postcode.district}")
+# Output: Area: SW, District: SW1A
 ```
 
-- Optional auto-correct: Attempt correcting common mistakes in postcodes such as reading "O" and "0" and vice-versa.
+### 🗺️ **Rich Geographic Data** (New in v2.0)
+
+```python
+import uk_postcodes_parsing as ukp
+
+# Rich postcode lookup with geographic data
+result = ukp.lookup_postcode("SW1A 1AA")
+if result:
+    print(f"Postcode: {result.postcode}")
+    print(f"Coordinates: {result.latitude}, {result.longitude}")
+    print(f"District: {result.district}")
+    print(f"Constituency: {result.constituency}")
+    print(f"Healthcare region: {result.healthcare_region}")
+
+# Output:
+# Postcode: SW1A 1AA
+# Coordinates: 51.501009, -0.141588
+# District: Westminster
+# Constituency: Cities of London and Westminster  
+# Healthcare region: NHS North West London
+```
+
+### 📍 **Spatial Queries** (New in v2.0)
+
+```python
+import uk_postcodes_parsing as ukp
+
+# Find nearest postcodes to coordinates (Parliament Square)
+nearest = ukp.find_nearest(51.5014, -0.1419, radius_km=1, limit=5)
+for postcode, distance in nearest:
+    print(f"{postcode.postcode}: {distance:.2f}km - {postcode.district}")
+
+# Output:
+# SW1A 1AA: 0.00km - Westminster
+# SW1E 6LA: 0.12km - Westminster
+# SW1P 3AD: 0.15km - Westminster
+
+# Reverse geocoding - find postcode from coordinates
+postcode = ukp.reverse_geocode(51.5014, -0.1419)
+print(f"Nearest postcode: {postcode.postcode}")
+# Output: Nearest postcode: SW1A 1AA
+```
+
+### 🔍 **Search & Area Queries** (New in v2.0)
+
+```python
+import uk_postcodes_parsing as ukp
+
+# Search postcodes by prefix
+results = ukp.search_postcodes("SW1A", limit=10)
+print(f"Found {len(results)} postcodes starting with SW1A")
+
+# Get all postcodes in an area
+westminster = ukp.get_area_postcodes("district", "Westminster", limit=100)
+print(f"Westminster has {len(westminster)} postcodes")
+
+# Get postcodes by constituency
+constituency = ukp.get_area_postcodes("constituency", "Cities of London and Westminster")
+print(f"Constituency has {len(constituency)} postcodes")
+```
+
+### 🔧 **Database Management** (New in v2.0)
+
+The rich postcode database (~800MB with 1.8M postcodes) downloads automatically on first use. For explicit control:
+
+```python
+import uk_postcodes_parsing as ukp
+
+# Explicit database setup (optional)
+success = ukp.setup_database()
+if success:
+    print("Database ready!")
+    
+# Check database status
+info = ukp.get_database_info()
+print(f"Database has {info['record_count']:,} postcodes")
+print(f"Database size: {info['size_mb']:.1f} MB")
+print(f"Coordinate coverage: {info.get('coordinate_coverage_percent', 0)}%")
+
+# Force database redownload (if needed)
+ukp.setup_database(force_redownload=True)
+```
+
+**Database Storage Locations:**
+- **Windows**: `%APPDATA%\uk_postcodes_parsing\postcodes.db`
+- **macOS/Linux**: `~/.uk_postcodes_parsing/postcodes.db`
+
+### 🛠️ **OCR Error Correction** (Core functionality)
 
 ```python
 >>> from uk_postcodes_parsing import ukpostcode
@@ -183,9 +296,52 @@ class Postcode:
 
 # Testing
 
+## Quick Start
 ```bash
-pytest tests/
+# Install test dependencies
+pip install pytest pandas
+
+# Run core tests (fast)
+pytest tests/test_all.py -v
+
+# Run all tests  
+pytest tests/ -v
 ```
+
+## Test Categories
+
+### Unit Tests (No Database Required)
+Fast tests that work without downloading the database:
+```bash
+pytest tests/test_all.py tests/test_database_manager.py tests/test_postcode_database.py -v
+```
+
+### Integration Tests (Database Required)
+Tests that require the actual postcodes database:
+```bash
+# Setup database first
+python -c "import uk_postcodes_parsing as ukp; ukp.setup_database()"
+
+# Run integration tests
+pytest tests/test_integration.py tests/test_api_functions.py -v -k "not mock"
+```
+
+### Backward Compatibility Tests
+Ensure existing code continues to work:
+```bash
+pytest tests/test_backward_compatibility.py -v
+```
+
+## Test Structure
+- **`test_all.py`** - Original core functionality tests
+- **`test_database_manager.py`** - Cross-platform database management 
+- **`test_postcode_database.py`** - Database operations and PostcodeResult
+- **`test_spatial_queries.py`** - Geographic queries and distance calculations
+- **`test_api_functions.py`** - New API functions with error handling
+- **`test_integration.py`** - End-to-end workflows and cross-platform testing
+- **`test_backward_compatibility.py`** - Ensure no breaking changes
+
+See [`tests/README.md`](tests/README.md) for detailed testing documentation.
 
 # ONSPD Data Processing Pipeline
 
