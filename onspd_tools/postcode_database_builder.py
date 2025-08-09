@@ -40,7 +40,7 @@ class PostcodeSQLiteCreator:
         conn.execute('DROP TABLE IF EXISTS postcodes')
         conn.execute('DROP TABLE IF EXISTS metadata')
         
-        # Create main postcodes table
+        # Create streamlined postcodes table (22 essential columns vs 42)
         conn.execute('''
         CREATE TABLE postcodes (
             postcode TEXT PRIMARY KEY,
@@ -49,42 +49,25 @@ class PostcodeSQLiteCreator:
             longitude REAL,
             eastings INTEGER,
             northings INTEGER,
-            country TEXT,
-            country_code TEXT,
-            admin_district TEXT,
-            admin_district_id TEXT,
-            admin_county TEXT,
-            admin_county_id TEXT,
-            admin_ward TEXT,
-            admin_ward_id TEXT,
-            parish TEXT,
-            parish_id TEXT,
-            constituency TEXT,
-            constituency_id TEXT,
-            region TEXT,
-            region_code TEXT,
-            european_electoral_region TEXT,
-            european_electoral_region_code TEXT,
-            ccg TEXT,
-            ccg_id TEXT,
-            primary_care_trust TEXT,
-            primary_care_trust_code TEXT,
-            nhs_ha TEXT,
-            nhs_ha_code TEXT,
-            lsoa TEXT,
-            lsoa_id TEXT,
-            msoa TEXT,
-            msoa_id TEXT,
-            nuts TEXT,
-            nuts_id TEXT,
-            pfa TEXT,
-            pfa_id TEXT,
-            ced TEXT,
-            ced_id TEXT,
-            quality INTEGER,
-            date_introduced TEXT,
             incode TEXT,
-            outcode TEXT
+            outcode TEXT,
+            country TEXT,
+            district TEXT,
+            county TEXT,
+            ward TEXT,
+            parish TEXT,
+            constituency TEXT,
+            region TEXT,
+            healthcare_region TEXT,
+            nhs_health_authority TEXT,
+            primary_care_trust TEXT,
+            lower_output_area TEXT,
+            middle_output_area TEXT,
+            statistical_region TEXT,
+            police_force TEXT,
+            county_division TEXT,
+            coordinate_quality INTEGER,
+            date_introduced TEXT
         )''')
         
         # Create metadata table
@@ -101,7 +84,7 @@ class PostcodeSQLiteCreator:
             'CREATE INDEX idx_incode ON postcodes(incode)', 
             'CREATE INDEX idx_location ON postcodes(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL',
             'CREATE INDEX idx_country ON postcodes(country)',
-            'CREATE INDEX idx_admin_district ON postcodes(admin_district)',
+            'CREATE INDEX idx_district ON postcodes(district)',
             'CREATE INDEX idx_constituency ON postcodes(constituency)',
             'CREATE INDEX idx_eastings_northings ON postcodes(eastings, northings) WHERE eastings IS NOT NULL AND northings IS NOT NULL'
         ]
@@ -156,7 +139,7 @@ class PostcodeSQLiteCreator:
             for col in processed_chunk.columns:
                 cleaned_row[col] = self._clean_value(row[col])
             
-            # Create tuple in the order expected by SQL INSERT
+            # Create tuple in the order expected by SQL INSERT (streamlined schema)
             row_tuple = (
                 cleaned_row.get('postcode'),
                 cleaned_row.get('pc_compact'),
@@ -164,42 +147,25 @@ class PostcodeSQLiteCreator:
                 cleaned_row.get('longitude'),
                 cleaned_row.get('eastings'),
                 cleaned_row.get('northings'),
-                cleaned_row.get('country'),
-                cleaned_row.get('country_code'),
-                cleaned_row.get('admin_district'),
-                cleaned_row.get('admin_district_id'),
-                cleaned_row.get('admin_county'),
-                cleaned_row.get('admin_county_id'),
-                cleaned_row.get('admin_ward'),
-                cleaned_row.get('admin_ward_id'),
-                cleaned_row.get('parish'),
-                cleaned_row.get('parish_id'),
-                cleaned_row.get('parliamentary_constituency'),
-                cleaned_row.get('constituency_id'),
-                cleaned_row.get('region'),
-                cleaned_row.get('region_code'),
-                cleaned_row.get('european_electoral_region'),
-                cleaned_row.get('european_electoral_region_code'),
-                cleaned_row.get('ccg'),
-                cleaned_row.get('ccg_id'),
-                cleaned_row.get('primary_care_trust'),
-                cleaned_row.get('primary_care_trust_code'),
-                cleaned_row.get('nhs_ha'),
-                cleaned_row.get('nhs_ha_code'),
-                cleaned_row.get('lsoa'),
-                cleaned_row.get('lsoa_id'),
-                cleaned_row.get('msoa'),
-                cleaned_row.get('msoa_id'),
-                cleaned_row.get('nuts'),
-                cleaned_row.get('nuts_id'),
-                cleaned_row.get('pfa'),
-                cleaned_row.get('pfa_id'),
-                cleaned_row.get('ced'),
-                cleaned_row.get('ced_id'),
-                cleaned_row.get('quality'),
-                cleaned_row.get('date_of_introduction'),
                 cleaned_row.get('incode'),
                 cleaned_row.get('outcode'),
+                cleaned_row.get('country'),
+                cleaned_row.get('district'),
+                cleaned_row.get('county'),
+                cleaned_row.get('ward'),
+                cleaned_row.get('parish'),
+                cleaned_row.get('constituency'),
+                cleaned_row.get('region'),
+                cleaned_row.get('healthcare_region'),
+                cleaned_row.get('nhs_health_authority'),
+                cleaned_row.get('primary_care_trust'),
+                cleaned_row.get('lower_output_area'),
+                cleaned_row.get('middle_output_area'),
+                cleaned_row.get('statistical_region'),
+                cleaned_row.get('police_force'),
+                cleaned_row.get('county_division'),
+                cleaned_row.get('coordinate_quality'),
+                cleaned_row.get('date_introduced'),
             )
             
             # Only add rows with valid postcodes
@@ -228,10 +194,10 @@ class PostcodeSQLiteCreator:
         
         logger.info(f"Found {len(csv_files)} CSV files to process")
         
-        # Prepare SQL insert statement
+        # Prepare SQL insert statement (25 columns for streamlined schema)
         insert_sql = '''
         INSERT OR REPLACE INTO postcodes VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
         )'''
         
         total_inserted = 0
@@ -328,12 +294,12 @@ class PostcodeSQLiteCreator:
             country_rate = with_country / total_count * 100
             logger.info(f"Country resolution: {country_rate:.1f}% ({with_country:,}/{total_count:,})")
             
-            with_district = conn.execute('SELECT COUNT(*) FROM postcodes WHERE admin_district IS NOT NULL').fetchone()[0]
+            with_district = conn.execute('SELECT COUNT(*) FROM postcodes WHERE district IS NOT NULL').fetchone()[0]
             district_rate = with_district / total_count * 100
             logger.info(f"District resolution: {district_rate:.1f}% ({with_district:,}/{total_count:,})")
             
             # Test sample lookups
-            sample = conn.execute('SELECT postcode, country, admin_district, latitude, longitude FROM postcodes WHERE latitude IS NOT NULL LIMIT 3').fetchall()
+            sample = conn.execute('SELECT postcode, country, district, latitude, longitude FROM postcodes WHERE latitude IS NOT NULL LIMIT 3').fetchall()
             logger.info("Sample postcodes:")
             for postcode, country, district, lat, lon in sample:
                 logger.info(f"  {postcode}: {country}, {district} ({lat}, {lon})")

@@ -211,4 +211,13 @@ def is_in_ons_postcode_directory(postcode: str) -> bool:
     Returns:
         bool: True if the postcode is valid, False otherwise
     """
-    return postcode in POSTCODE_NOV_2024
+    # Try SQLite database first (faster, more efficient)
+    try:
+        from .postcode_database import get_database
+        db = get_database()
+        result = db.lookup(postcode)
+        return result is not None
+    except Exception:
+        # Fall back to Python file if database not available
+        logger.debug("SQLite database not available, falling back to Python file lookup")
+        return postcode in POSTCODE_NOV_2024

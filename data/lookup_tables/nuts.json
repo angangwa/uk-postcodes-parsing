@@ -1,0 +1,1450 @@
+{
+  "E06000001": {
+    "code": "TLC31",
+    "name": "Hartlepool"
+  },
+  "E06000002": {
+    "code": "TLC32",
+    "name": "Middlesbrough"
+  },
+  "E06000003": {
+    "code": "TLC32",
+    "name": "Redcar and Cleveland"
+  },
+  "E06000004": {
+    "code": "TLC31",
+    "name": "Stockton-on-Tees"
+  },
+  "E06000005": {
+    "code": "TLC33",
+    "name": "Darlington"
+  },
+  "E06000006": {
+    "code": "TLD71",
+    "name": "Halton"
+  },
+  "E06000007": {
+    "code": "TLD61",
+    "name": "Warrington"
+  },
+  "E06000008": {
+    "code": "TLD41",
+    "name": "Blackburn with Darwen"
+  },
+  "E06000009": {
+    "code": "TLD42",
+    "name": "Blackpool"
+  },
+  "E06000010": {
+    "code": "TLE11",
+    "name": "Kingston upon Hull, City of"
+  },
+  "E06000011": {
+    "code": "TLE12",
+    "name": "East Riding of Yorkshire"
+  },
+  "E06000012": {
+    "code": "TLE13",
+    "name": "North East Lincolnshire"
+  },
+  "E06000013": {
+    "code": "TLE13",
+    "name": "North Lincolnshire"
+  },
+  "E06000014": {
+    "code": "TLE21",
+    "name": "York"
+  },
+  "E06000015": {
+    "code": "TLF11",
+    "name": "Derby"
+  },
+  "E06000016": {
+    "code": "TLF21",
+    "name": "Leicester"
+  },
+  "E06000017": {
+    "code": "TLF22",
+    "name": "Rutland"
+  },
+  "E06000018": {
+    "code": "TLF14",
+    "name": "Nottingham"
+  },
+  "E06000019": {
+    "code": "TLG11",
+    "name": "Herefordshire, County of"
+  },
+  "E06000020": {
+    "code": "TLG21",
+    "name": "Telford and Wrekin"
+  },
+  "E06000021": {
+    "code": "TLG23",
+    "name": "Stoke-on-Trent"
+  },
+  "E06000022": {
+    "code": "TLK52",
+    "name": "Bath and North East Somerset"
+  },
+  "E06000023": {
+    "code": "TLK51",
+    "name": "Bristol, City of"
+  },
+  "E06000024": {
+    "code": "TLK61",
+    "name": "North Somerset"
+  },
+  "E06000025": {
+    "code": "TLK52",
+    "name": "South Gloucestershire"
+  },
+  "E06000026": {
+    "code": "TLK41",
+    "name": "Plymouth"
+  },
+  "E06000027": {
+    "code": "TLK42",
+    "name": "Torbay"
+  },
+  "E06000030": {
+    "code": "TLK71",
+    "name": "Swindon"
+  },
+  "E06000031": {
+    "code": "TLH41",
+    "name": "Peterborough"
+  },
+  "E06000032": {
+    "code": "TLH21",
+    "name": "Luton"
+  },
+  "E06000033": {
+    "code": "TLH31",
+    "name": "Southend-on-Sea"
+  },
+  "E06000034": {
+    "code": "TLH32",
+    "name": "Thurrock"
+  },
+  "E06000035": {
+    "code": "TLJ41",
+    "name": "Medway"
+  },
+  "E06000036": {
+    "code": "TLJ15",
+    "name": "Bracknell Forest"
+  },
+  "E06000037": {
+    "code": "TLJ16",
+    "name": "West Berkshire"
+  },
+  "E06000038": {
+    "code": "TLJ16",
+    "name": "Reading"
+  },
+  "E06000039": {
+    "code": "TLJ15",
+    "name": "Slough"
+  },
+  "E06000040": {
+    "code": "TLJ15",
+    "name": "Windsor and Maidenhead"
+  },
+  "E06000041": {
+    "code": "TLJ16",
+    "name": "Wokingham"
+  },
+  "E06000042": {
+    "code": "TLJ12",
+    "name": "Milton Keynes"
+  },
+  "E06000043": {
+    "code": "TLJ21",
+    "name": "Brighton and Hove"
+  },
+  "E06000044": {
+    "code": "TLJ31",
+    "name": "Portsmouth"
+  },
+  "E06000045": {
+    "code": "TLJ32",
+    "name": "Southampton"
+  },
+  "E06000046": {
+    "code": "TLJ34",
+    "name": "Isle of Wight"
+  },
+  "E06000047": {
+    "code": "TLC41",
+    "name": "County Durham"
+  },
+  "E06000049": {
+    "code": "TLD62",
+    "name": "Cheshire East"
+  },
+  "E06000050": {
+    "code": "TLD63",
+    "name": "Cheshire West and Chester"
+  },
+  "E06000051": {
+    "code": "TLG22",
+    "name": "Shropshire"
+  },
+  "E06000052": {
+    "code": "TLK30",
+    "name": "Cornwall"
+  },
+  "E06000053": {
+    "code": "TLK30",
+    "name": "Isles of Scilly"
+  },
+  "E06000054": {
+    "code": "TLK72",
+    "name": "Wiltshire"
+  },
+  "E06000055": {
+    "code": "TLH24",
+    "name": "Bedford"
+  },
+  "E06000056": {
+    "code": "TLH25",
+    "name": "Central Bedfordshire"
+  },
+  "E06000057": {
+    "code": "TLC42",
+    "name": "Northumberland"
+  },
+  "E06000058": {
+    "code": "TLK63",
+    "name": "Bournemouth, Christchurch and Poole"
+  },
+  "E06000059": {
+    "code": "TLK64",
+    "name": "Dorset"
+  },
+  "E06000060": {
+    "code": "TLJ13",
+    "name": "Buckinghamshire"
+  },
+  "E06000061": {
+    "code": "TLF25",
+    "name": "North Northamptonshire"
+  },
+  "E06000062": {
+    "code": "TLF24",
+    "name": "West Northamptonshire"
+  },
+  "E06000063": {
+    "code": "TLD13",
+    "name": "Cumberland"
+  },
+  "E06000064": {
+    "code": "TLD14",
+    "name": "Westmorland and Furness"
+  },
+  "E06000065": {
+    "code": "TLE22",
+    "name": "North Yorkshire"
+  },
+  "E06000066": {
+    "code": "TLK62",
+    "name": "Somerset"
+  },
+  "E07000008": {
+    "code": "TLH42",
+    "name": "Cambridge"
+  },
+  "E07000009": {
+    "code": "TLH42",
+    "name": "East Cambridgeshire"
+  },
+  "E07000010": {
+    "code": "TLH42",
+    "name": "Fenland"
+  },
+  "E07000011": {
+    "code": "TLH42",
+    "name": "Huntingdonshire"
+  },
+  "E07000012": {
+    "code": "TLH42",
+    "name": "South Cambridgeshire"
+  },
+  "E07000032": {
+    "code": "TLF13",
+    "name": "Amber Valley"
+  },
+  "E07000033": {
+    "code": "TLF12",
+    "name": "Bolsover"
+  },
+  "E07000034": {
+    "code": "TLF12",
+    "name": "Chesterfield"
+  },
+  "E07000035": {
+    "code": "TLF13",
+    "name": "Derbyshire Dales"
+  },
+  "E07000036": {
+    "code": "TLF13",
+    "name": "Erewash"
+  },
+  "E07000037": {
+    "code": "TLF13",
+    "name": "High Peak"
+  },
+  "E07000038": {
+    "code": "TLF12",
+    "name": "North East Derbyshire"
+  },
+  "E07000039": {
+    "code": "TLF13",
+    "name": "South Derbyshire"
+  },
+  "E07000040": {
+    "code": "TLK43",
+    "name": "East Devon"
+  },
+  "E07000041": {
+    "code": "TLK43",
+    "name": "Exeter"
+  },
+  "E07000042": {
+    "code": "TLK43",
+    "name": "Mid Devon"
+  },
+  "E07000043": {
+    "code": "TLK43",
+    "name": "North Devon"
+  },
+  "E07000044": {
+    "code": "TLK43",
+    "name": "South Hams"
+  },
+  "E07000045": {
+    "code": "TLK43",
+    "name": "Teignbridge"
+  },
+  "E07000046": {
+    "code": "TLK43",
+    "name": "Torridge"
+  },
+  "E07000047": {
+    "code": "TLK43",
+    "name": "West Devon"
+  },
+  "E07000061": {
+    "code": "TLJ22",
+    "name": "Eastbourne"
+  },
+  "E07000062": {
+    "code": "TLJ22",
+    "name": "Hastings"
+  },
+  "E07000063": {
+    "code": "TLJ22",
+    "name": "Lewes"
+  },
+  "E07000064": {
+    "code": "TLJ22",
+    "name": "Rother"
+  },
+  "E07000065": {
+    "code": "TLJ22",
+    "name": "Wealden"
+  },
+  "E07000066": {
+    "code": "TLH37",
+    "name": "Basildon"
+  },
+  "E07000067": {
+    "code": "TLH34",
+    "name": "Braintree"
+  },
+  "E07000068": {
+    "code": "TLH36",
+    "name": "Brentwood"
+  },
+  "E07000069": {
+    "code": "TLH37",
+    "name": "Castle Point"
+  },
+  "E07000070": {
+    "code": "TLH36",
+    "name": "Chelmsford"
+  },
+  "E07000071": {
+    "code": "TLH34",
+    "name": "Colchester"
+  },
+  "E07000072": {
+    "code": "TLH35",
+    "name": "Epping Forest"
+  },
+  "E07000073": {
+    "code": "TLH35",
+    "name": "Harlow"
+  },
+  "E07000074": {
+    "code": "TLH36",
+    "name": "Maldon"
+  },
+  "E07000075": {
+    "code": "TLH37",
+    "name": "Rochford"
+  },
+  "E07000076": {
+    "code": "TLH34",
+    "name": "Tendring"
+  },
+  "E07000077": {
+    "code": "TLH35",
+    "name": "Uttlesford"
+  },
+  "E07000078": {
+    "code": "TLK73",
+    "name": "Cheltenham"
+  },
+  "E07000079": {
+    "code": "TLK73",
+    "name": "Cotswold"
+  },
+  "E07000080": {
+    "code": "TLK73",
+    "name": "Forest of Dean"
+  },
+  "E07000081": {
+    "code": "TLK73",
+    "name": "Gloucester"
+  },
+  "E07000082": {
+    "code": "TLK73",
+    "name": "Stroud"
+  },
+  "E07000083": {
+    "code": "TLK73",
+    "name": "Tewkesbury"
+  },
+  "E07000084": {
+    "code": "TLJ37",
+    "name": "Basingstoke and Deane"
+  },
+  "E07000085": {
+    "code": "TLJ36",
+    "name": "East Hampshire"
+  },
+  "E07000086": {
+    "code": "TLJ35",
+    "name": "Eastleigh"
+  },
+  "E07000087": {
+    "code": "TLJ35",
+    "name": "Fareham"
+  },
+  "E07000088": {
+    "code": "TLJ35",
+    "name": "Gosport"
+  },
+  "E07000089": {
+    "code": "TLJ37",
+    "name": "Hart"
+  },
+  "E07000090": {
+    "code": "TLJ35",
+    "name": "Havant"
+  },
+  "E07000091": {
+    "code": "TLJ36",
+    "name": "New Forest"
+  },
+  "E07000092": {
+    "code": "TLJ37",
+    "name": "Rushmoor"
+  },
+  "E07000093": {
+    "code": "TLJ36",
+    "name": "Test Valley"
+  },
+  "E07000094": {
+    "code": "TLJ36",
+    "name": "Winchester"
+  },
+  "E07000095": {
+    "code": "TLH26",
+    "name": "Broxbourne"
+  },
+  "E07000096": {
+    "code": "TLH27",
+    "name": "Dacorum"
+  },
+  "E07000098": {
+    "code": "TLH27",
+    "name": "Hertsmere"
+  },
+  "E07000099": {
+    "code": "TLH26",
+    "name": "North Hertfordshire"
+  },
+  "E07000102": {
+    "code": "TLH27",
+    "name": "Three Rivers"
+  },
+  "E07000103": {
+    "code": "TLH27",
+    "name": "Watford"
+  },
+  "E07000105": {
+    "code": "TLJ45",
+    "name": "Ashford"
+  },
+  "E07000106": {
+    "code": "TLJ44",
+    "name": "Canterbury"
+  },
+  "E07000107": {
+    "code": "TLJ43",
+    "name": "Dartford"
+  },
+  "E07000108": {
+    "code": "TLJ44",
+    "name": "Dover"
+  },
+  "E07000109": {
+    "code": "TLJ43",
+    "name": "Gravesham"
+  },
+  "E07000110": {
+    "code": "TLJ45",
+    "name": "Maidstone"
+  },
+  "E07000111": {
+    "code": "TLJ46",
+    "name": "Sevenoaks"
+  },
+  "E07000112": {
+    "code": "TLJ44",
+    "name": "Folkestone and Hythe"
+  },
+  "E07000113": {
+    "code": "TLJ43",
+    "name": "Swale"
+  },
+  "E07000114": {
+    "code": "TLJ44",
+    "name": "Thanet"
+  },
+  "E07000115": {
+    "code": "TLJ46",
+    "name": "Tonbridge and Malling"
+  },
+  "E07000116": {
+    "code": "TLJ46",
+    "name": "Tunbridge Wells"
+  },
+  "E07000117": {
+    "code": "TLD46",
+    "name": "Burnley"
+  },
+  "E07000118": {
+    "code": "TLD47",
+    "name": "Chorley"
+  },
+  "E07000119": {
+    "code": "TLD45",
+    "name": "Fylde"
+  },
+  "E07000120": {
+    "code": "TLD46",
+    "name": "Hyndburn"
+  },
+  "E07000121": {
+    "code": "TLD44",
+    "name": "Lancaster"
+  },
+  "E07000122": {
+    "code": "TLD46",
+    "name": "Pendle"
+  },
+  "E07000123": {
+    "code": "TLD45",
+    "name": "Preston"
+  },
+  "E07000124": {
+    "code": "TLD45",
+    "name": "Ribble Valley"
+  },
+  "E07000125": {
+    "code": "TLD46",
+    "name": "Rossendale"
+  },
+  "E07000126": {
+    "code": "TLD45",
+    "name": "South Ribble"
+  },
+  "E07000127": {
+    "code": "TLD47",
+    "name": "West Lancashire"
+  },
+  "E07000128": {
+    "code": "TLD44",
+    "name": "Wyre"
+  },
+  "E07000129": {
+    "code": "TLF22",
+    "name": "Blaby"
+  },
+  "E07000130": {
+    "code": "TLF22",
+    "name": "Charnwood"
+  },
+  "E07000131": {
+    "code": "TLF22",
+    "name": "Harborough"
+  },
+  "E07000132": {
+    "code": "TLF22",
+    "name": "Hinckley and Bosworth"
+  },
+  "E07000133": {
+    "code": "TLF22",
+    "name": "Melton"
+  },
+  "E07000134": {
+    "code": "TLF22",
+    "name": "North West Leicestershire"
+  },
+  "E07000135": {
+    "code": "TLF22",
+    "name": "Oadby and Wigston"
+  },
+  "E07000136": {
+    "code": "TLF30",
+    "name": "Boston"
+  },
+  "E07000137": {
+    "code": "TLF30",
+    "name": "East Lindsey"
+  },
+  "E07000138": {
+    "code": "TLF30",
+    "name": "Lincoln"
+  },
+  "E07000139": {
+    "code": "TLF30",
+    "name": "North Kesteven"
+  },
+  "E07000140": {
+    "code": "TLF30",
+    "name": "South Holland"
+  },
+  "E07000141": {
+    "code": "TLF30",
+    "name": "South Kesteven"
+  },
+  "E07000142": {
+    "code": "TLF30",
+    "name": "West Lindsey"
+  },
+  "E07000143": {
+    "code": "TLH53",
+    "name": "Breckland"
+  },
+  "E07000144": {
+    "code": "TLH51",
+    "name": "Broadland"
+  },
+  "E07000145": {
+    "code": "TLH51",
+    "name": "Great Yarmouth"
+  },
+  "E07000146": {
+    "code": "TLH52",
+    "name": "King's Lynn and West Norfolk"
+  },
+  "E07000147": {
+    "code": "TLH52",
+    "name": "North Norfolk"
+  },
+  "E07000148": {
+    "code": "TLH51",
+    "name": "Norwich"
+  },
+  "E07000149": {
+    "code": "TLH53",
+    "name": "South Norfolk"
+  },
+  "E07000170": {
+    "code": "TLF15",
+    "name": "Ashfield"
+  },
+  "E07000171": {
+    "code": "TLF15",
+    "name": "Bassetlaw"
+  },
+  "E07000172": {
+    "code": "TLF16",
+    "name": "Broxtowe"
+  },
+  "E07000173": {
+    "code": "TLF16",
+    "name": "Gedling"
+  },
+  "E07000174": {
+    "code": "TLF15",
+    "name": "Mansfield"
+  },
+  "E07000175": {
+    "code": "TLF15",
+    "name": "Newark and Sherwood"
+  },
+  "E07000176": {
+    "code": "TLF16",
+    "name": "Rushcliffe"
+  },
+  "E07000177": {
+    "code": "TLJ14",
+    "name": "Cherwell"
+  },
+  "E07000178": {
+    "code": "TLJ14",
+    "name": "Oxford"
+  },
+  "E07000179": {
+    "code": "TLJ14",
+    "name": "South Oxfordshire"
+  },
+  "E07000180": {
+    "code": "TLJ14",
+    "name": "Vale of White Horse"
+  },
+  "E07000181": {
+    "code": "TLJ14",
+    "name": "West Oxfordshire"
+  },
+  "E07000192": {
+    "code": "TLG24",
+    "name": "Cannock Chase"
+  },
+  "E07000193": {
+    "code": "TLG24",
+    "name": "East Staffordshire"
+  },
+  "E07000194": {
+    "code": "TLG24",
+    "name": "Lichfield"
+  },
+  "E07000195": {
+    "code": "TLG24",
+    "name": "Newcastle-under-Lyme"
+  },
+  "E07000196": {
+    "code": "TLG24",
+    "name": "South Staffordshire"
+  },
+  "E07000197": {
+    "code": "TLG24",
+    "name": "Stafford"
+  },
+  "E07000198": {
+    "code": "TLG24",
+    "name": "Staffordshire Moorlands"
+  },
+  "E07000199": {
+    "code": "TLG24",
+    "name": "Tamworth"
+  },
+  "E07000200": {
+    "code": "TLH61",
+    "name": "Babergh"
+  },
+  "E07000202": {
+    "code": "TLH62",
+    "name": "Ipswich"
+  },
+  "E07000203": {
+    "code": "TLH61",
+    "name": "Mid Suffolk"
+  },
+  "E07000207": {
+    "code": "TLJ25",
+    "name": "Elmbridge"
+  },
+  "E07000208": {
+    "code": "TLJ26",
+    "name": "Epsom and Ewell"
+  },
+  "E07000209": {
+    "code": "TLJ25",
+    "name": "Guildford"
+  },
+  "E07000210": {
+    "code": "TLJ26",
+    "name": "Mole Valley"
+  },
+  "E07000211": {
+    "code": "TLJ26",
+    "name": "Reigate and Banstead"
+  },
+  "E07000212": {
+    "code": "TLJ25",
+    "name": "Runnymede"
+  },
+  "E07000213": {
+    "code": "TLJ25",
+    "name": "Spelthorne"
+  },
+  "E07000214": {
+    "code": "TLJ25",
+    "name": "Surrey Heath"
+  },
+  "E07000215": {
+    "code": "TLJ26",
+    "name": "Tandridge"
+  },
+  "E07000216": {
+    "code": "TLJ25",
+    "name": "Waverley"
+  },
+  "E07000217": {
+    "code": "TLJ25",
+    "name": "Woking"
+  },
+  "E07000218": {
+    "code": "TLG13",
+    "name": "North Warwickshire"
+  },
+  "E07000219": {
+    "code": "TLG13",
+    "name": "Nuneaton and Bedworth"
+  },
+  "E07000220": {
+    "code": "TLG13",
+    "name": "Rugby"
+  },
+  "E07000221": {
+    "code": "TLG13",
+    "name": "Stratford-on-Avon"
+  },
+  "E07000222": {
+    "code": "TLG13",
+    "name": "Warwick"
+  },
+  "E07000223": {
+    "code": "TLJ27",
+    "name": "Adur"
+  },
+  "E07000224": {
+    "code": "TLJ27",
+    "name": "Arun"
+  },
+  "E07000225": {
+    "code": "TLJ27",
+    "name": "Chichester"
+  },
+  "E07000226": {
+    "code": "TLJ28",
+    "name": "Crawley"
+  },
+  "E07000227": {
+    "code": "TLJ28",
+    "name": "Horsham"
+  },
+  "E07000228": {
+    "code": "TLJ28",
+    "name": "Mid Sussex"
+  },
+  "E07000229": {
+    "code": "TLJ27",
+    "name": "Worthing"
+  },
+  "E07000234": {
+    "code": "TLG12",
+    "name": "Bromsgrove"
+  },
+  "E07000235": {
+    "code": "TLG12",
+    "name": "Malvern Hills"
+  },
+  "E07000236": {
+    "code": "TLG12",
+    "name": "Redditch"
+  },
+  "E07000237": {
+    "code": "TLG12",
+    "name": "Worcester"
+  },
+  "E07000238": {
+    "code": "TLG12",
+    "name": "Wychavon"
+  },
+  "E07000239": {
+    "code": "TLG12",
+    "name": "Wyre Forest"
+  },
+  "E07000240": {
+    "code": "TLH27",
+    "name": "St Albans"
+  },
+  "E07000241": {
+    "code": "TLH26",
+    "name": "Welwyn Hatfield"
+  },
+  "E07000242": {
+    "code": "TLH26",
+    "name": "East Hertfordshire"
+  },
+  "E07000243": {
+    "code": "TLH26",
+    "name": "Stevenage"
+  },
+  "E07000244": {
+    "code": "TLH63",
+    "name": "East Suffolk"
+  },
+  "E07000245": {
+    "code": "TLH64",
+    "name": "West Suffolk"
+  },
+  "E08000001": {
+    "code": "TLD36",
+    "name": "Bolton"
+  },
+  "E08000002": {
+    "code": "TLD37",
+    "name": "Bury"
+  },
+  "E08000003": {
+    "code": "TLD33",
+    "name": "Manchester"
+  },
+  "E08000004": {
+    "code": "TLD37",
+    "name": "Oldham"
+  },
+  "E08000005": {
+    "code": "TLD37",
+    "name": "Rochdale"
+  },
+  "E08000006": {
+    "code": "TLD34",
+    "name": "Salford"
+  },
+  "E08000007": {
+    "code": "TLD35",
+    "name": "Stockport"
+  },
+  "E08000008": {
+    "code": "TLD35",
+    "name": "Tameside"
+  },
+  "E08000009": {
+    "code": "TLD34",
+    "name": "Trafford"
+  },
+  "E08000010": {
+    "code": "TLD36",
+    "name": "Wigan"
+  },
+  "E08000011": {
+    "code": "TLD71",
+    "name": "Knowsley"
+  },
+  "E08000012": {
+    "code": "TLD72",
+    "name": "Liverpool"
+  },
+  "E08000013": {
+    "code": "TLD71",
+    "name": "St. Helens"
+  },
+  "E08000014": {
+    "code": "TLD73",
+    "name": "Sefton"
+  },
+  "E08000015": {
+    "code": "TLD74",
+    "name": "Wirral"
+  },
+  "E08000016": {
+    "code": "TLE33",
+    "name": "Barnsley"
+  },
+  "E08000017": {
+    "code": "TLE35",
+    "name": "Doncaster"
+  },
+  "E08000018": {
+    "code": "TLE34",
+    "name": "Rotherham"
+  },
+  "E08000019": {
+    "code": "TLE32",
+    "name": "Sheffield"
+  },
+  "E08000021": {
+    "code": "TLC43",
+    "name": "Newcastle upon Tyne"
+  },
+  "E08000022": {
+    "code": "TLC43",
+    "name": "North Tyneside"
+  },
+  "E08000023": {
+    "code": "TLC43",
+    "name": "South Tyneside"
+  },
+  "E08000024": {
+    "code": "TLC44",
+    "name": "Sunderland"
+  },
+  "E08000025": {
+    "code": "TLG31",
+    "name": "Birmingham"
+  },
+  "E08000026": {
+    "code": "TLG33",
+    "name": "Coventry"
+  },
+  "E08000027": {
+    "code": "TLG36",
+    "name": "Dudley"
+  },
+  "E08000028": {
+    "code": "TLG37",
+    "name": "Sandwell"
+  },
+  "E08000029": {
+    "code": "TLG32",
+    "name": "Solihull"
+  },
+  "E08000030": {
+    "code": "TLG38",
+    "name": "Walsall"
+  },
+  "E08000031": {
+    "code": "TLG39",
+    "name": "Wolverhampton"
+  },
+  "E08000032": {
+    "code": "TLE41",
+    "name": "Bradford"
+  },
+  "E08000033": {
+    "code": "TLE44",
+    "name": "Calderdale"
+  },
+  "E08000034": {
+    "code": "TLE44",
+    "name": "Kirklees"
+  },
+  "E08000035": {
+    "code": "TLE42",
+    "name": "Leeds"
+  },
+  "E08000036": {
+    "code": "TLE45",
+    "name": "Wakefield"
+  },
+  "E08000037": {
+    "code": "TLC43",
+    "name": "Gateshead"
+  },
+  "E09000001": {
+    "code": "TLI35",
+    "name": "City of London"
+  },
+  "E09000002": {
+    "code": "TLI52",
+    "name": "Barking and Dagenham"
+  },
+  "E09000003": {
+    "code": "TLI71",
+    "name": "Barnet"
+  },
+  "E09000004": {
+    "code": "TLI51",
+    "name": "Bexley"
+  },
+  "E09000005": {
+    "code": "TLI72",
+    "name": "Brent"
+  },
+  "E09000006": {
+    "code": "TLI61",
+    "name": "Bromley"
+  },
+  "E09000007": {
+    "code": "TLI36",
+    "name": "Camden"
+  },
+  "E09000008": {
+    "code": "TLI62",
+    "name": "Croydon"
+  },
+  "E09000009": {
+    "code": "TLI73",
+    "name": "Ealing"
+  },
+  "E09000010": {
+    "code": "TLI54",
+    "name": "Enfield"
+  },
+  "E09000011": {
+    "code": "TLI51",
+    "name": "Greenwich"
+  },
+  "E09000012": {
+    "code": "TLI41",
+    "name": "Hackney"
+  },
+  "E09000013": {
+    "code": "TLI33",
+    "name": "Hammersmith and Fulham"
+  },
+  "E09000014": {
+    "code": "TLI43",
+    "name": "Haringey"
+  },
+  "E09000015": {
+    "code": "TLI74",
+    "name": "Harrow"
+  },
+  "E09000016": {
+    "code": "TLI52",
+    "name": "Havering"
+  },
+  "E09000017": {
+    "code": "TLI74",
+    "name": "Hillingdon"
+  },
+  "E09000018": {
+    "code": "TLI75",
+    "name": "Hounslow"
+  },
+  "E09000019": {
+    "code": "TLI43",
+    "name": "Islington"
+  },
+  "E09000020": {
+    "code": "TLI33",
+    "name": "Kensington and Chelsea"
+  },
+  "E09000021": {
+    "code": "TLI63",
+    "name": "Kingston upon Thames"
+  },
+  "E09000022": {
+    "code": "TLI45",
+    "name": "Lambeth"
+  },
+  "E09000023": {
+    "code": "TLI44",
+    "name": "Lewisham"
+  },
+  "E09000024": {
+    "code": "TLI63",
+    "name": "Merton"
+  },
+  "E09000025": {
+    "code": "TLI41",
+    "name": "Newham"
+  },
+  "E09000026": {
+    "code": "TLI53",
+    "name": "Redbridge"
+  },
+  "E09000027": {
+    "code": "TLI75",
+    "name": "Richmond upon Thames"
+  },
+  "E09000028": {
+    "code": "TLI44",
+    "name": "Southwark"
+  },
+  "E09000029": {
+    "code": "TLI63",
+    "name": "Sutton"
+  },
+  "E09000030": {
+    "code": "TLI42",
+    "name": "Tower Hamlets"
+  },
+  "E09000031": {
+    "code": "TLI53",
+    "name": "Waltham Forest"
+  },
+  "E09000032": {
+    "code": "TLI34",
+    "name": "Wandsworth"
+  },
+  "E09000033": {
+    "code": "TLI35",
+    "name": "Westminster"
+  },
+  "N09000001": {
+    "code": "TLN0D",
+    "name": "Antrim and Newtownabbey"
+  },
+  "N09000002": {
+    "code": "TLN07",
+    "name": "Armagh City, Banbridge and Craigavon"
+  },
+  "N09000003": {
+    "code": "TLN06",
+    "name": "Belfast"
+  },
+  "N09000004": {
+    "code": "TLN0C",
+    "name": "Causeway Coast and Glens"
+  },
+  "N09000005": {
+    "code": "TLN0A",
+    "name": "Derry City and Strabane"
+  },
+  "N09000006": {
+    "code": "TLN0G",
+    "name": "Fermanagh and Omagh"
+  },
+  "N09000007": {
+    "code": "TLN0E",
+    "name": "Lisburn and Castlereagh"
+  },
+  "N09000008": {
+    "code": "TLN0F",
+    "name": "Mid and East Antrim"
+  },
+  "N09000009": {
+    "code": "TLN0B",
+    "name": "Mid Ulster"
+  },
+  "N09000010": {
+    "code": "TLN08",
+    "name": "Newry, Mourne and Down"
+  },
+  "N09000011": {
+    "code": "TLN09",
+    "name": "Ards and North Down"
+  },
+  "S30000003": {
+    "code": "TLM01",
+    "name": "Clackmannanshire"
+  },
+  "S30000005": {
+    "code": "TLM11",
+    "name": "East Lothian"
+  },
+  "S30000006": {
+    "code": "TLM11",
+    "name": "Midlothian"
+  },
+  "S30000007": {
+    "code": "TLM91",
+    "name": "Scottish Borders"
+  },
+  "S30000008": {
+    "code": "TLM13",
+    "name": "City of Edinburgh"
+  },
+  "S30000009": {
+    "code": "TLM12",
+    "name": "Falkirk"
+  },
+  "S30000011": {
+    "code": "TLM02",
+    "name": "Stirling"
+  },
+  "S30000012": {
+    "code": "TLM14",
+    "name": "West Lothian"
+  },
+  "S30000014": {
+    "code": "TLM31",
+    "name": "West Dunbartonshire"
+  },
+  "S30000016": {
+    "code": "TLM92",
+    "name": "Dumfries and Galloway"
+  },
+  "S30000017": {
+    "code": "TLM93",
+    "name": "East Ayrshire"
+  },
+  "S30000018": {
+    "code": "TLM93",
+    "name": "North Ayrshire mainland"
+  },
+  "S30000020": {
+    "code": "TLM33",
+    "name": "East Renfrewshire"
+  },
+  "S30000021": {
+    "code": "TLM33",
+    "name": "Renfrewshire"
+  },
+  "S30000022": {
+    "code": "TLM33",
+    "name": "Inverclyde"
+  },
+  "S30000024": {
+    "code": "TLM94",
+    "name": "South Ayrshire"
+  },
+  "S30000025": {
+    "code": "TLM95",
+    "name": "South Lanarkshire"
+  },
+  "S30000026": {
+    "code": "TLM50",
+    "name": "Aberdeen City"
+  },
+  "S30000027": {
+    "code": "TLM50",
+    "name": "Aberdeenshire"
+  },
+  "S30000034": {
+    "code": "TLM20",
+    "name": "Arran and Cumbrae"
+  },
+  "S30000039": {
+    "code": "TLM20",
+    "name": "Na h-Eileanan Siar"
+  },
+  "S30000040": {
+    "code": "TLM20",
+    "name": "Orkney Islands"
+  },
+  "S30000041": {
+    "code": "TLM20",
+    "name": "Shetland Islands"
+  },
+  "S30000042": {
+    "code": "TLM01",
+    "name": "Fife"
+  },
+  "S30000043": {
+    "code": "TLM02",
+    "name": "Perth and Kinross"
+  },
+  "S30000048": {
+    "code": "TLM03",
+    "name": "Angus"
+  },
+  "S30000049": {
+    "code": "TLM03",
+    "name": "Dundee City"
+  },
+  "S30000050": {
+    "code": "TLM31",
+    "name": "East Dunbartonshire"
+  },
+  "S30000052": {
+    "code": "TLM32",
+    "name": "Glasgow City"
+  },
+  "S30000053": {
+    "code": "TLM34",
+    "name": "North Lanarkshire"
+  },
+  "S30000054": {
+    "code": "TLM20",
+    "name": "Argyll and Bute"
+  },
+  "S30000055": {
+    "code": "TLM20",
+    "name": "Highland"
+  },
+  "S30000056": {
+    "code": "TLM20",
+    "name": "Moray"
+  },
+  "W06000001": {
+    "code": "TLL31",
+    "name": "Isle of Anglesey"
+  },
+  "W06000002": {
+    "code": "TLL32",
+    "name": "Gwynedd"
+  },
+  "W06000003": {
+    "code": "TLL33",
+    "name": "Conwy"
+  },
+  "W06000004": {
+    "code": "TLL33",
+    "name": "Denbighshire"
+  },
+  "W06000005": {
+    "code": "TLL34",
+    "name": "Flintshire"
+  },
+  "W06000006": {
+    "code": "TLL34",
+    "name": "Wrexham"
+  },
+  "W06000008": {
+    "code": "TLL41",
+    "name": "Ceredigion"
+  },
+  "W06000009": {
+    "code": "TLL42",
+    "name": "Pembrokeshire"
+  },
+  "W06000010": {
+    "code": "TLL42",
+    "name": "Carmarthenshire"
+  },
+  "W06000011": {
+    "code": "TLL43",
+    "name": "Swansea"
+  },
+  "W06000012": {
+    "code": "TLL44",
+    "name": "Neath Port Talbot"
+  },
+  "W06000013": {
+    "code": "TLL51",
+    "name": "Bridgend"
+  },
+  "W06000014": {
+    "code": "TLL52",
+    "name": "Vale of Glamorgan"
+  },
+  "W06000015": {
+    "code": "TLL52",
+    "name": "Cardiff"
+  },
+  "W06000016": {
+    "code": "TLL51",
+    "name": "Rhondda Cynon Taf"
+  },
+  "W06000018": {
+    "code": "TLL53",
+    "name": "Caerphilly"
+  },
+  "W06000019": {
+    "code": "TLL53",
+    "name": "Blaenau Gwent"
+  },
+  "W06000020": {
+    "code": "TLL53",
+    "name": "Torfaen"
+  },
+  "W06000021": {
+    "code": "TLL54",
+    "name": "Monmouthshire"
+  },
+  "W06000022": {
+    "code": "TLL54",
+    "name": "Newport"
+  },
+  "W06000023": {
+    "code": "TLL41",
+    "name": "Powys"
+  },
+  "W06000024": {
+    "code": "TLL51",
+    "name": "Merthyr Tydfil"
+  }
+}

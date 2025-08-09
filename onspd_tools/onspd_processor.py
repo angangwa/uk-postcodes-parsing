@@ -31,38 +31,48 @@ class ONSPDProcessor:
     Enhanced ONS Postcode Directory processor based on postcodes.io logic
     """
     
-    # Port from postcodes.io postcode.ts:841-886 with corrections for ONSPD Feb 2024
+    # Streamlined ONSPD field mappings - only essential user-friendly fields (~22 columns vs 42)
+    # Removes GSS codes and technical abbreviations in favor of human-readable names
     ONSPD_FIELD_MAPPINGS = [
+        # Core postcode fields
         {"column": "postcode", "onspd_code": "pcds"},
         {"column": "pc_compact", "onspd_code": "pcds", "transform": lambda x: x.replace(" ", "") if x else ""},
-        {"column": "eastings", "onspd_code": "oseast1m", "type": "int"},
-        {"column": "northings", "onspd_code": "osnrth1m", "type": "int"},
-        # Fixed coordinate mapping - latitude depends on northings, longitude depends on eastings
-        {"column": "latitude", "onspd_code": "lat", "type": "float", "depends_on": "osnrth1m"},
-        {"column": "longitude", "onspd_code": "long", "type": "float", "depends_on": "oseast1m"},
-        {"column": "country_code", "onspd_code": "ctry"},
-        {"column": "nhs_ha_code", "onspd_code": "oshlthau"},
-        {"column": "admin_county_id", "onspd_code": "oscty"},
-        {"column": "admin_district_id", "onspd_code": "oslaua"},
-        {"column": "admin_ward_id", "onspd_code": "osward"},
-        {"column": "parish_id", "onspd_code": "parish"},
-        {"column": "quality", "onspd_code": "osgrdind", "type": "int"},
-        {"column": "constituency_id", "onspd_code": "pcon"},
-        {"column": "european_electoral_region_code", "onspd_code": "eer"},
-        {"column": "region_code", "onspd_code": "rgn"},
-        {"column": "primary_care_trust_code", "onspd_code": "pct"},
-        {"column": "lsoa_id", "onspd_code": "lsoa11"},
-        {"column": "msoa_id", "onspd_code": "msoa11"},
-        # Updated for ONSPD Feb 2024: ITL replaces NUTS
-        {"column": "nuts_id", "onspd_code": "itl"},
         {"column": "incode", "onspd_code": "pcds", "transform": lambda x: x.split(" ")[1] if x and " " in x else ""},
         {"column": "outcode", "onspd_code": "pcds", "transform": lambda x: x.split(" ")[0] if x and " " in x else ""},
-        {"column": "ced_id", "onspd_code": "ced"},
-        # Updated for ONSPD Feb 2024: SICBL replaces CCG
-        {"column": "ccg_id", "onspd_code": "sicbl"},
-        {"column": "date_of_introduction", "onspd_code": "dointr"},
+        
+        # Geographic coordinates
+        {"column": "latitude", "onspd_code": "lat", "type": "float", "depends_on": "osnrth1m"},
+        {"column": "longitude", "onspd_code": "long", "type": "float", "depends_on": "oseast1m"},
+        {"column": "eastings", "onspd_code": "oseast1m", "type": "int"},
+        {"column": "northings", "onspd_code": "osnrth1m", "type": "int"},
+        
+        # Administrative boundaries (names only, no codes)
+        {"column": "country", "onspd_code": "ctry"},
+        {"column": "district", "onspd_code": "oslaua"},
+        {"column": "county", "onspd_code": "oscty"},
+        {"column": "ward", "onspd_code": "osward"},
+        {"column": "parish", "onspd_code": "parish"},
+        {"column": "constituency", "onspd_code": "pcon"},
+        {"column": "region", "onspd_code": "rgn"},
+        
+        # Healthcare regions (renamed for clarity)
+        {"column": "healthcare_region", "onspd_code": "sicbl"},
+        {"column": "nhs_health_authority", "onspd_code": "oshlthau"},
+        {"column": "primary_care_trust", "onspd_code": "pct"},
+        
+        # Statistical areas (renamed for clarity)
+        {"column": "lower_output_area", "onspd_code": "lsoa11"},
+        {"column": "middle_output_area", "onspd_code": "msoa11"},
+        {"column": "statistical_region", "onspd_code": "itl"},
+        
+        # Service areas (renamed for clarity)
+        {"column": "police_force", "onspd_code": "pfa"},
+        {"column": "county_division", "onspd_code": "ced"},
+        
+        # Quality and metadata
+        {"column": "coordinate_quality", "onspd_code": "osgrdind", "type": "int"},
+        {"column": "date_introduced", "onspd_code": "dointr"},
         {"column": "date_of_termination", "onspd_code": "doterm"},
-        {"column": "pfa_id", "onspd_code": "pfa"},
     ]
     
     def __init__(self, data_dir: str = "../data"):
@@ -288,32 +298,44 @@ class ONSPDProcessor:
     def _add_human_readable_names(self, row: Dict):
         """Add human-readable names using lookup tables"""
         mappings = [
-            ('country_code', 'countries', 'country'),
-            ('admin_district_id', 'districts', 'admin_district'),
-            ('admin_county_id', 'counties', 'admin_county'),
-            ('admin_ward_id', 'wards', 'admin_ward'),
-            ('parish_id', 'parishes', 'parish'),
-            ('constituency_id', 'constituencies', 'parliamentary_constituency'),
-            ('region_code', 'regions', 'region'),
-            ('european_electoral_region_code', 'european_registers', 'european_electoral_region'),
-            ('primary_care_trust_code', 'pcts', 'primary_care_trust'),
-            # Updated for ONSPD Feb 2024: ccg_id now contains SICBL data
-            ('ccg_id', 'ccgs', 'ccg'),
-            ('lsoa_id', 'lsoa', 'lsoa'),
-            ('msoa_id', 'msoa', 'msoa'),
-            # Updated for ONSPD Feb 2024: nuts_id now contains ITL data, but we keep nuts lookup table
-            ('nuts_id', 'nuts', 'nuts'),
-            ('pfa_id', 'police_force_areas', 'pfa'),
-            ('ced_id', 'ceds', 'ced'),
-            ('nhs_ha_code', 'nhsHa', 'nhs_ha'),
+            ('country', 'countries', 'country'),
+            ('district', 'districts', 'district'),
+            ('county', 'counties', 'county'),
+            ('ward', 'wards', 'ward'),
+            ('parish', 'parishes', 'parish'),
+            ('constituency', 'constituencies', 'constituency'),
+            ('region', 'regions', 'region'),
+            ('primary_care_trust', 'pcts', 'primary_care_trust'),
+            # Updated for ONSPD Feb 2024: healthcare_region contains SICBL data
+            ('healthcare_region', 'ccgs', 'healthcare_region'),
+            ('lower_output_area', 'lsoa', 'lower_output_area'),
+            ('middle_output_area', 'msoa', 'middle_output_area'),
+            # Updated for ONSPD Feb 2024: statistical_region contains ITL data, but we keep nuts lookup table
+            ('statistical_region', 'nuts', 'statistical_region'),
+            ('police_force', 'police_force_areas', 'police_force'),
+            ('county_division', 'ceds', 'county_division'),
+            ('nhs_health_authority', 'nhsHa', 'nhs_health_authority'),
         ]
         
         for code_field, table_name, name_field in mappings:
             code = row.get(code_field)
-            if code and table_name in self.lookup_tables:
-                lookup_table = self.lookup_tables[table_name]
+            
+            # Handle placeholder codes and missing/invalid codes
+            if not code or code in ['E99999999', 'L99999999', 'M99999999', 'N99999999', 'S99999999', 'W99999999']:
+                # E99999999, L99999999, etc. are placeholders for "not applicable"
+                row[name_field] = None
+                continue
                 
-                if isinstance(lookup_table, dict) and code in lookup_table:
+            if table_name not in self.lookup_tables:
+                # Lookup table not available
+                row[name_field] = None
+                continue
+                
+            lookup_table = self.lookup_tables[table_name]
+            lookup_result = None
+            
+            if isinstance(lookup_table, dict):
+                if code in lookup_table:
                     lookup_result = lookup_table[code]
                     
                     # Handle different lookup table formats
@@ -329,15 +351,26 @@ class ONSPDProcessor:
                     else:
                         # Simple string lookup
                         row[name_field] = lookup_result
+                else:
+                    # GSS code not found in lookup table
+                    logger.debug(f"GSS code '{code}' not found in {table_name} lookup table")
+                    row[name_field] = None
                         
-                elif isinstance(lookup_table, list):
-                    # Array-based lookup (find by code field)
-                    match = next((item for item in lookup_table if item.get('code') == code), None)
-                    if match:
-                        if isinstance(match, dict):
-                            row[name_field] = match.get('name', match.get('value'))
-                        else:
-                            row[name_field] = match
+            elif isinstance(lookup_table, list):
+                # Array-based lookup (find by code field)
+                match = next((item for item in lookup_table if item.get('code') == code), None)
+                if match:
+                    if isinstance(match, dict):
+                        row[name_field] = match.get('name', match.get('value'))
+                    else:
+                        row[name_field] = match
+                else:
+                    # GSS code not found in lookup table
+                    logger.debug(f"GSS code '{code}' not found in {table_name} lookup table")
+                    row[name_field] = None
+            else:
+                # Unknown lookup table format
+                row[name_field] = None
 
     def generate_enhanced_postcode_data(self, onspd_csv_directory: str, 
                                       output_path: str = None) -> str:
@@ -373,40 +406,31 @@ class ONSPDProcessor:
                 },
                 'administrative': {
                     'country': row.get('country'),
-                    'admin_district': row.get('admin_district'),
-                    'admin_county': row.get('admin_county'),
-                    'admin_ward': row.get('admin_ward'),
+                    'district': row.get('district'),
+                    'county': row.get('county'),
+                    'ward': row.get('ward'),
                     'parish': row.get('parish'),
-                    'constituency': row.get('parliamentary_constituency'),
+                    'constituency': row.get('constituency'),
                     'region': row.get('region'),
-                    'european_electoral_region': row.get('european_electoral_region'),
                 },
                 'healthcare': {
-                    'ccg': row.get('ccg'),
+                    'healthcare_region': row.get('healthcare_region'),
                     'primary_care_trust': row.get('primary_care_trust'),
-                    'nhs_ha': row.get('nhs_ha'),
+                    'nhs_health_authority': row.get('nhs_health_authority'),
                 },
                 'statistical': {
-                    'lsoa': row.get('lsoa'),
-                    'msoa': row.get('msoa'),
-                    'nuts': row.get('nuts'),
+                    'lower_output_area': row.get('lower_output_area'),
+                    'middle_output_area': row.get('middle_output_area'),
+                    'statistical_region': row.get('statistical_region'),
                 },
-                'codes': {
-                    'country_code': row.get('country_code'),
-                    'admin_district_id': row.get('admin_district_id'),
-                    'admin_county_id': row.get('admin_county_id'),
-                    'admin_ward_id': row.get('admin_ward_id'),
-                    'parish_id': row.get('parish_id'),
-                    'constituency_id': row.get('constituency_id'),
-                    'ccg_id': row.get('ccg_id'),
-                    'lsoa_id': row.get('lsoa_id'),
-                    'msoa_id': row.get('msoa_id'),
-                    'nuts_id': row.get('nuts_id'),
-                    'pfa_id': row.get('pfa_id'),
-                    'ced_id': row.get('ced_id'),
+                'services': {
+                    'police_force': row.get('police_force'),
+                    'county_division': row.get('county_division'),
                 },
-                'quality': row.get('quality', 1),
-                'date_introduced': row.get('date_of_introduction'),
+                'quality': {
+                    'coordinate_quality': row.get('coordinate_quality', 1),
+                    'date_introduced': row.get('date_introduced'),
+                },
                 'incode': row.get('incode'),
                 'outcode': row.get('outcode'),
             }
