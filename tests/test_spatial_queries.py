@@ -221,9 +221,11 @@ class TestSpatialQueries:
             distances = [distance for _, distance in results]
             assert distances == sorted(distances)
 
-            # First result should be SW1A 1AA (closest to Parliament)
+            # First result should be SW1A 1BA (closest to test Parliament coords)
+            # Note: SW1A 1BA is at 51.501364, -0.141862 which is closer to our
+            # test coords (51.5014, -0.1419) than SW1A 1AA at 51.501009, -0.141588
             closest_postcode, closest_distance = results[0]
-            assert closest_postcode.postcode == "SW1A 1AA"
+            assert closest_postcode.postcode == "SW1A 1BA"
             assert closest_distance < 0.05  # Very close (< 50m)
 
             # Should include other Westminster postcodes within 1km
@@ -303,7 +305,7 @@ class TestSpatialQueries:
             result = db.reverse_geocode(parliament_lat, parliament_lon)
 
             assert result is not None
-            assert result.postcode == "SW1A 1AA"  # Should be the closest postcode
+            assert result.postcode == "SW1A 1BA"  # Should be the closest postcode to test coords
 
     def test_reverse_geocode_no_nearby_postcodes(self):
         """Test reverse geocoding with no postcodes within 1km"""
