@@ -66,33 +66,43 @@ This directory contains comprehensive tests for the UK Postcodes Parsing library
 - Sorting and filtering patterns
 - Exception handling behavior
 
+#### `test_compatibility.py`
+**Validation against postcodes.io reference data**
+- Known postcode coordinate validation (M32 0JG, OX49 5NU)
+- Reverse geocoding with postcodes.io test data
+- Search ordering consistency (M1 vs M11, SE1 vs SE1P)  
+- Distance calculations between known postcode pairs
+- Case and space insensitive behavior validation
+- Edge case handling (invalid postcodes, unreasonable searches)
+- Spatial function accuracy using real-world test cases
+- Uses MIT-licensed test data from postcodes.io for validation
+
 ## Test Categories
 
-### Unit Tests (Fast, No Dependencies)
-- Core parsing logic
-- Database management classes (mocked)
-- PostcodeResult dataclass
-- Spatial calculations
-- API function interfaces (mocked)
+### Unit Tests (Fast, Isolated)
+- Core parsing logic (no database required)
+- Database management classes (with mocked networks)
+- PostcodeResult dataclass (with temporary test databases)
+- Spatial calculations (with known test data)
 
 **Run with:**
 ```bash
-pytest tests/test_all.py tests/test_database_manager.py tests/test_postcode_database.py -v
+pytest tests/test_all.py tests/test_database_manager.py tests/test_postcode_database.py tests/test_backward_compatibility.py -v
 ```
 
-### Integration Tests (Database Required)
-- Real database download and setup
-- Cross-platform database operations  
-- End-to-end workflows
-- Performance testing
+### Integration Tests (Real Database Required)
+- Real database download and setup validation
+- Cross-platform database operations with actual ONSPD data
+- End-to-end workflows with real postcodes
+- Performance testing with full dataset
+- Compatibility validation against postcodes.io reference data
 
 **Run with:**
 ```bash
-# Setup database first
-python -c "import uk_postcodes_parsing as ukp; ukp.setup_database()"
+# Database setup happens automatically in GitHub Actions
+# For local testing, database is auto-downloaded on first use
 
-# Then run integration tests
-pytest tests/test_integration.py tests/test_api_functions.py -v -k "not mock"
+pytest tests/test_integration.py tests/test_api_functions.py tests/test_spatial_queries.py tests/test_compatibility.py -v
 ```
 
 ### All Tests (Comprehensive)
@@ -102,12 +112,24 @@ pytest tests/ -v
 
 ## Test Data
 
-### Mock Databases
-Tests create temporary SQLite databases with known postcodes:
+### Reference Data (data/ directory)
+- **bulk_geocoding.json** - Reverse geocoding test cases from postcodes.io
+- **bulk_postcode.json** - Known postcode coordinate validation data
+- **postcode_parse_test.csv** - Legacy parsing test data
+
+### Unit Test Databases
+Unit tests create temporary SQLite databases with known postcodes:
 - **SW1A 1AA** (Parliament): 51.501009, -0.141588
 - **SW1E 6LA** (Victoria): 51.494789, -0.134270  
 - **SW1P 3AD** (Westminster): 51.498749, -0.138969
 - **E3 4SS** (Tower Hamlets): 51.540300, -0.026000
+
+### Compatibility Test Data
+Real postcodes from postcodes.io (MIT licensed):
+- **M32 0JG**: Eastings 379988, Northings 395476
+- **OX49 5NU**: Eastings 464447, Northings 195647
+- **CM8 1EF/1EU**: For reverse geocoding validation
+- **M46 9WU/9XF**: For distance calculation testing
 
 ### Known Distances
 - Parliament to Victoria: ~0.85km
@@ -128,10 +150,21 @@ When the SQLite database is not available (expected in CI without network):
 - No exceptions thrown, just logged warnings
 - Backward compatibility maintained
 
-### Mock vs Real Testing
-- **Mock tests**: Fast, reliable, test logic and error handling
-- **Real database tests**: Verify actual data and network operations
-- Both approaches ensure comprehensive coverage
+### Testing Approaches
+
+#### Unit Tests with Temporary Databases
+- **Fast execution**: Create small SQLite databases with known test data
+- **Isolated testing**: No network dependencies, consistent test data
+- **Logic validation**: Test database operations, PostcodeResult functionality
+- **Examples**: SW1A 1AA, SW1E 6LA with known coordinates
+
+#### Integration Tests with Real Database
+- **Real-world validation**: Uses actual ONSPD database (2.8+ million postcodes)
+- **Data accuracy**: Validates against postcodes.io reference data
+- **Performance testing**: Tests with full dataset scale
+- **Cross-platform**: Verifies behavior on Ubuntu/Windows
+
+Both approaches ensure comprehensive coverage from unit logic to real-world accuracy.
 
 ## Running Tests in CI/CD
 

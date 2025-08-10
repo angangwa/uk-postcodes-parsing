@@ -32,7 +32,7 @@ jobs:
           black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
       - name: Setup database for tests
         run: |
-          python test_database_setup.py
+          python tests/database_setup_check.py
       - name: Run core tests
         run: |
           pytest tests/test_all.py -v
@@ -41,4 +41,4 @@ jobs:
           pytest tests/test_database_manager.py tests/test_postcode_database.py -v
       - name: Run API and integration tests
         run: |
-          pytest tests/test_api_functions.py tests/test_spatial_queries.py tests/test_integration.py tests/test_backward_compatibility.py -v
+          pytest tests/test_api_functions.py tests/test_spatial_queries.py tests/test_integration.py tests/test_backward_compatibility.py tests/test_compatibility.py -v
