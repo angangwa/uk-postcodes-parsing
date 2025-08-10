@@ -149,8 +149,8 @@ jobs:
         
     - name: Wait for PyPI availability
       run: |
-        echo "Waiting 60 seconds for PyPI to update..."
-        sleep 60
+        echo "Waiting 180 seconds for PyPI to update..."
+        sleep 180
         
     - name: Install published package
       run: |
@@ -205,19 +205,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install twine
         
-    - name: Yank from PyPI
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.PYPI_API_KEY }}
+    - name: Log yank instructions
       run: |
         VERSION="${{ needs.create-release.outputs.version_number }}"
-        echo "Yanking version $VERSION from PyPI..."
-        
-        # Yank the failed version with a clear reason
-        python -m twine yank uk-postcodes-parsing==$VERSION \
-          --reason "Automated rollback: Post-release tests failed. See GitHub Actions for details."
-        
-        echo "✓ Version $VERSION has been yanked from PyPI"
+        echo "⚠️ Manual action required: Yank version $VERSION from PyPI"
+        echo "Run: pip install twine && twine yank uk-postcodes-parsing==$VERSION --reason 'Automated rollback: Post-release tests failed'"
         
     - name: Delete GitHub Release
       uses: actions/github-script@v6
@@ -252,9 +244,14 @@ jobs:
             body: `## Release Rollback Notice\n\n` +
                   `The release ${version} has been automatically rolled back due to test failures.\n\n` +
                   `### Actions Taken:\n` +
-                  `- ✅ Yanked version from PyPI\n` +
+                  `- ⚠️ **MANUAL ACTION REQUIRED**: Yank version from PyPI\n` +
                   `- ✅ Deleted GitHub release\n` +
                   `- ✅ Created this issue for tracking\n\n` +
+                  `### Manual Steps Required:\n` +
+                  `\`\`\`bash\n` +
+                  `pip install twine\n` +
+                  `twine yank uk-postcodes-parsing==${version.slice(1)} --reason "Automated rollback: Post-release tests failed"\n` +
+                  `\`\`\`\n\n` +
                   `### Next Steps:\n` +
                   `1. Review the [failed workflow run](${runUrl})\n` +
                   `2. Fix the failing tests\n` +
