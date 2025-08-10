@@ -76,6 +76,7 @@ jobs:
         pip install pytest pandas
         
     - name: Verify installation
+      shell: bash
       run: |
         python -c "
         import uk_postcodes_parsing as ukp
@@ -92,6 +93,7 @@ jobs:
         pytest tests/ -v --tb=short
         
     - name: Test basic functionality
+      shell: bash
       run: |
         python -c "
         import uk_postcodes_parsing as ukp
