@@ -2,6 +2,7 @@
 
 [![Test](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml)
 [![Upload Python Package](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml)
+[![Test PyPI Release](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml/badge.svg)](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml)
 
 **Extract UK postcodes from text and get rich geographic data.** The only Python library that combines intelligent text parsing with comprehensive postcode database lookup.
 
