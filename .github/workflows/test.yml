@@ -54,22 +54,7 @@ jobs:
           pip install pytest
       - name: Test cross-platform database setup
         run: |
-          python -c "
-          import uk_postcodes_parsing as ukp
-          import os
-          print(f'OS: {os.name}')
-          try:
-              success = ukp.setup_database()
-              print(f'Database setup: {success}')
-              if success:
-                  info = ukp.get_database_info()
-                  print(f'Database path: {info.get(\"path\", \"unknown\")}')
-                  print(f'Records: {info.get(\"record_count\", \"unknown\")}')
-                  print(f'Size: {info.get(\"size_mb\", \"unknown\")}MB')
-          except Exception as e:
-              print(f'Database setup failed: {e}')
-              exit(1)
-          "
+          python test_database_setup.py
       - name: Test database functionality
         run: |
           pytest tests/test_api_functions.py tests/test_integration.py -v -k "not mock"
