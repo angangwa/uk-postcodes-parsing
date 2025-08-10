@@ -16,6 +16,9 @@ from uk_postcodes_parsing.database_manager import (
 )
 from uk_postcodes_parsing.postcode_database import PostcodeResult
 
+# Common test postcodes used across multiple test classes
+TEST_POSTCODES = ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]
+
 
 @pytest.fixture(autouse=True, scope="module")
 def ensure_clean_state():
@@ -89,9 +92,6 @@ class TestCrossPlatformPaths:
 
 class TestConcurrencyAndThreadSafety:
     """Test concurrent access and thread safety"""
-    
-    # Common test postcodes used across multiple tests
-    TEST_POSTCODES = ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]
 
     @classmethod
     def setup_class(cls):
@@ -108,7 +108,7 @@ class TestConcurrencyAndThreadSafety:
         def lookup_postcodes():
             try:
                 # Each thread does multiple lookups
-                for postcode in self.TEST_POSTCODES:
+                for postcode in TEST_POSTCODES:
                     result = ukp.lookup_postcode(postcode)
                     if result:
                         results.append(result)
@@ -151,9 +151,6 @@ class TestConcurrencyAndThreadSafety:
 
 class TestRealWorldUsagePatterns:
     """Test realistic usage patterns and scenarios"""
-    
-    # Common test postcodes
-    TEST_POSTCODES = ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]
 
     @classmethod
     def setup_class(cls):
@@ -182,7 +179,7 @@ class TestRealWorldUsagePatterns:
     def test_bulk_processing_pattern(self):
         """Test bulk postcode processing pattern"""
         postcodes_to_lookup = [
-            *self.TEST_POSTCODES,  # Valid postcodes
+            *TEST_POSTCODES,  # Valid postcodes
             "INVALID",   # Invalid
             "",          # Empty
             None,        # None
