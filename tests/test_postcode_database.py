@@ -380,30 +380,30 @@ class TestPostcodeDatabase:
         with pytest.raises(FileNotFoundError):
             PostcodeDatabase("/nonexistent/path/db.sqlite")
 
-    def test_thread_local_connections(self):
-        """Test thread-local database connections"""
+    def test_concurrent_database_access(self):
+        """Test concurrent database access with connection-per-operation pattern"""
         with tempfile.TemporaryDirectory() as temp_dir:
             db_path = self.create_mock_database(temp_dir)
             db = PostcodeDatabase(str(db_path))
 
-            connections = {}
+            results = {}
             
-            def get_connection():
+            def lookup_postcode():
                 import threading
                 thread_id = threading.current_thread().ident
-                conn = db._get_connection()
-                connections[thread_id] = id(conn)
+                # Test that concurrent lookups work correctly
+                result = db.lookup("SW1A 1AA")
+                results[thread_id] = result is not None
 
-            threads = [threading.Thread(target=get_connection) for _ in range(3)]
+            threads = [threading.Thread(target=lookup_postcode) for _ in range(3)]
             for t in threads:
                 t.start()
             for t in threads:
                 t.join()
 
-            # Each thread should have gotten a connection
-            assert len(connections) >= 2  # At least 2 unique threads
-            # Note: We can't guarantee 3 unique connections as thread-local
-            # storage may reuse connections in some implementations
+            # All threads should have successfully completed lookups
+            assert len(results) >= 2  # At least 2 threads completed
+            assert all(results.values())  # All lookups should succeed
 
     def test_lookup_existing_postcode(self):
         """Test lookup of existing postcode"""
