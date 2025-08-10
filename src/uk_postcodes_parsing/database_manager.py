@@ -20,14 +20,14 @@ class DatabaseManager:
     def __init__(self, local_db_path: Optional[str] = None):
         """
         Initialize the database manager.
-        
+
         Args:
             local_db_path: Optional path to a locally-built database file.
                           If provided, this database will be used instead of downloading.
         """
         # Check for environment variable override first
         env_db_path = os.environ.get("UK_POSTCODES_DB_PATH")
-        
+
         if local_db_path:
             # Use the provided local database path
             self.db_path = Path(local_db_path).resolve()
@@ -49,7 +49,7 @@ class DatabaseManager:
             self.data_dir = base_dir / ".uk_postcodes_parsing"
             self.db_path = self.data_dir / "postcodes.db"
             self.is_local_db = False
-        
+
         self.download_url = "https://github.com/angangwa/uk-postcodes-parsing/releases/latest/download/postcodes.db"
         self._download_lock = threading.Lock()
 
@@ -61,7 +61,7 @@ class DatabaseManager:
                     f"Local database not found at: {self.db_path}\n"
                     f"Please ensure the database file exists or remove the local_db_path/UK_POSTCODES_DB_PATH setting."
                 )
-            
+
             with self._download_lock:
                 # Double-check in case another thread downloaded it
                 if not self.db_path.exists():
@@ -74,7 +74,7 @@ class DatabaseManager:
                     f"Local database appears corrupted: {self.db_path}\n"
                     f"Please rebuild the database or use the default download."
                 )
-            
+
             print("Database appears corrupted, re-downloading...")
             with self._download_lock:
                 self._download_database()
@@ -85,7 +85,7 @@ class DatabaseManager:
         """Download database with simple progress indicator and retry logic"""
         if self.is_local_db:
             raise RuntimeError("Cannot download when using local database path")
-            
+
         print("Downloading UK postcodes database (first time setup, ~800MB)...")
         print("This may take a few minutes depending on your connection...")
 
@@ -242,7 +242,7 @@ _manager_lock = threading.Lock()
 
 def get_database_manager(local_db_path: Optional[str] = None) -> DatabaseManager:
     """Get global database manager instance (thread-safe)
-    
+
     Args:
         local_db_path: Optional path to a locally-built database file.
                       Only used when creating the first instance.
@@ -252,9 +252,13 @@ def get_database_manager(local_db_path: Optional[str] = None) -> DatabaseManager
     with _manager_lock:
         if _db_manager is None:
             _db_manager = DatabaseManager(local_db_path)
-        elif local_db_path and str(_db_manager.db_path) != str(Path(local_db_path).resolve()):
+        elif local_db_path and str(_db_manager.db_path) != str(
+            Path(local_db_path).resolve()
+        ):
             # Warn if trying to change database path after initialization
-            print(f"Warning: Database manager already initialized with {_db_manager.db_path}")
+            print(
+                f"Warning: Database manager already initialized with {_db_manager.db_path}"
+            )
             print(f"Ignoring new path: {local_db_path}")
 
     return _db_manager
@@ -262,17 +266,19 @@ def get_database_manager(local_db_path: Optional[str] = None) -> DatabaseManager
 
 def ensure_database(local_db_path: Optional[str] = None) -> Path:
     """Convenience function to ensure database is available
-    
+
     Args:
         local_db_path: Optional path to a locally-built database file
-    
+
     Returns:
         Path to the database file
     """
     return get_database_manager(local_db_path).ensure_database()
 
 
-def setup_database(force_redownload: bool = False, local_db_path: Optional[str] = None) -> bool:
+def setup_database(
+    force_redownload: bool = False, local_db_path: Optional[str] = None
+) -> bool:
     """
     Setup the UK postcodes database - either download or use local file
 
@@ -285,13 +291,13 @@ def setup_database(force_redownload: bool = False, local_db_path: Optional[str] 
 
     Example:
         >>> import uk_postcodes_parsing as ukp
-        
+
         # Use default download
         >>> success = ukp.setup_database()
-        
+
         # Use locally-built database
         >>> success = ukp.setup_database(local_db_path="/path/to/postcodes.db")
-        
+
         # Or set environment variable
         >>> os.environ["UK_POSTCODES_DB_PATH"] = "/path/to/postcodes.db"
         >>> success = ukp.setup_database()

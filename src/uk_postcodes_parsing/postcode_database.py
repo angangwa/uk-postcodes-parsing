@@ -133,9 +133,11 @@ class PostcodeResult:
 class PostcodeDatabase:
     """Simple, reliable SQLite database interface using connection-per-operation pattern"""
 
-    def __init__(self, db_path: Optional[str] = None, local_db_path: Optional[str] = None):
+    def __init__(
+        self, db_path: Optional[str] = None, local_db_path: Optional[str] = None
+    ):
         """Initialize database path
-        
+
         Args:
             db_path: Direct path to database file (deprecated, use local_db_path instead)
             local_db_path: Path to locally-built database file to use
@@ -143,7 +145,7 @@ class PostcodeDatabase:
         if db_path is None:
             # Use database manager (supports local_db_path)
             db_path = ensure_database(local_db_path)
-        
+
         self.db_path = Path(db_path)
         if not self.db_path.exists():
             raise FileNotFoundError(f"Postcode database not found at {self.db_path}")
@@ -386,9 +388,11 @@ _db_instance = None
 _db_lock = threading.Lock()
 
 
-def get_database(db_path: Optional[str] = None, local_db_path: Optional[str] = None) -> PostcodeDatabase:
+def get_database(
+    db_path: Optional[str] = None, local_db_path: Optional[str] = None
+) -> PostcodeDatabase:
     """Get global database instance (thread-safe)
-    
+
     Args:
         db_path: Direct path to database file (deprecated)
         local_db_path: Path to locally-built database file to use
