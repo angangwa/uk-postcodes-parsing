@@ -79,7 +79,7 @@ class DatabaseManager:
             elapsed = time.time() - start_time
             file_size_mb = self.db_path.stat().st_size / (1024 * 1024)
             print(
-                f"\n✅ Database download complete! ({file_size_mb:.1f} MB in {elapsed:.1f}s)"
+                f"\n[OK] Database download complete! ({file_size_mb:.1f} MB in {elapsed:.1f}s)"
             )
 
         except urllib.error.URLError as e:
@@ -232,15 +232,15 @@ def setup_database(force_redownload: bool = False) -> bool:
         info = manager.get_database_info()
         if info.get("exists") and info.get("record_count", 0) > 1000000:
             print(
-                f"✅ Database setup complete! {info['record_count']:,} postcodes available."
+                f"[OK] Database setup complete! {info['record_count']:,} postcodes available."
             )
             return True
         else:
-            print("❌ Database setup failed - verification failed")
+            print("[ERROR] Database setup failed - verification failed")
             return False
 
     except Exception as e:
-        print(f"❌ Database setup failed: {e}")
+        print(f"[ERROR] Database setup failed: {e}")
         return False
 
 
