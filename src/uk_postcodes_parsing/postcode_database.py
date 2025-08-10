@@ -3,6 +3,7 @@ Clean, reliable postcode database implementation following postcodes.io pattern
 Uses connection-per-operation for maximum reliability and zero file locking issues
 """
 
+import logging
 import math
 import sqlite3
 import threading
@@ -11,6 +12,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 
 from .database_manager import ensure_database
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -407,8 +410,8 @@ def get_database(
             current_path = str(_db_instance.db_path)
             requested_path = str(Path(local_db_path).resolve())
             if current_path != requested_path:
-                print(f"Warning: Database already initialized with {current_path}")
-                print(f"Ignoring new path: {requested_path}")
+                logger.warning(f"Database already initialized with {current_path}")
+                logger.warning(f"Ignoring new path: {requested_path}")
 
     return _db_instance
 

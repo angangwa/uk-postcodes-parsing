@@ -89,6 +89,9 @@ class TestCrossPlatformPaths:
 
 class TestConcurrencyAndThreadSafety:
     """Test concurrent access and thread safety"""
+    
+    # Common test postcodes used across multiple tests
+    TEST_POSTCODES = ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]
 
     @classmethod
     def setup_class(cls):
@@ -105,7 +108,7 @@ class TestConcurrencyAndThreadSafety:
         def lookup_postcodes():
             try:
                 # Each thread does multiple lookups
-                for postcode in ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]:
+                for postcode in self.TEST_POSTCODES:
                     result = ukp.lookup_postcode(postcode)
                     if result:
                         results.append(result)
@@ -148,6 +151,9 @@ class TestConcurrencyAndThreadSafety:
 
 class TestRealWorldUsagePatterns:
     """Test realistic usage patterns and scenarios"""
+    
+    # Common test postcodes
+    TEST_POSTCODES = ["SW1A 1AA", "SW1A 2AA", "E1 6AN"]
 
     @classmethod
     def setup_class(cls):
@@ -176,9 +182,7 @@ class TestRealWorldUsagePatterns:
     def test_bulk_processing_pattern(self):
         """Test bulk postcode processing pattern"""
         postcodes_to_lookup = [
-            "SW1A 1AA",  # Valid
-            "SW1A 2AA",  # Valid
-            "E1 6AN",    # Valid
+            *self.TEST_POSTCODES,  # Valid postcodes
             "INVALID",   # Invalid
             "",          # Empty
             None,        # None

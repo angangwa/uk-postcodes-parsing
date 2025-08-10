@@ -5,8 +5,9 @@ Tests distance calculations, nearest neighbor search, and reverse geocoding
 
 import pytest
 import math
-import tempfile
 import sqlite3
+import tempfile
+import time
 from pathlib import Path
 
 from uk_postcodes_parsing.postcode_database import PostcodeDatabase, PostcodeResult
@@ -428,7 +429,6 @@ class TestSpatialQueries:
             db = PostcodeDatabase(str(db_path))
 
             # Test performance of spatial query
-            import time
 
             start_time = time.time()
 

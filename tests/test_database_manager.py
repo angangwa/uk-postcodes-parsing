@@ -5,6 +5,7 @@ Tests cross-platform paths, download, verification, and error handling
 
 import os
 import pytest
+import shutil
 import tempfile
 import threading
 from pathlib import Path
@@ -92,7 +93,7 @@ class TestDatabaseManager:
                         1, 1024 * 1024, 200 * 1024 * 1024
                     )  # Simulate download progress
                 # Move temp file to final location
-                Path(path).write_bytes(temp_db.read_bytes())
+                shutil.copyfile(temp_db, path)
 
             mock_urlretrieve.side_effect = mock_download
 
