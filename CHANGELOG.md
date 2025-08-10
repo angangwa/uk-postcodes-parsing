@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.2] - 2025-08-10
+
+### Fixed
+- GitHub Actions release workflow: manual yank process and longer PyPI availability wait
+- Import placement in test files for better code organization
+- Logging implementation to use proper logger instead of print statements
+- Memory efficiency improvements in test suite
+- Test data extraction for better code reusability
+
+### Removed
+- Legacy enhanced_postcode_db.py file that was using outdated thread-local storage pattern
+
 ## [2.0.1] - 2025-08-10
 
 ### Added
