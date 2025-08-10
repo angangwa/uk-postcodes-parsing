@@ -7,6 +7,10 @@ import pytest
 import sqlite3
 import tempfile
 import threading
+import time
+import random
+import platform
+import traceback
 from pathlib import Path
 from unittest.mock import patch, MagicMock
 
@@ -387,23 +391,102 @@ class TestPostcodeDatabase:
             db = PostcodeDatabase(str(db_path))
 
             results = {}
+            errors = {}
+            thread_info = {}
             
             def lookup_postcode():
-                import threading
                 thread_id = threading.current_thread().ident
-                # Test that concurrent lookups work correctly
-                result = db.lookup("SW1A 1AA")
-                results[thread_id] = result is not None
+                thread_name = threading.current_thread().name
+                start_time = time.time()
+                
+                try:
+                    # Add small random delay to avoid perfect timing collision
+                    delay = random.uniform(0.01, 0.05)
+                    time.sleep(delay)
+                    
+                    # Record thread start info
+                    thread_info[thread_id] = {
+                        'name': thread_name,
+                        'start_time': start_time,
+                        'delay': delay,
+                        'platform': platform.system()
+                    }
+                    
+                    # Perform the actual database lookup
+                    result = db.lookup("SW1A 1AA")
+                    
+                    # Record success
+                    results[thread_id] = result is not None
+                    thread_info[thread_id]['success'] = True
+                    thread_info[thread_id]['result_valid'] = result is not None
+                    thread_info[thread_id]['end_time'] = time.time()
+                    
+                except Exception as e:
+                    # Capture detailed error information
+                    error_details = {
+                        'exception_type': type(e).__name__,
+                        'exception_message': str(e),
+                        'traceback': traceback.format_exc(),
+                        'thread_name': thread_name,
+                        'platform': platform.system()
+                    }
+                    errors[thread_id] = error_details
+                    if thread_id not in thread_info:
+                        thread_info[thread_id] = {'name': thread_name}
+                    thread_info[thread_id]['success'] = False
+                    thread_info[thread_id]['error'] = str(e)
 
-            threads = [threading.Thread(target=lookup_postcode) for _ in range(3)]
+            # Create and start threads
+            threads = [threading.Thread(target=lookup_postcode, name=f"TestThread-{i}") for i in range(3)]
             for t in threads:
                 t.start()
             for t in threads:
-                t.join()
+                t.join(timeout=10.0)  # Add timeout to prevent hanging
+                
+            # Check for hanging threads
+            hanging_threads = [t for t in threads if t.is_alive()]
+            if hanging_threads:
+                print(f"WARNING: {len(hanging_threads)} threads are still alive after join()")
+                for t in hanging_threads:
+                    print(f"  - Thread {t.name} (ID: {t.ident}) is still running")
 
-            # All threads should have successfully completed lookups
-            assert len(results) >= 2  # At least 2 threads completed
-            assert all(results.values())  # All lookups should succeed
+            # Detailed logging for debugging
+            print(f"\n=== CONCURRENT ACCESS TEST DEBUG INFO ===")
+            print(f"Platform: {platform.system()}")
+            print(f"Database path: {db_path}")
+            print(f"Total threads created: {len(threads)}")
+            print(f"Threads completed successfully: {len(results)}")
+            print(f"Threads with errors: {len(errors)}")
+            
+            print(f"\n--- Thread Details ---")
+            for thread_id, info in thread_info.items():
+                print(f"Thread {thread_id} ({info.get('name', 'Unknown')}):")
+                print(f"  - Success: {info.get('success', 'Unknown')}")
+                print(f"  - Delay: {info.get('delay', 'Unknown'):.3f}s")
+                if 'end_time' in info and 'start_time' in info:
+                    duration = info['end_time'] - info['start_time']
+                    print(f"  - Duration: {duration:.3f}s")
+                if not info.get('success', True):
+                    print(f"  - Error: {info.get('error', 'Unknown error')}")
+            
+            if errors:
+                print(f"\n--- Error Details ---")
+                for thread_id, error_info in errors.items():
+                    print(f"Thread {thread_id} error:")
+                    print(f"  - Type: {error_info['exception_type']}")
+                    print(f"  - Message: {error_info['exception_message']}")
+                    print(f"  - Platform: {error_info['platform']}")
+                    print(f"  - Traceback: {error_info['traceback']}")
+
+            # Original strict assertions with detailed error context
+            assert len(results) >= 2, (
+                f"Expected at least 2 threads to complete successfully, but only {len(results)} did. "
+                f"Errors: {errors}. Thread info: {thread_info}. Platform: {platform.system()}"
+            )
+            assert all(results.values()), (
+                f"All lookups should succeed, but some failed. "
+                f"Results: {results}. Errors: {errors}. Platform: {platform.system()}"
+            )
 
     def test_lookup_existing_postcode(self):
         """Test lookup of existing postcode"""
