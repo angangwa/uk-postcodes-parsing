@@ -53,7 +53,7 @@ jobs:
           echo "Attempt $((ELAPSED/WAIT_INTERVAL + 1)): Checking PyPI for version $VERSION..."
           
           if pip index versions uk-postcodes-parsing | grep -q "$VERSION"; then
-            echo "✓ Version $VERSION found on PyPI!"
+            echo "Version $VERSION found on PyPI!"
             break
           fi
           
@@ -85,7 +85,7 @@ jobs:
         # Verify version matches
         expected_version = '${{ inputs.version }}'
         assert ukp.__version__ == expected_version, f'Version mismatch: {ukp.__version__} != {expected_version}'
-        print('✓ Version verification passed')
+        print('Version verification passed')
         "
         
     - name: Run tests
@@ -102,20 +102,20 @@ jobs:
         # Test database setup
         success = ukp.setup_database()
         assert success, 'Database setup failed'
-        print('✓ Database setup successful')
+        print('Database setup successful')
         
         # Test basic lookup
         result = ukp.lookup_postcode('SW1A 1AA')
         assert result is not None, 'Lookup failed for SW1A 1AA'
         assert result.district == 'Westminster', f'Expected Westminster, got {result.district}'
-        print('✓ Basic lookup successful')
+        print('Basic lookup successful')
         
         # Test search functionality
         results = ukp.search_postcodes('SW1A', limit=5)
         assert len(results) > 0, 'Search returned no results'
-        print(f'✓ Search returned {len(results)} results')
+        print(f'Search returned {len(results)} results')
         
-        print('✓ All basic functionality tests passed')
+        print('All basic functionality tests passed')
         "
 
   report-results:
@@ -129,10 +129,10 @@ jobs:
       run: |
         VERSION="${{ inputs.version }}"
         if [[ "${{ needs.test-published-package.result }}" == "success" ]]; then
-          echo "✅ All tests passed for uk-postcodes-parsing v$VERSION"
+          echo "All tests passed for uk-postcodes-parsing v$VERSION"
           echo "The release is ready for production use!"
         else
-          echo "❌ Some tests failed for uk-postcodes-parsing v$VERSION"
+          echo "Some tests failed for uk-postcodes-parsing v$VERSION"
           echo "Check the job logs above for details."
           exit 1
         fi
