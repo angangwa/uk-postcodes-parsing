@@ -310,10 +310,10 @@ class PostcodeDatabase:
         area_mappings = {
             "country": "country",
             "region": "region",
-            "district": "admin_district",
-            "county": "admin_county",
+            "district": "district",
+            "county": "county",
             "constituency": "constituency",
-            "healthcare_region": "ccg",
+            "healthcare_region": "healthcare_region",
         }
 
         if area_type not in area_mappings:
