@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.1] - 2024-12-XX
+## [2.0.1] - 2025-08-10
 
 ### Added
 - Support for local database paths via `local_db_path` parameter
