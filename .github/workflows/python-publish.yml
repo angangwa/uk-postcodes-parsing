@@ -1,38 +1,267 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+# This workflow will:
+# 1. Create a GitHub release with the database file
+# 2. Upload Python Package to PyPI
+# 3. Test the published package
+# 4. Automatically rollback (delete release & yank from PyPI) if tests fail
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Upload Python Package
+name: Publish Release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v2.0.1
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g., v2.0.1)'
+        required: true
+        type: string
 
 permissions:
-  contents: read
-
+  contents: write  # Need write for creating releases
+  
 jobs:
-  deploy:
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    outputs:
+      release_id: ${{ steps.create_release.outputs.id }}
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      version: ${{ steps.get_version.outputs.VERSION }}
+      version_number: ${{ steps.get_version.outputs.VERSION_NUMBER }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: true  # Fetch Git LFS files including postcodes.db
+        
+    - name: Checkout LFS objects
+      run: git lfs pull
+      
+    - name: Verify database exists
+      run: |
+        if [ ! -f postcodes.db ]; then
+          echo "Error: postcodes.db not found in repository"
+          exit 1
+        fi
+        ls -lh postcodes.db
+        echo "Database size: $(stat -f%z postcodes.db 2>/dev/null || stat -c%s postcodes.db) bytes"
+        
+    - name: Get version from tag
+      id: get_version
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          VERSION=${{ inputs.tag }}
+        else
+          VERSION=${GITHUB_REF#refs/tags/}
+        fi
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        # Extract version number without 'v' prefix
+        VERSION_NUMBER=${VERSION#v}
+        echo "VERSION_NUMBER=$VERSION_NUMBER" >> $GITHUB_OUTPUT
+        echo "Releasing version: $VERSION ($VERSION_NUMBER)"
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        release_name: Release ${{ steps.get_version.outputs.VERSION }}
+        body: |
+          ## UK Postcodes Parsing ${{ steps.get_version.outputs.VERSION }}
+          
+          ### Installation
+          ```bash
+          pip install uk-postcodes-parsing==${{ steps.get_version.outputs.VERSION_NUMBER }}
+          ```
+          
+          ### Database
+          The postcodes.db file is attached below and will be automatically downloaded on first use.
+          
+          ### Changes
+          - See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details
+        draft: false
+        prerelease: false
+        
+    - name: Upload Database to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./postcodes.db
+        asset_name: postcodes.db
+        asset_content_type: application/x-sqlite3
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: create-release
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+        
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build
+        pip install build twine
+        
     - name: Build package
       run: python -m build
-    - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      
+    - name: Check package
+      run: twine check dist/*
+      
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_KEY }}
+      run: |
+        twine upload dist/*
+        echo "Package published to PyPI"
+        echo "Version: ${{ needs.create-release.outputs.version_number }}"
+
+  test-published-package:
+    name: Test Published Package
+    needs: [create-release, publish-pypi]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true  # Stop all tests if one fails
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ['3.8', '3.10', '3.12']
+    steps:
+    - uses: actions/checkout@v3
       with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_KEY }}
+        sparse-checkout: |
+          tests
+          pyproject.toml
+          
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Wait for PyPI availability
+      run: |
+        echo "Waiting 60 seconds for PyPI to update..."
+        sleep 60
+        
+    - name: Install published package
+      run: |
+        python -m pip install --upgrade pip
+        pip install uk-postcodes-parsing==${{ needs.create-release.outputs.version_number }}
+        pip install pytest pandas
+        
+    - name: Run tests
+      run: |
+        pytest tests/ -v --tb=short
+        
+    - name: Test import and basic functionality
+      run: |
+        python -c "
+        import uk_postcodes_parsing as ukp
+        print(f'Version: {ukp.__version__}')
+        
+        # Verify version matches
+        expected_version = '${{ needs.create-release.outputs.version_number }}'
+        assert ukp.__version__ == expected_version, f'Version mismatch: {ukp.__version__} != {expected_version}'
+        
+        # Test database setup
+        success = ukp.setup_database()
+        assert success, 'Database setup failed'
+        
+        # Test basic lookup
+        result = ukp.lookup_postcode('SW1A 1AA')
+        assert result is not None, 'Lookup failed for SW1A 1AA'
+        assert result.district == 'Westminster', f'Expected Westminster, got {result.district}'
+        
+        print('✓ All basic functionality tests passed')
+        "
+
+  rollback-on-failure:
+    name: Rollback Release on Test Failure
+    needs: [create-release, publish-pypi, test-published-package]
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        sparse-checkout: |
+          pyproject.toml
+          
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
+    - name: Install twine
+      run: |
+        python -m pip install --upgrade pip
+        pip install twine
+        
+    - name: Yank from PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_KEY }}
+      run: |
+        VERSION="${{ needs.create-release.outputs.version_number }}"
+        echo "Yanking version $VERSION from PyPI..."
+        
+        # Yank the failed version with a clear reason
+        python -m twine yank uk-postcodes-parsing==$VERSION \
+          --reason "Automated rollback: Post-release tests failed. See GitHub Actions for details."
+        
+        echo "✓ Version $VERSION has been yanked from PyPI"
+        
+    - name: Delete GitHub Release
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          console.log('Deleting failed release...');
+          try {
+            await github.rest.repos.deleteRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: '${{ needs.create-release.outputs.release_id }}'
+            });
+            console.log('✓ Release deleted successfully');
+          } catch (error) {
+            console.error('Failed to delete release:', error.message);
+            core.setFailed(`Failed to delete release: ${error.message}`);
+          }
+          
+    - name: Create failure issue
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const version = '${{ needs.create-release.outputs.version }}';
+          const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+          
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `🚨 Release ${version} rolled back - tests failed`,
+            body: `## Release Rollback Notice\n\n` +
+                  `The release ${version} has been automatically rolled back due to test failures.\n\n` +
+                  `### Actions Taken:\n` +
+                  `- ✅ Yanked version from PyPI\n` +
+                  `- ✅ Deleted GitHub release\n` +
+                  `- ✅ Created this issue for tracking\n\n` +
+                  `### Next Steps:\n` +
+                  `1. Review the [failed workflow run](${runUrl})\n` +
+                  `2. Fix the failing tests\n` +
+                  `3. Bump version and try again\n\n` +
+                  `### Failed Tests:\n` +
+                  `Check the workflow run for details on which tests failed.`,
+            labels: ['bug', 'release-failure', 'high-priority']
+          });
+          
+          console.log('✓ Issue created for release rollback');
