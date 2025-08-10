@@ -38,6 +38,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     
     - name: Wait for PyPI availability with retry
+      shell: bash
       run: |
         VERSION="${{ inputs.version }}"
         MAX_WAIT_MINUTES="${{ inputs.max_wait_minutes }}"
@@ -122,6 +123,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Report Results
+      shell: bash
       run: |
         VERSION="${{ inputs.version }}"
         if [[ "${{ needs.test-published-package.result }}" == "success" ]]; then
