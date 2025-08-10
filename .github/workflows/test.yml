@@ -5,14 +5,17 @@ on:
     paths:
       - 'tests/**'
       - 'src/uk_postcodes_parsing/**'
+      - '.github/workflows/test.yml'
+  pull_request:
   workflow_dispatch:
 
 jobs:
-  Quality-checks:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.12"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -24,10 +27,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install .
           pip install black pytest pandas
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Lint check with black
         run: |
           black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
-      - name: Test with pytest
+      - name: Setup database for tests
         run: |
-          pytest -v
+          python tests/database_setup_check.py
+      - name: Run core tests
+        run: |
+          pytest tests/test_all.py -v
+      - name: Run database tests
+        run: |
+          pytest tests/test_database_manager.py tests/test_postcode_database.py -v
+      - name: Run API and integration tests
+        run: |
+          pytest tests/test_api_functions.py tests/test_spatial_queries.py tests/test_integration.py tests/test_backward_compatibility.py tests/test_compatibility.py -v
