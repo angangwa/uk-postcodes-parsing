@@ -77,6 +77,15 @@ The postcode database (~796MB) downloads automatically on first use:
 - **Windows**: `%APPDATA%\uk_postcodes_parsing\postcodes.db`
 - **macOS/Linux**: `~/.uk_postcodes_parsing/postcodes.db`
 
+**Using Custom Database:**
+```python
+# Use a locally-built database instead of downloading
+ukp.setup_database(local_db_path='/path/to/your/postcodes.db')
+
+# Or set environment variable
+export UK_POSTCODES_DB_PATH=/path/to/your/postcodes.db
+```
+
 ## Usage Examples
 
 ### 🔍 Text Parsing → Enhanced Lookup (Complete Workflow)
@@ -386,8 +395,8 @@ pytest tests/test_spatial_queries.py -v  # Spatial functionality
 ```
 
 ### Documentation
-- [ONSPD Usage Guide](docs/ONSPD_USAGE_GUIDE.md) - Database creation
-- [ONSPD Technical Guide](docs/ONSPD_TECHNICAL_GUIDE.md) - Technical details
+- [ONSPD Usage Guide](docs/ONSPD_USAGE_GUIDE.md) - Build custom database from ONSPD data
+- [ONSPD Technical Guide](docs/ONSPD_TECHNICAL_GUIDE.md) - Technical implementation details
 - [Test Documentation](tests/README.md) - Testing approach
 
 ## Data Source & Updates

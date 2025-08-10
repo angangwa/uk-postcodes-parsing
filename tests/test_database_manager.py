@@ -19,6 +19,20 @@ from uk_postcodes_parsing.database_manager import (
 )
 
 
+@pytest.fixture(autouse=True)
+def reset_global_manager():
+    """Reset global database manager before and after each test to prevent test pollution"""
+    import uk_postcodes_parsing.database_manager as dm
+    # Store original state
+    original_manager = dm._db_manager
+    dm._db_manager = None
+    
+    yield  # Run the test
+    
+    # Restore to None to ensure clean state for next test
+    dm._db_manager = None
+
+
 class TestDatabaseManager:
     """Test DatabaseManager class functionality"""
 
@@ -232,9 +246,10 @@ class TestSetupFunctions:
 
     @patch("uk_postcodes_parsing.database_manager.get_database_manager")
     def test_setup_database_force_redownload(self, mock_get_manager):
-        """Test forced redownload"""
+        """Test forced redownload for downloaded databases"""
         mock_manager = MagicMock()
         mock_manager.db_path.exists.return_value = True
+        mock_manager.is_local_db = False  # Explicitly test downloaded database scenario
         mock_manager.get_database_info.return_value = {
             "exists": True,
             "record_count": 1799395,
@@ -279,3 +294,99 @@ class TestSetupFunctions:
 
         assert info["exists"] is False
         assert "error" in info
+
+    @patch("uk_postcodes_parsing.database_manager._manager_lock")
+    @patch("uk_postcodes_parsing.database_manager.DatabaseManager")
+    def test_setup_database_with_local_path(self, mock_db_class, mock_lock):
+        """Test setup with local database path"""
+        # Setup mock database manager
+        mock_manager = MagicMock()
+        mock_manager.is_local_db = True
+        mock_manager.db_path = Path("/path/to/local.db")
+        mock_manager.ensure_database.return_value = Path("/path/to/local.db")
+        mock_manager.get_database_info.return_value = {
+            "exists": True,
+            "record_count": 1799395,
+            "is_local": True,
+            "source": "local"
+        }
+        mock_db_class.return_value = mock_manager
+        
+        result = setup_database(local_db_path="/path/to/local.db")
+        
+        assert result is True
+        mock_db_class.assert_called_once_with("/path/to/local.db")
+        mock_manager.ensure_database.assert_called_once()
+
+    @patch("uk_postcodes_parsing.database_manager.get_database_manager")
+    def test_setup_database_local_ignores_force_redownload(self, mock_get_manager):
+        """Test that force_redownload is ignored for local databases"""
+        mock_manager = MagicMock()
+        mock_manager.is_local_db = True
+        mock_manager.db_path = Path("/path/to/local.db")
+        mock_manager.get_database_info.return_value = {
+            "exists": True,
+            "record_count": 1799395,
+            "is_local": True,
+        }
+        mock_get_manager.return_value = mock_manager
+        
+        result = setup_database(force_redownload=True)
+        
+        assert result is True
+        # remove_database should NOT be called for local databases
+        mock_manager.remove_database.assert_not_called()
+        mock_manager.ensure_database.assert_called_once()
+
+    @patch.dict(os.environ, {"UK_POSTCODES_DB_PATH": "/env/path/postcodes.db"})
+    @patch("uk_postcodes_parsing.database_manager.Path")
+    def test_database_manager_env_variable(self, mock_path_class):
+        """Test DatabaseManager uses environment variable"""
+        mock_path = MagicMock()
+        mock_path.resolve.return_value = Path("/env/path/postcodes.db")
+        mock_path.parent = Path("/env/path")
+        mock_path_class.return_value = mock_path
+        
+        from uk_postcodes_parsing.database_manager import DatabaseManager
+        
+        manager = DatabaseManager()
+        
+        assert manager.is_local_db is True
+        mock_path_class.assert_called_with("/env/path/postcodes.db")
+
+    def test_database_manager_local_path_priority(self):
+        """Test that local_db_path takes priority over environment variable"""
+        with patch.dict(os.environ, {"UK_POSTCODES_DB_PATH": "/env/path/postcodes.db"}):
+            from uk_postcodes_parsing.database_manager import DatabaseManager
+            
+            manager = DatabaseManager(local_db_path="/local/path/postcodes.db")
+            
+            assert manager.is_local_db is True
+            assert str(manager.db_path) == str(Path("/local/path/postcodes.db").resolve())
+
+    def test_ensure_database_local_not_found(self):
+        """Test error when local database doesn't exist"""
+        from uk_postcodes_parsing.database_manager import DatabaseManager
+        
+        manager = DatabaseManager(local_db_path="/nonexistent/database.db")
+        
+        with pytest.raises(FileNotFoundError, match="Local database not found"):
+            manager.ensure_database()
+
+    @patch("uk_postcodes_parsing.database_manager.DatabaseManager._verify_database")
+    def test_ensure_database_local_corrupted(self, mock_verify):
+        """Test error when local database is corrupted"""
+        with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as tmp:
+            tmp_path = tmp.name
+            tmp.write(b"corrupted data")
+        
+        try:
+            from uk_postcodes_parsing.database_manager import DatabaseManager
+            
+            mock_verify.return_value = False  # Database verification fails
+            manager = DatabaseManager(local_db_path=tmp_path)
+            
+            with pytest.raises(RuntimeError, match="Local database appears corrupted"):
+                manager.ensure_database()
+        finally:
+            os.unlink(tmp_path)

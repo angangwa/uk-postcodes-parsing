@@ -17,6 +17,23 @@ from uk_postcodes_parsing.database_manager import (
 from uk_postcodes_parsing.postcode_database import PostcodeResult
 
 
+@pytest.fixture(autouse=True, scope="module")
+def ensure_clean_state():
+    """Ensure clean state for integration tests by resetting global managers"""
+    import uk_postcodes_parsing.database_manager as dm
+    import uk_postcodes_parsing.postcode_database as pdb
+    
+    # Reset any global state from previous tests
+    dm._db_manager = None
+    pdb._db_instance = None
+    
+    yield
+    
+    # Clean up after tests
+    dm._db_manager = None
+    pdb._db_instance = None
+
+
 class TestDatabaseSetupWorkflow:
     """Test complete database setup and initialization workflow"""
 

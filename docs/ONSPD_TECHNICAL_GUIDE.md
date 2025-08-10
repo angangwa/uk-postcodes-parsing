@@ -2,15 +2,27 @@
 
 ## Overview
 
-This guide explains how the UK postcode data processing pipeline works, including the assumptions made, processing steps, and validation methods. It is designed for developers and data engineers who need to understand or validate the implementation.
+This guide explains how the UK postcode data processing pipeline works. The library provides **two complementary approaches**:
 
-## Data Source
+1. **Production Usage**: Downloads pre-built database (797MB) from GitHub releases
+2. **Development/Custom Builds**: Build tools in `onspd_tools/` to regenerate database from raw ONSPD data
 
-The pipeline processes ONS Postcode Directory (ONSPD) data from the Office for National Statistics:
+This guide covers both approaches, assumptions made, processing steps, and validation methods.
 
-- **Source**: ONSPD February 2024 UK dataset
+## Data Source & Distribution
+
+### Production Database (Recommended)
+- **Source**: Pre-built SQLite database hosted on GitHub releases
+- **Size**: 797MB download
+- **Schema**: 25 streamlined columns (human-readable names, no GSS codes)
+- **Coverage**: 1,799,395 active postcodes (Feb 2025)
+- **Usage**: Automatic download via `uk_postcodes_parsing` library
+
+### Build-from-Source (Advanced)
+- **Source**: ONS Postcode Directory (ONSPD) February 2024 UK dataset  
 - **Format**: CSV files split by postcode area (124 files, ~1.8M postcodes total)
-- **Specification**: Based on ONSPD User Guide Feb 2024 (53 columns per record)
+- **Schema**: Full 53-column ONSPD specification with GSS codes
+- **Usage**: Manual build using `onspd_tools/` (developers only)
 
 ## Processing Logic Foundation
 
@@ -77,17 +89,18 @@ For each 10,000-row chunk:
 
 ### 4. Database Creation (`PostcodeSQLiteCreator`)
 ```sql
--- Schema with 42 optimized columns
+-- Streamlined schema with 25 essential columns (GSS codes removed)
 CREATE TABLE postcodes (
     postcode TEXT PRIMARY KEY,
     pc_compact TEXT NOT NULL,
     latitude REAL, longitude REAL,
     eastings INTEGER, northings INTEGER,
+    incode TEXT, outcode TEXT,
     -- Administrative fields (country, district, county, ward, parish)
-    -- Healthcare fields (ccg, nhs_ha, primary_care_trust)  
-    -- Statistical fields (lsoa, msoa, nuts)
-    -- Code fields (all _id suffixed fields)
-    -- Metadata (quality, date_introduced, incode, outcode)
+    -- Healthcare fields (healthcare_region, nhs_health_authority, primary_care_trust)  
+    -- Statistical fields (lower_output_area, middle_output_area, statistical_region)
+    -- Service fields (police_force, county_division)
+    -- Metadata (coordinate_quality, date_introduced)
 );
 
 -- Performance indexes
@@ -110,22 +123,24 @@ CREATE INDEX idx_outcode ON postcodes(outcode);
 - `eastings`/`northings`: Ordnance Survey grid references
 - `quality`: Positional accuracy indicator (1-10 scale)
 
-### Administrative Hierarchy
-- `country`/`country_code`: England, Scotland, Wales, Northern Ireland
-- `admin_district`/`admin_district_id`: Local authority district
-- `admin_county`/`admin_county_id`: Administrative county (if applicable)
-- `admin_ward`/`admin_ward_id`: Electoral ward
-- `parish`/`parish_id`: Civil parish (England/Wales)
+### Administrative Hierarchy (Human-readable names only)
+- `country`: England, Scotland, Wales, Northern Ireland
+- `district`: Local authority district (e.g., "Westminster")
+- `county`: Administrative county (if applicable)
+- `ward`: Electoral ward (e.g., "St James's")
+- `parish`: Civil parish (England/Wales only)
+- `constituency`: Parliamentary constituency
+- `region`: Government office region (e.g., "London")
 
-### Healthcare Regions
-- `ccg`/`ccg_id`: Sub ICB Location (formerly Clinical Commissioning Group)
-- `nhs_ha`/`nhs_ha_code`: NHS Health Authority region
-- `primary_care_trust`/`primary_care_trust_code`: Primary Care Trust
+### Healthcare Regions (Human-readable names only)
+- `healthcare_region`: Sub ICB Location (e.g., "NHS North West London")
+- `nhs_health_authority`: NHS Health Authority region (e.g., "London")
+- `primary_care_trust`: Primary Care Trust (e.g., "Westminster")
 
-### Statistical Areas
-- `lsoa`/`lsoa_id`: Lower Super Output Area (2011 census)
-- `msoa`/`msoa_id`: Middle Super Output Area (2011 census)  
-- `nuts`/`nuts_id`: International Territorial Level (formerly NUTS)
+### Statistical Areas (Human-readable names only)
+- `lower_output_area`: Lower Super Output Area (2011 census)
+- `middle_output_area`: Middle Super Output Area (2011 census)  
+- `statistical_region`: International Territorial Level (formerly NUTS)
 
 ## Validation Methods
 
@@ -137,12 +152,13 @@ sample = conn.execute("""
     FROM postcodes WHERE latitude IS NOT NULL LIMIT 5
 """).fetchall()
 
-# Verify no longitude-without-latitude issues
+# Verify coordinate pair consistency
 broken_coords = conn.execute("""
     SELECT COUNT(*) FROM postcodes 
     WHERE latitude IS NULL AND longitude IS NOT NULL
+       OR latitude IS NOT NULL AND longitude IS NULL
 """).fetchone()[0]
-assert broken_coords == 0
+assert broken_coords == 0  # Should be 0 (coordinates are paired)
 ```
 
 ### 2. Field Coverage Analysis
@@ -163,16 +179,16 @@ coord_coverage = with_coords / total * 100
 
 ### 3. Lookup Resolution Testing
 ```python
-# Verify GSS code → name resolution works
+# Verify lookup resolution works (streamlined schema has names only)
 sample = conn.execute("""
-    SELECT admin_district, admin_district_id 
+    SELECT district, healthcare_region 
     FROM postcodes 
-    WHERE admin_district IS NOT NULL LIMIT 1
+    WHERE district IS NOT NULL LIMIT 1
 """).fetchone()
 
-# Both name and ID should be populated
-assert sample[0] is not None  # Human readable name
-assert sample[1] is not None  # GSS code
+# Names should be populated (GSS codes available only in build tools)
+assert sample[0] is not None  # District name
+assert sample[1] is not None  # Healthcare region name
 ```
 
 ## Error Handling
@@ -190,11 +206,12 @@ assert sample[1] is not None  # GSS code
 
 ## Performance Characteristics
 
-- **Processing Speed**: ~8,650 postcodes/second
+- **Processing Speed**: ~8,650 postcodes/second (when building from source)
 - **Memory Usage**: 50MB chunks processed in memory
-- **Database Size**: ~958MB SQLite file (1.8M postcodes)  
+- **Database Size**: 797MB SQLite file (1.8M postcodes, streamlined 25-column schema)  
 - **Lookup Performance**: <1ms single postcode queries
 - **Spatial Queries**: <100ms nearest-neighbor searches
+- **Download Speed**: ~30MB/s average (for pre-built database)
 
 ## Dependencies
 

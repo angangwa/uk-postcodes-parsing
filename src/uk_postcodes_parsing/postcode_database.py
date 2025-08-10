@@ -133,12 +133,17 @@ class PostcodeResult:
 class PostcodeDatabase:
     """Simple, reliable SQLite database interface using connection-per-operation pattern"""
 
-    def __init__(self, db_path: Optional[str] = None):
-        """Initialize database path"""
+    def __init__(self, db_path: Optional[str] = None, local_db_path: Optional[str] = None):
+        """Initialize database path
+        
+        Args:
+            db_path: Direct path to database file (deprecated, use local_db_path instead)
+            local_db_path: Path to locally-built database file to use
+        """
         if db_path is None:
-            # Use database manager for auto-download
-            db_path = ensure_database()
-
+            # Use database manager (supports local_db_path)
+            db_path = ensure_database(local_db_path)
+        
         self.db_path = Path(db_path)
         if not self.db_path.exists():
             raise FileNotFoundError(f"Postcode database not found at {self.db_path}")
@@ -381,13 +386,25 @@ _db_instance = None
 _db_lock = threading.Lock()
 
 
-def get_database(db_path: Optional[str] = None) -> PostcodeDatabase:
-    """Get global database instance (thread-safe)"""
+def get_database(db_path: Optional[str] = None, local_db_path: Optional[str] = None) -> PostcodeDatabase:
+    """Get global database instance (thread-safe)
+    
+    Args:
+        db_path: Direct path to database file (deprecated)
+        local_db_path: Path to locally-built database file to use
+    """
     global _db_instance
 
     with _db_lock:
         if _db_instance is None:
-            _db_instance = PostcodeDatabase(db_path)
+            _db_instance = PostcodeDatabase(db_path, local_db_path)
+        elif local_db_path:
+            # Check if trying to use different local database
+            current_path = str(_db_instance.db_path)
+            requested_path = str(Path(local_db_path).resolve())
+            if current_path != requested_path:
+                print(f"Warning: Database already initialized with {current_path}")
+                print(f"Ignoring new path: {requested_path}")
 
     return _db_instance
 
