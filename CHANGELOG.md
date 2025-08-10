@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2025-08-10
+
+### Changed
+- **BREAKING**: Minimum Python version requirement raised from 3.8 to 3.9
+- Updated CI/CD to test Python 3.9, 3.10, 3.11, 3.12, and 3.13
+- Resolves SQLite spatial function compatibility issues on older Python versions
+
+### Technical Notes
+- Python 3.8 reached end-of-life in October 2024
+- Python 3.9+ includes SQLite 3.35.0+ with required math functions (acos, cos, sin, radians)
+- This change enables reliable spatial queries across all supported platforms
+
 ## [2.0.2] - 2025-08-10
 
 ### Fixed
