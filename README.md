@@ -233,6 +233,33 @@ for option in all_options:
     print(f"  {option.postcode} (confidence: {option.fix_distance})")
 ```
 
+### 🔧 Regex-Based Validation Utilities
+
+For lightweight validation without database dependency, use the postcode_utils module:
+
+```python
+from uk_postcodes_parsing.postcode_utils import (
+    is_valid, to_normalised, to_outcode, to_incode, 
+    to_area, to_district, to_sector, to_unit
+)
+
+# Basic validation (regex-only, no database needed)
+print(is_valid("SW1A 1AA"))  # True
+print(is_valid("INVALID"))   # False
+
+# Extract postcode components
+postcode = "SW1A 1AA"
+print(to_outcode(postcode))    # "SW1A"
+print(to_incode(postcode))     # "1AA"
+print(to_area(postcode))       # "SW"
+print(to_district(postcode))   # "SW1"
+print(to_sector(postcode))     # "SW1A 1"
+print(to_unit(postcode))       # "AA"
+
+# Normalize formatting
+print(to_normalised("sw1a1aa"))  # "SW1A 1AA"
+```
+
 ### 📊 Database Management & Info
 
 Control database setup and get statistics:
