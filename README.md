@@ -429,7 +429,7 @@ pytest tests/test_spatial_queries.py -v  # Spatial functionality
 
 ## Data Source & Updates
 
-- **Source**: ONS Postcode Directory (ONSPD) - February 2024
+- **Source**: ONS Postcode Directory (ONSPD) - February 2025
 - **Coverage**: All active UK postcodes including Channel Islands, Isle of Man
 - **License**: Data derived using postcodes.io extraction methodology (MIT License)
 - **Updates**: Database can be regenerated with newer ONSPD releases using included tools
