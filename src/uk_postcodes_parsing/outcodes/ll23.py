@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LL23
+Generated from ONS Postcode Directory
+Contains 200 postcodes
+"""
+
+INCODES = {'7EL', '7BD', '7YH', '7UH', '7DW', '7RE', '7AB', '7RS', '7AQ', '7YY', '7HD', '7TD', '7UN', '7SS', '7AT', '7RR', '7DS', '7SF', '7AG', '7LD', '7DT', '7SW', '7AY', '7PU', '7TU', '7LE', '7PA', '7BQ', '7RG', '7NJ', '7YR', '7TW', '7DR', '7NN', '7BF', '7RH', '7UA', '7BT', '7DN', '7BU', '7PB', '7BW', '7HP', '7YE', '7BJ', '7ED', '7AS', '7RA', '7HQ', '7BY', '7RL', '7HT', '7AE', '7TP', '7YL', '7UR', '7AD', '7PN', '7TH', '7AA', '7HL', '7DA', '7HN', '7AR', '7HE', '7HS', '7YS', '7BB', '7LW', '7AJ', '7NR', '7AX', '7NH', '7PH', '7DP', '7UY', '7DB', '7HW', '7YF', '7UE', '7RN', '7HU', '7ET', '7LA', '7ND', '7EQ', '7NW', '7SY', '7TN', '7LY', '9AF', '7RD', '7EH', '7ES', '7BG', '7DD', '7SU', '7BN', '7SN', '7UG', '7LG', '7AF', '7PL', '7BL', '7SB', '7YW', '7YZ', '7EP', '7UF', '7PP', '7EY', '7HF', '7NG', '7PT', '7BE', '7PY', '7YN', '7DF', '7NT', '7UU', '7YT', '7TB', '7HA', '7SH', '7TT', '7SP', '7LN', '7EW', '7TR', '7TE', '7TA', '7NP', '7RT', '7SE', '7PW', '7NL', '7LU', '7GA', '7YB', '7AN', '7YD', '7ST', '7TS', '7UW', '7YU', '7DG', '7NE', '7PS', '7ER', '7YG', '7LF', '7SD', '7HR', '7AW', '7SG', '7HY', '7AP', '7LH', '7RU', '7DU', '7HH', '7BA', '7DX', '7LB', '7NS', '7TY', '7NU', '7AU', '7UL', '7DZ', '7YP', '7EN', '7EE', '7SR', '7AH', '7EB', '7NY', '7PR', '7YA', '7HG', '7EU', '7AL', '7EA', '7NA', '7DY', '7TF', '7UD', '7SA', '7BH', '7TL', '7DE', '7LL', '7UT', '7BS', '7RY', '7RB', '7RF', '7UB', '7BP', '7DH'}

@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode BS28
+Generated from ONS Postcode Directory
+Contains 202 postcodes
+"""
+
+INCODES = {'4XF', '4UP', '4NH', '4FD', '4BD', '4DF', '4XW', '4HS', '4PA', '4AH', '4JU', '4EB', '4DZ', '4UE', '4UD', '4TH', '4FB', '4TD', '4PR', '4NY', '4DY', '4FN', '4BG', '4ND', '4AJ', '4UT', '4NA', '4AD', '4SP', '4EE', '4AY', '4JX', '4JA', '4NG', '4QR', '4PN', '4XH', '4AS', '4HD', '4QU', '4PW', '4AR', '4SA', '4BW', '4AP', '4SN', '4NT', '4DS', '4PP', '4UF', '4DB', '4UZ', '4NF', '4JP', '4EL', '4FJ', '4PU', '4SZ', '4BL', '4EW', '4EZ', '4TP', '4DU', '4BA', '4TW', '4PB', '4BJ', '4SB', '4ES', '4QS', '4UQ', '4DT', '4FE', '4HH', '4JG', '4AB', '4BY', '4QD', '4DW', '4UH', '4XG', '4EP', '4JT', '4TG', '4TA', '4HN', '4AX', '4PH', '4DD', '4DQ', '4XE', '4FG', '4BU', '4JZ', '4BN', '4JS', '4JF', '4BS', '4AE', '4FL', '4QT', '4AG', '4NB', '4AW', '4UG', '4UN', '4BE', '4HL', '4SU', '4TE', '4TY', '4AL', '4NZ', '4NE', '4TJ', '4UX', '4QB', '4EX', '4HG', '4SW', '4EQ', '4SL', '4EH', '4SR', '4JQ', '4NL', '4SH', '4DH', '4FH', '4JW', '4UY', '4BT', '4BP', '4AZ', '4UW', '4PD', '4BZ', '4UL', '4SD', '4DA', '4TR', '4JL', '4FF', '4NX', '4BQ', '4US', '4TX', '4AN', '4TQ', '4ET', '4BB', '4QG', '4EY', '4AA', '4TN', '4XN', '4UB', '4UJ', '4NP', '4NS', '4TF', '4NJ', '4QP', '4XQ', '4QJ', '4AT', '4SY', '4TU', '4AQ', '4TZ', '4UR', '4EU', '4AU', '4HE', '4SJ', '4JY', '4AF', '4DX', '4HF', '4NQ', '4NN', '4NR', '4HB', '4QA', '4BH', '4ED', '4HW', '4DN', '4EJ', '4QF', '4EA', '4QE', '4DR', '4SX', '4JE', '4PT', '4QH', '4DE', '4EG', '4XD', '4BX', '4NU'}

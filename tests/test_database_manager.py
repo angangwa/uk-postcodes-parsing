@@ -76,31 +76,61 @@ class TestDatabaseManager:
         assert all(m is managers[0] for m in managers)
 
     @patch("urllib.request.urlretrieve")
-    def test_download_success(self, mock_urlretrieve):
-        """Test successful database download"""
+    @patch("lzma.open")
+    @patch("uk_postcodes_parsing.database_manager.DatabaseManager._indices_exist")
+    @patch("uk_postcodes_parsing.database_manager.DatabaseManager._create_indices")
+    def test_download_success(self, mock_create_indices, mock_indices_exist, mock_lzma_open, mock_urlretrieve):
+        """Test successful database download with xz decompression"""
         with tempfile.TemporaryDirectory() as temp_dir:
             manager = DatabaseManager()
             manager.data_dir = Path(temp_dir)
             manager.db_path = manager.data_dir / "postcodes.db"
 
-            # Create a mock database file
-            temp_db = Path(temp_dir) / "postcodes.db.tmp"
-            temp_db.write_bytes(b"x" * (200 * 1024 * 1024))  # 200MB mock file
+            # Create mock decompressed database content
+            mock_db_content = b"x" * (200 * 1024 * 1024)  # 200MB mock file
 
             def mock_download(url, path, hook=None):
+                # Ensure it's downloading the .xz file
+                assert url.endswith(".db.xz")
                 if hook:
-                    hook(
-                        1, 1024 * 1024, 200 * 1024 * 1024
-                    )  # Simulate download progress
-                # Move temp file to final location
-                shutil.copyfile(temp_db, path)
+                    hook(1, 1024 * 1024, 40 * 1024 * 1024)  # Simulate compressed download progress
+                # Create a small compressed file
+                Path(path).write_bytes(b"compressed_data")
 
+            # Mock lzma decompression
+            mock_compressed_file = MagicMock()
+            mock_compressed_file.read.side_effect = [mock_db_content, b""]  # Return content, then EOF
+            mock_lzma_open.return_value.__enter__.return_value = mock_compressed_file
+
+            # Mock indices
+            mock_indices_exist.return_value = False
+            
             mock_urlretrieve.side_effect = mock_download
 
             manager._download_database()
 
             assert manager.db_path.exists()
             assert manager.db_path.stat().st_size > 100 * 1024 * 1024
+            mock_create_indices.assert_called_once()
+
+    @patch("urllib.request.urlretrieve")
+    def test_download_uses_xz_compression_url(self, mock_urlretrieve):
+        """Test that download uses .xz compressed URL format"""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manager = DatabaseManager()
+            manager.data_dir = Path(temp_dir)
+            manager.db_path = manager.data_dir / "postcodes.db"
+            
+            def verify_xz_url(url, path, hook=None):
+                assert url.endswith(".db.xz"), f"Expected .db.xz URL, got {url}"
+                assert "github.com" in url, f"Expected GitHub URL, got {url}"
+                # Simulate download failure to avoid full decompression process
+                raise urllib.error.URLError("Test - verifying URL format only")
+            
+            mock_urlretrieve.side_effect = verify_xz_url
+            
+            with pytest.raises(RuntimeError):
+                manager._download_database()
 
     @patch("urllib.request.urlretrieve")
     def test_download_network_error(self, mock_urlretrieve):

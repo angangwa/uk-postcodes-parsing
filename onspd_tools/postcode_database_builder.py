@@ -351,16 +351,146 @@ class PostcodeSQLiteCreator:
         finally:
             conn.close()
 
+    @staticmethod
+    def generate_outcode_python_files(db_path: str, output_dir: str):
+        """Generate Python files for each outcode containing sets of incodes
+        
+        Args:
+            db_path: Path to the SQLite database
+            output_dir: Directory to create outcode files in
+        """
+        logger.info("Generating outcode-based Python files...")
+        
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        
+        # Create outcodes subdirectory
+        outcodes_dir = output_path / "outcodes"
+        outcodes_dir.mkdir(exist_ok=True)
+        
+        conn = sqlite3.connect(db_path)
+        
+        try:
+            # Get all unique outcodes
+            outcodes = conn.execute('SELECT DISTINCT outcode FROM postcodes ORDER BY outcode').fetchall()
+            logger.info(f"Found {len(outcodes)} unique outcodes")
+            
+            total_postcodes = 0
+            
+            # Create __init__.py for outcodes package
+            init_content = '''"""
+Outcode-based postcode validation files.
+Each file contains incodes for a specific outcode.
+"""
+
+import os
+from pathlib import Path
+from typing import Set, Optional
+
+def get_outcode_incodes(outcode: str) -> Optional[Set[str]]:
+    """Get set of incodes for a given outcode"""
+    try:
+        module_name = f"outcodes.{outcode.lower()}"
+        module = __import__(module_name, fromlist=[outcode.lower()])
+        return getattr(module, 'INCODES', set())
+    except (ImportError, AttributeError):
+        return None
+
+def is_postcode_valid(outcode: str, incode: str) -> bool:
+    """Check if a postcode (outcode + incode) is valid"""
+    incodes = get_outcode_incodes(outcode)
+    return incodes is not None and incode in incodes
+'''
+            
+            with open(outcodes_dir / "__init__.py", "w") as f:
+                f.write(init_content)
+            
+            # Generate file for each outcode
+            for (outcode,) in outcodes:
+                if not outcode:  # Skip empty outcodes
+                    continue
+                    
+                # Get all incodes for this outcode
+                incodes = conn.execute(
+                    'SELECT DISTINCT incode FROM postcodes WHERE outcode = ? ORDER BY incode',
+                    (outcode,)
+                ).fetchall()
+                
+                incode_set = {incode for (incode,) in incodes if incode}
+                postcode_count = len(incode_set)
+                total_postcodes += postcode_count
+                
+                # Create Python file for this outcode
+                # Use lowercase for filename to avoid case issues
+                filename = f"{outcode.lower()}.py"
+                
+                file_content = f'''"""
+Postcodes for outcode {outcode}
+Generated from ONS Postcode Directory
+Contains {postcode_count} postcodes
+"""
+
+INCODES = {repr(incode_set)}
+'''
+                
+                with open(outcodes_dir / filename, "w") as f:
+                    f.write(file_content)
+                
+                logger.debug(f"Created {filename} with {postcode_count} incodes")
+            
+            # Create index file listing all outcodes
+            outcode_list = [outcode for (outcode,) in outcodes if outcode]
+            
+            index_content = f'''"""
+Index of all available outcodes.
+Generated from ONS Postcode Directory
+Total outcodes: {len(outcode_list)}
+Total postcodes: {total_postcodes}
+"""
+
+AVAILABLE_OUTCODES = {repr(sorted(outcode_list))}
+
+def get_all_outcodes():
+    """Get list of all available outcodes"""
+    return AVAILABLE_OUTCODES.copy()
+
+def has_outcode(outcode: str) -> bool:
+    """Check if an outcode is available"""
+    return outcode.upper() in AVAILABLE_OUTCODES
+'''
+            
+            with open(outcodes_dir / "index.py", "w") as f:
+                f.write(index_content)
+            
+            logger.info(f"Generated {len(outcode_list)} outcode files")
+            logger.info(f"Total postcodes: {total_postcodes:,}")
+            
+            # Calculate size savings
+            original_size = len(f"POSTCODE_SET = {set()}")  # Rough estimate
+            total_files_size = sum(
+                os.path.getsize(outcodes_dir / f"{outcode.lower()}.py") 
+                for outcode in outcode_list
+            )
+            
+            logger.info(f"Generated files total size: {total_files_size / 1024 / 1024:.1f} MB")
+            logger.info(f"Average file size: {total_files_size / len(outcode_list) / 1024:.1f} KB")
+            
+            return outcodes_dir
+            
+        finally:
+            conn.close()
+
 def main():
     """Main entry point"""
     import argparse
     
     parser = argparse.ArgumentParser(description='Create SQLite database from ONSPD data')
-    parser.add_argument('onspd_directory', help='Path to ONSPD multi_csv directory')
+    parser.add_argument('onspd_directory', nargs='?', help='Path to ONSPD multi_csv directory (optional if only generating outcodes)')
     parser.add_argument('--output', default='enhanced_postcodes.db', help='Output database path')
     parser.add_argument('--data-dir', default='../data', help='Data directory path')
     parser.add_argument('--validate', action='store_true', help='Validate database after creation')
     parser.add_argument('--test-performance', action='store_true', help='Test query performance')
+    parser.add_argument('--generate-outcodes', help='Generate outcode Python files to specified directory')
     parser.add_argument('--verbose', action='store_true', help='Enable verbose logging')
     
     args = parser.parse_args()
@@ -369,6 +499,21 @@ def main():
         logging.getLogger().setLevel(logging.DEBUG)
     
     try:
+        # Handle case where we only want to generate outcodes from existing database
+        if args.generate_outcodes and not args.onspd_directory:
+            # Use existing database for outcode generation only
+            if not os.path.exists(args.output):
+                raise FileNotFoundError(f"Database not found: {args.output}")
+            
+            print(f"Generating outcode files from existing database: {args.output}")
+            outcodes_dir = PostcodeSQLiteCreator.generate_outcode_python_files(args.output, args.generate_outcodes)
+            print(f"✅ Outcode files generated successfully: {outcodes_dir}")
+            return 0
+        
+        # Require ONSPD directory for database creation
+        if not args.onspd_directory:
+            parser.error("onspd_directory is required unless using --generate-outcodes with existing database")
+        
         creator = PostcodeSQLiteCreator(data_dir=args.data_dir)
         
         # Create database
@@ -384,6 +529,11 @@ def main():
         # Test performance if requested
         if args.test_performance:
             creator.test_query_performance(db_path)
+        
+        # Generate outcode files if requested
+        if args.generate_outcodes:
+            outcodes_dir = PostcodeSQLiteCreator.generate_outcode_python_files(db_path, args.generate_outcodes)
+            print(f"✅ Outcode files generated successfully: {outcodes_dir}")
         
         print(f"✅ SQLite database created successfully: {db_path}")
         

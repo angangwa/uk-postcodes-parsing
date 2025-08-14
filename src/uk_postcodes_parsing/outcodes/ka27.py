@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode KA27
+Generated from ONS Postcode Directory
+Contains 205 postcodes
+"""
+
+INCODES = {'8PL', '8LX', '8AR', '8NX', '8JP', '8EU', '8HD', '8BT', '8AT', '8NU', '8LB', '8RW', '8LF', '8ES', '8DX', '8EY', '8AJ', '8JT', '8PB', '8RB', '8LS', '8AU', '8PS', '8EG', '8DR', '8QP', '8DD', '8DQ', '8FF', '8NF', '8JA', '8LQ', '8PN', '8HF', '8NG', '8JU', '8SL', '8JN', '8BG', '8FG', '8NN', '8RA', '8RE', '8DL', '8DN', '8BX', '8EL', '8NP', '8NJ', '8HZ', '8AP', '8GB', '8JL', '8BE', '8HL', '8NW', '8HH', '8PG', '8RN', '8EF', '8PR', '8NY', '8DG', '8DF', '8BQ', '8DH', '8SB', '8NS', '8NT', '8BU', '8DB', '8GD', '8BH', '8DW', '8AZ', '8SH', '8FL', '8PF', '8HB', '8LP', '8BA', '8EX', '8QN', '8ER', '8DA', '8QH', '8BL', '8DY', '8BN', '8BY', '8AB', '8NR', '8NB', '8SA', '8RH', '8EZ', '8PD', '8GE', '8JQ', '8RD', '8BD', '8BB', '8EJ', '8FP', '8HY', '8JF', '8SJ', '8FA', '8FD', '8HA', '8BJ', '8QW', '8AS', '8JD', '8AG', '8AY', '8DS', '8PA', '8JB', '8GA', '8BP', '8LY', '8ND', '8LU', '8PX', '8RR', '8EN', '8LA', '8NH', '8BS', '8NQ', '8AL', '8RJ', '8DU', '8SD', '8BW', '8GG', '8LL', '8HP', '8EW', '8AA', '8SG', '8LE', '8ED', '8EE', '8JG', '8RG', '8FN', '8DE', '8QX', '8NE', '8HR', '8PJ', '8LG', '8AF', '8HG', '8JH', '8EP', '8RP', '8SF', '8HE', '8LW', '8QS', '8LZ', '8SW', '8LD', '8PQ', '8NL', '8HJ', '8HS', '8LN', '8QL', '8LR', '8NA', '8HQ', '8DT', '8PH', '8EB', '8LH', '8QT', '8RF', '8LJ', '8DZ', '8FB', '8DJ', '8HX', '8SE', '8FJ', '8SQ', '8BZ', '8QR', '8JY', '8DP', '8EA', '8FE', '8JJ', '8PE', '8RL', '8RQ', '8HN', '8QA', '8JX', '8ET', '8FH', '8PZ'}

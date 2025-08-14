@@ -9,7 +9,7 @@ import sqlite3
 import threading
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional, Tuple, Any, Literal
 
 from .database_manager import ensure_database
 
@@ -291,7 +291,7 @@ class PostcodeDatabase:
         return results
 
     def get_area_postcodes(
-        self, area_type: str, area_value: str, limit: Optional[int] = None
+        self, area_type: Literal["country", "region", "district", "county", "constituency", "healthcare_region"], area_value: str, limit: Optional[int] = None
     ) -> List[PostcodeResult]:
         """Get postcodes in a specific administrative area"""
         area_mappings = {
@@ -421,6 +421,10 @@ def lookup_postcode(postcode: str) -> Optional[PostcodeResult]:
     """Look up a single postcode using global database instance"""
     try:
         return get_database().lookup(postcode)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return None
     except Exception:
         return None
 
@@ -429,6 +433,10 @@ def search_postcodes(query: str, limit: int = 10) -> List[PostcodeResult]:
     """Search for postcodes using global database instance"""
     try:
         return get_database().search(query, limit)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return []
     except Exception:
         return []
 
@@ -439,6 +447,10 @@ def find_nearest(
     """Find nearest postcodes using global database instance"""
     try:
         return get_database().find_nearest(latitude, longitude, radius_km, limit)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return []
     except Exception:
         return []
 
@@ -447,16 +459,24 @@ def reverse_geocode(latitude: float, longitude: float) -> Optional[PostcodeResul
     """Find closest postcode to coordinates using global database instance"""
     try:
         return get_database().reverse_geocode(latitude, longitude)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return None
     except Exception:
         return None
 
 
 def get_area_postcodes(
-    area_type: str, area_value: str, limit: Optional[int] = None
+    area_type: Literal["country", "region", "district", "county", "constituency", "healthcare_region"], area_value: str, limit: Optional[int] = None
 ) -> List[PostcodeResult]:
     """Get postcodes in administrative area using global database instance"""
     try:
         return get_database().get_area_postcodes(area_type, area_value, limit)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return []
     except Exception:
         return []
 
@@ -465,5 +485,9 @@ def get_outcode_postcodes(outcode: str) -> List[PostcodeResult]:
     """Get all postcodes in outcode using global database instance"""
     try:
         return get_database().get_outcode_postcodes(outcode)
+    except RuntimeError as e:
+        if "UK Postcodes database required" in str(e):
+            raise e  # Re-raise helpful database setup error
+        return []
     except Exception:
         return []

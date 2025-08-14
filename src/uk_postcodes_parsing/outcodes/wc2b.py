@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode WC2B
+Generated from ONS Postcode Directory
+Contains 185 postcodes
+"""
+
+INCODES = {'5AP', '6TD', '5LB', '5SN', '5QW', '5QF', '5RZ', '6AA', '5SP', '5RG', '4BD', '4DF', '5JF', '5EZ', '4AH', '6EY', '5RB', '6AN', '4LU', '5RH', '5BL', '5AN', '5BB', '5JS', '5AZ', '5PN', '4LG', '5EP', '5EN', '5TB', '4BG', '4NA', '5SQ', '6YF', '4RR', '5PD', '5AF', '5PY', '5HH', '4AY', '6EL', '5QN', '4AS', '5AB', '5PF', '5BZ', '4RL', '4DG', '4PJ', '4BW', '4LA', '5HZ', '5AJ', '4DS', '6TP', '5JZ', '5NR', '6XG', '6AQ', '5AY', '5JT', '5PP', '5QH', '5HA', '4BA', '4BJ', '6PA', '6EP', '5LQ', '5QZ', '4AB', '5RR', '6AF', '6XF', '5JY', '6UN', '5SZ', '4HN', '4DD', '5PR', '5AA', '5EU', '5HF', '5AD', '5SS', '4JF', '5DJ', '4BS', '4AE', '6JR', '6ST', '5DA', '4AG', '4AW', '5NJ', '6UJ', '6EX', '5PG', '5QR', '5NG', '5PS', '6SE', '6SR', '5SD', '5LL', '5EL', '5PQ', '4TS', '4LL', '5AH', '5TD', '5BX', '5QA', '5LX', '6AE', '4AZ', '4BZ', '5ND', '6AH', '5LF', '6UF', '5TA', '5RE', '5DG', '4BQ', '4AN', '5HP', '5NT', '4BB', '5DH', '5NE', '5QD', '4AA', '6AG', '5JD', '5NA', '5PT', '6QX', '5NN', '5NF', '5PH', '4RD', '6QU', '5EX', '5EG', '4AT', '6NH', '4AQ', '4JN', '5ES', '5LT', '6DX', '4AU', '4AF', '6LH', '5RX', '5SR', '5BD', '5ER', '5SG', '5BH', '4LD', '4DN', '4EJ', '5LW', '6LE', '5QG', '5UN', '6QY', '5NB', '4DR', '5SF', '5ST', '5LA', '5PZ', '5LR', '5NH', '5LE', '4DE', '5AE', '6PN', '6PP', '4BX', '5SU', '5EF'}

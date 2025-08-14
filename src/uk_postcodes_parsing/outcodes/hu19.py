@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode HU19
+Generated from ONS Postcode Directory
+Contains 195 postcodes
+"""
+
+INCODES = {'2LU', '2LT', '2EP', '2ES', '2LJ', '2EH', '2PF', '2PN', '2AG', '2QY', '2HH', '2ET', '2BS', '2HN', '2AY', '2HY', '2JY', '2JZ', '2QB', '2YN', '2JN', '2DE', '2DL', '2LB', '2EW', '2HF', '2GA', '2LQ', '2AT', '2NS', '2AA', '2SE', '2LP', '2DF', '2HP', '2NA', '2QS', '2BQ', '2LN', '2PL', '2LD', '2JB', '2RT', '2BY', '2PJ', '2AQ', '2HA', '2FB', '2SJ', '2PP', '2BL', '2RB', '2BH', '2HD', '2HT', '2JT', '2JE', '2AJ', '2HE', '2LX', '2QD', '2SA', '2PQ', '2RY', '2LL', '2EB', '2LZ', '2AL', '2AZ', '2DJ', '2NW', '2LH', '2PA', '2LY', '2JD', '2BX', '2BU', '2JA', '2DD', '2QF', '2BP', '2DX', '2QL', '2YX', '2QN', '2HX', '2QE', '2BN', '2HU', '2AR', '2BZ', '2LS', '2NX', '2RA', '2JS', '2QZ', '2ER', '2EL', '2AW', '2NY', '2JR', '2NT', '2PG', '2AE', '2DR', '2QU', '2FA', '2JH', '2EQ', '2SH', '2PB', '2RX', '2SL', '2PE', '2PZ', '2DW', '2EA', '2LE', '2SB', '2NR', '2SD', '2NN', '2EX', '2QR', '2NP', '2QX', '2AD', '2RU', '2AU', '2QA', '2EN', '2RS', '2EY', '2SQ', '2HL', '2JL', '2RE', '2DB', '2RG', '2PY', '2LF', '2AN', '2QW', '2NZ', '2NL', '2RZ', '2ED', '2LA', '2BT', '2TG', '2QG', '2HR', '2EG', '2DZ', '2LG', '2PH', '2AS', '2PR', '2DU', '2JX', '2LR', '2DT', '2HW', '2AX', '2HB', '2GB', '2BJ', '2AF', '2EF', '2QJ', '2AB', '2AP', '2DA', '2DN', '2HS', '2BB', '2SF', '2AH', '2DY', '2QQ', '2QT', '2GY', '2QP', '2PD', '2RD', '2JU', '2HQ', '2QH', '2DS', '2BA', '2EE', '2SG', '2EJ', '2HZ', '2DP'}

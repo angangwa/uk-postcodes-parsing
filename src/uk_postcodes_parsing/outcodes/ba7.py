@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode BA7
+Generated from ONS Postcode Directory
+Contains 202 postcodes
+"""
+
+INCODES = {'7EL', '7BD', '7DW', '7FQ', '7LJ', '7HD', '7FL', '7FE', '7AT', '7JA', '7DS', '7AG', '7LD', '7DT', '7LP', '7PJ', '7AY', '7JF', '7PU', '7LE', '7HJ', '7PG', '7PA', '7BQ', '7NJ', '7NX', '7LQ', '7DR', '7NN', '7BF', '7JX', '7GN', '7BT', '7BX', '7DN', '7BU', '7PB', '7JN', '7HP', '7PX', '7BJ', '7ED', '7HQ', '7BY', '7LT', '7HT', '7AE', '7AD', '7JJ', '7AZ', '7PN', '7AA', '7EF', '7FN', '7FB', '7FZ', '7EX', '7FD', '7HL', '7PZ', '7DA', '7AR', '7HE', '7HS', '7BB', '7LW', '7JP', '7NR', '7AX', '7NH', '7PH', '7DP', '7DB', '7FS', '7FY', '7HW', '7JL', '7HU', '7ET', '7LA', '7EZ', '7ND', '7EQ', '7NW', '7LY', '7EH', '7ES', '7FG', '7BG', '7DD', '7BN', '7BZ', '7LG', '7AF', '7PF', '7PQ', '7GR', '7PL', '7BL', '7EP', '7LR', '7FR', '7PP', '7EY', '7HF', '7DL', '7NG', '7BE', '7PT', '7HX', '7PY', '7JH', '7NT', '7FU', '7HA', '7LZ', '7LN', '7EW', '7PD', '7DQ', '7HZ', '7FX', '7JT', '7NP', '7NZ', '7PW', '7FF', '7DJ', '7JE', '7NL', '7LU', '7GA', '7JQ', '7AN', '7NQ', '7LX', '7GB', '7GG', '7EG', '7DG', '7NE', '7PS', '7ER', '7GH', '7LF', '7HR', '7JY', '7JB', '7FP', '7GD', '7FT', '7AW', '7GL', '7JD', '7GQ', '7JZ', '7HY', '7GJ', '7GP', '7JR', '7NF', '7LH', '7HB', '7DU', '7HH', '7BA', '7DX', '7FH', '7JG', '7LB', '7NS', '7NU', '7AU', '7BR', '7JS', '7DZ', '7JU', '7EN', '7EE', '7GF', '7LS', '7AH', '7PE', '7EB', '7NY', '7PR', '7JW', '7HG', '7EU', '7AL', '7FJ', '7EA', '7NA', '7DY', '7BH', '7DE', '7LL', '7QA', '7BS', '7GE', '7DH', '7EJ'}

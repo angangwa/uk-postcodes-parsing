@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LL59
+Generated from ONS Postcode Directory
+Contains 200 postcodes
+"""
+
+INCODES = {'5EE', '5UY', '5DT', '5LB', '5RU', '5BW', '5RS', '5SN', '5QW', '5UG', '5SP', '5RG', '5BS', '5SE', '5NU', '5YA', '5SB', '5HW', '5RB', '5DF', '5PB', '5BL', '5AN', '5RH', '5BB', '5PN', '5AZ', '5TL', '5LH', '5UD', '5EY', '5EP', '5EN', '5TH', '5TB', '5QJ', '5AU', '5HT', '5RP', '5RT', '5EW', '5PL', '5YF', '5HE', '5PD', '5AF', '5DN', '5PY', '5HH', '5UB', '5QN', '5DU', '5AB', '5PF', '5PW', '5UA', '5QL', '5UU', '5AJ', '5NP', '5UP', '5QY', '5RN', '5QP', '5BE', '5BY', '5NR', '5BP', '5HL', '5TT', '5HD', '5AY', '5PP', '5QH', '5TE', '5HA', '5PU', '5HG', '5QZ', '5RD', '5RR', '5AT', '5BF', '5UF', '5DS', '5AS', '5PR', '5UW', '5AA', '5AX', '5NY', '5BA', '5EU', '5HF', '5AD', '5SS', '5BU', '5YD', '5DA', '5UL', '5EJ', '5RY', '5HY', '5PE', '5PG', '5NG', '5DE', '5TR', '5PS', '5EA', '5LJ', '5UT', '5SD', '5LL', '5SH', '5EL', '5DR', '5AH', '5LP', '5EB', '5LY', '5TD', '5LN', '5SL', '5TN', '5LD', '5PA', '5RA', '5YH', '5NL', '5UH', '5AG', '5TU', '5DW', '5WY', '5ND', '5LF', '5TA', '5DG', '5HP', '5ED', '5NT', '5NE', '5RW', '5ZD', '5TG', '5NA', '5PT', '5NN', '5NF', '5PH', '5EG', '5DL', '5NS', '5ES', '5LT', '5LG', '5UR', '5YB', '5SW', '5BT', '5SA', '5LS', '5HB', '5RX', '5TP', '5SR', '5BD', '5AL', '5ER', '5SG', '5BH', '5YE', '5LW', '5TS', '5DY', '5UN', '5NB', '5SF', '5ST', '5BN', '5DX', '5DB', '5HU', '5LA', '5LU', '5LR', '5NH', '5DD', '5TY', '5TF', '5LE', '5HS', '5UE', '5HN', '5AE', '5NW', '5BG', '5SU', '5EF'}

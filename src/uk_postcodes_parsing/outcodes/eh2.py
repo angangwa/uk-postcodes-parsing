@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode EH2
+Generated from ONS Postcode Directory
+Contains 200 postcodes
+"""
+
+INCODES = {'3ES', '3HT', '1JD', '3BX', '4LS', '2EP', '3BU', '3AT', '4DF', '3DF', '4PA', '1DX', '1XF', '4PG', '2PF', '2EH', '4AH', '3JZ', '4RN', '1HX', '4HU', '2HN', '3JP', '4LH', '4NA', '3AE', '2DL', '2XZ', '4AD', '2YB', '4RR', '4QW', '1EE', '4NG', '2AA', '4AS', '3LJ', '2BD', '3DT', '4SA', '1LS', '4SN', '1EA', '2DF', '1LN', '4RA', '4PF', '4DB', '4NF', '4EL', '2DG', '2BY', '2PJ', '4JD', '1GJ', '3BG', '4BL', '2HT', '2SA', '2PQ', '4BA', '1DF', '3EE', '2LL', '2EB', '4BJ', '2AZ', '1XZ', '1LL', '3DA', '4QS', '2PA', '4HH', '3JG', '2DX', '4JB', '9AB', '9AE', '2HG', '4TG', '4YZ', '4AX', '4PH', '9AG', '9AF', '1XL', '2BZ', '1DY', '1BB', '1XW', '3NR', '1XN', '1LH', '1EW', '4JS', '4JZ', '2ER', '2EL', '4LT', '1DJ', '2JR', '4JF', '4PY', '1EL', '3BN', '2DR', '1EN', '4YR', '4AW', '3JF', '4HR', '2EQ', '3EY', '2PB', '3DN', '1XR', '3JD', '4DJ', '4HQ', '2LE', '2SB', '1GB', '3DX', '4EQ', '1DR', '2NN', '9AD', '4YP', '2NP', '1HJ', '2AD', '2AU', '3AH', '2QA', '2EN', '4RT', '2EY', '4AZ', '4RG', '2YE', '3DH', '4SD', '1XH', '1JX', '2DQ', '2AN', '1EP', '1AW', '1XA', '3EW', '4AN', '4PS', '4QZ', '4ET', '4BB', '4QG', '1HY', '2JG', '4AA', '3BF', '3NH', '1DA', '2BW', '1GN', '1XJ', '4AT', '1AU', '2PR', '4JN', '2LR', '1GG', '1AF', '2NH', '4JY', '1EX', '2HB', '2AF', '3LQ', '4BH', '2BB', '1XU', '2AH', '2DY', '4YN', '1GH', '3BB', '4DR', '1JE', '3QA', '3AB', '1XQ', '3LU', '1ES', '4DE', '2DS', '1DD', '2ND', '1JQ', '3AA', '3NS'}

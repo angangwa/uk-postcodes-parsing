@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode WV9
+Generated from ONS Postcode Directory
+Contains 186 postcodes
+"""
+
+INCODES = {'5AP', '5EE', '5PJ', '5DT', '5LB', '5RU', '5BW', '5RS', '5YP', '5QW', '5QF', '5RZ', '5RG', '5BS', '5SE', '5JF', '5NU', '5FB', '5SB', '5HW', '5RB', '5DF', '5PB', '5BL', '5AN', '5RH', '5BB', '5PN', '5AZ', '5LH', '5EY', '5EP', '5EN', '5QJ', '5NZ', '5RP', '5RT', '5EW', '5PL', '5PD', '5AF', '5DN', '5PY', '5HH', '5QN', '5DU', '5AB', '5QX', '5BZ', '5ZR', '5HX', '5QL', '5HZ', '5AJ', '5NP', '5DZ', '5RJ', '5QY', '5RN', '5JZ', '5QP', '5BE', '5BY', '5NR', '5BP', '5HD', '5AY', '5QH', '5HA', '5RQ', '5PU', '5LQ', '5QZ', '5RD', '5RR', '5HQ', '5BF', '5QE', '5DP', '5AR', '5DS', '5AS', '5AA', '5AX', '5NY', '5BA', '5EU', '5HF', '5AD', '5PX', '5QU', '5BU', '5DJ', '5DA', '5BQ', '5EJ', '5NJ', '5RY', '5FD', '5HY', '5PG', '5QR', '5NG', '5XP', '5YX', '5DE', '5PS', '5EA', '5FF', '5LJ', '5SD', '5LL', '5QQ', '5EL', '5SH', '5DR', '5AH', '5EB', '5RL', '5BX', '5LD', '5LX', '5PA', '5RA', '5RF', '5GA', '5JW', '5AG', '5DW', '5ND', '5LF', '5DG', '5ED', '5NT', '5DH', '5NE', '5RW', '5EQ', '5FX', '5PT', '5NF', '5PH', '5YN', '5EG', '5DL', '5ES', '5LT', '5LG', '5BT', '5SA', '5LS', '5HB', '5RX', '5AL', '5BD', '5ER', '5DQ', '5BH', '5FA', '5GB', '5AQ', '5BJ', '5NX', '5DY', '5FE', '5QG', '5NB', '5BN', '5DX', '5DB', '5ET', '5LA', '5LU', '5LR', '5NH', '5DD', '5PZ', '5XR', '5LE', '5AW', '5AE', '5HN', '5JE', '5NW', '5BG', '5EF'}

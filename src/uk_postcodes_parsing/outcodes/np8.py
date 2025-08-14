@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode NP8
+Generated from ONS Postcode Directory
+Contains 188 postcodes
+"""
+
+INCODES = {'1HE', '1HG', '1NA', '1ND', '1LQ', '1EU', '1HW', '1DX', '1ED', '1EY', '1HB', '1HU', '1BN', '1AL', '1DN', '1SA', '1PX', '1NF', '1RE', '1BT', '1AS', '1NL', '1BQ', '1PG', '1BU', '1NE', '1NH', '1LZ', '1PZ', '1RY', '1LP', '1PD', '1EE', '1LE', '1DP', '1HN', '1PL', '1HS', '1LS', '1PT', '1AE', '1SE', '1HF', '1LF', '1SS', '1TB', '1LJ', '1LN', '1PN', '1BZ', '1AY', '1DG', '1TD', '1NT', '1TE', '1LA', '1BG', '1PU', '1NP', '1AP', '1LG', '1NZ', '1BP', '1DE', '1DF', '1BE', '1RL', '1ST', '1DQ', '1LL', '1AG', '1RB', '1SH', '1AQ', '1BH', '1EG', '1RW', '1EQ', '1PA', '1QA', '1TL', '1EZ', '1TJ', '1DY', '1BB', '1RU', '1LH', '1EW', '1BJ', '1PS', '1DJ', '1SW', '1NY', '1EL', '1HD', '1RN', '1NN', '1PW', '1EN', '1HQ', '1RF', '1NQ', '1PQ', '1RD', '1DU', '1LY', '1BX', '1RS', '1AJ', '1PR', '1AD', '1RG', '1SJ', '1DR', '1PJ', '1SN', '1NS', '1LW', '1PY', '1TP', '1TA', '1DZ', '1LB', '1LU', '1HA', '1NR', '1TN', '1HL', '1RJ', '1RR', '1HH', '1PE', '1DL', '1EP', '1AW', '1LD', '1NW', '1EH', '1BL', '1PF', '1SB', '1PH', '1HY', '1SQ', '1AR', '1PP', '1SF', '1SY', '1ER', '1EB', '1NB', '1DA', '1BW', '1AT', '1EF', '1AU', '1SG', '1BD', '1BR', '1AF', '1DW', '1NJ', '1EX', '1ET', '1SL', '1DS', '1SP', '1DT', '1PB', '1RP', '1SU', '1HT', '1LT', '1LR', '1BA', '1SR', '1NG', '1LX', '1RH', '1NX', '1DH', '1BY', '1DB', '1ES', '1RT', '1AN', '1DD', '1NU'}

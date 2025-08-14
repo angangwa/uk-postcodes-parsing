@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode IV27
+Generated from ONS Postcode Directory
+Contains 189 postcodes
+"""
+
+INCODES = {'4BF', '4YS', '4XF', '4PX', '4ST', '4RJ', '4LW', '4XL', '4BD', '4DF', '4XW', '4PA', '4LQ', '4RN', '4LR', '4LU', '4UE', '4TH', '4XB', '4XA', '4TD', '4PR', '4LG', '4NY', '4BG', '4LH', '4RE', '4LB', '4RR', '4AD', '4EE', '4XT', '4AY', '4NG', '4JA', '4YQ', '4PN', '4XH', '4HD', '4DG', '4PW', '4RL', '4AR', '4SA', '4LA', '4SN', '9AA', '4PP', '4UF', '4RA', '4DB', '4LY', '4JP', '4EL', '4PU', '4JD', '4XS', '4XR', '4RH', '4BL', '4BA', '4TW', '4LJ', '4BJ', '4UQ', '4JG', '4HH', '4AB', '4QD', '4DW', '4UH', '4JB', '4XG', '4TG', '4SS', '4HN', '4AX', '4DD', '4DQ', '4XE', '4TL', '4JZ', '4BN', '4LT', '4JJ', '4JF', '4LF', '4PY', '4AE', '4YR', '4PZ', '4UG', '4RQ', '4BE', '4HL', '4SU', '4UN', '4TE', '4NZ', '4TJ', '4DJ', '4NW', '4QB', '4EX', '4SW', '4EQ', '4RY', '4SL', '4EH', '4XJ', '4YP', '4LL', '4SR', '4JQ', '4NL', '4SH', '4DH', '4RX', '4LN', '4BP', '4RT', '4AZ', '4RG', '4LE', '4UL', '4DL', '4DA', '4YL', '4BQ', '4PS', '4RU', '4TQ', '4ET', '4BB', '4QG', '4EY', '4JH', '4AA', '4TN', '4RP', '4UJ', '4XN', '4TF', '4XQ', '4NJ', '4RB', '4JR', '4RD', '4PQ', '4JN', '4EU', '4HE', '4JY', '4AF', '4HF', '4NQ', '4NN', '4YT', '4HB', '4QA', '4TB', '4QQ', '4XP', '4BH', '4ED', '4HW', '4LD', '4HP', '4DN', '4EF', '4LP', '4EJ', '4QF', '4RS', '4RW', '4YU', '4QE', '4DR', '4SX', '4JE', '4RZ', '4LX', '4PT', '4DP', '4QH', '4XU', '4DE', '4EG', '4XD'}

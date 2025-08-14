@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode SA38
+Generated from ONS Postcode Directory
+Contains 190 postcodes
+"""
+
+INCODES = {'9HT', '9RH', '9PE', '9LL', '9BD', '9QN', '9HW', '9LX', '9PD', '9DN', '9EW', '9QH', '9QW', '9ED', '9QL', '9NS', '9JL', '9EF', '9DJ', '9NN', '9BA', '9HJ', '9RG', '9DW', '9DQ', '9HN', '9AU', '9NZ', '9QJ', '9EU', '9PX', '9HZ', '9QT', '9NB', '9HY', '9PJ', '9ND', '9JZ', '9EJ', '9NT', '9BR', '9JJ', '9LR', '9EL', '9AS', '9PZ', '9EQ', '9DH', '9EP', '9JD', '9HA', '9RF', '9BZ', '9BJ', '9QY', '9EX', '9HL', '9NR', '9NL', '9LY', '9NW', '9QQ', '9AA', '9NE', '9EY', '9QD', '9RS', '9BE', '9JU', '9HS', '9BG', '9BU', '9AJ', '9RN', '9HR', '9EG', '9PP', '9QU', '9AQ', '9LN', '9HD', '9NQ', '9PY', '9JB', '9JA', '9AB', '9AE', '9DB', '9BW', '9JW', '9LP', '9DL', '9DD', '9AG', '9JE', '9AZ', '9LG', '9LT', '9AF', '9RL', '9QE', '9BQ', '9JF', '9NA', '9RB', '9AP', '9DA', '9QS', '9HQ', '9HU', '9LE', '9QB', '9HX', '9JP', '9AR', '9HH', '9LD', '9PA', '9HP', '9JQ', '9NY', '9HB', '9PN', '9BX', '9BY', '9AY', '9ER', '9PL', '9RR', '9RT', '9LU', '9PF', '9QP', '9JH', '9NG', '9PB', '9JG', '9RD', '9LZ', '9EA', '9JR', '9NH', '9AW', '9ES', '9JN', '9DU', '9JS', '9AN', '9PR', '9PS', '9RP', '9RE', '9BS', '9EN', '9PQ', '9QF', '9RW', '9BL', '9BH', '9JT', '9EE', '9DG', '9LW', '9PH', '9RJ', '9DT', '9QR', '9DE', '9BP', '9LA', '9PG', '9NP', '9JY', '9NX', '9QA', '9ET', '9BN', '9EH', '9RA', '9LJ', '9AX', '9DX', '9JX', '9DF', '9QG', '9LB', '9DS', '9LS', '9BT', '9NJ'}

@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode NE45
+Generated from ONS Postcode Directory
+Contains 198 postcodes
+"""
+
+INCODES = {'5JH', '5AP', '5EE', '5PJ', '5DT', '5LB', '5RU', '5BW', '5RS', '5SN', '5QF', '5RZ', '5SP', '5RG', '5BS', '5SE', '5JF', '5SJ', '5NU', '5SB', '5HW', '5RB', '5EH', '5DF', '5PB', '5BL', '5AN', '5RH', '5BB', '5JS', '5AZ', '5LH', '5EP', '5EN', '5AU', '5HT', '5RP', '5RT', '5SQ', '5EW', '5PL', '5HE', '5PD', '5AF', '5DN', '5PY', '5HH', '5DU', '5AB', '5HR', '5BZ', '5PF', '5HX', '5QX', '5PW', '5HZ', '5AJ', '5NP', '5DZ', '5HJ', '5RJ', '5QY', '5LZ', '5RN', '5BE', '5NR', '5BP', '5HD', '5AY', '5JT', '5PP', '5HA', '5RQ', '5PU', '5HG', '5LQ', '5QZ', '5RR', '5HQ', '5AT', '5BF', '5QE', '5JG', '5DP', '5AR', '5DS', '5JQ', '5PR', '5AA', '5AX', '5JN', '5BA', '5EU', '5HF', '5AD', '5PX', '5QU', '5JJ', '5DJ', '5QB', '5DA', '5BQ', '5EJ', '5NJ', '5RY', '5HY', '5PE', '5PG', '5DE', '5PS', '5EA', '5LJ', '5SD', '5LL', '5SH', '5EL', '5DR', '5AH', '5LP', '5EB', '5LY', '5RL', '5LN', '5SL', '5BX', '5PA', '5JR', '5LX', '5QA', '5RA', '5RF', '5JL', '5AG', '5DW', '5ND', '5LF', '5TA', '5RE', '5DG', '5HP', '5JB', '5ED', '5NT', '5DH', '5QD', '5RW', '5EQ', '5JD', '5JP', '5NA', '5PT', '5PH', '5EX', '5EG', '5DL', '5NS', '5ES', '5LT', '5LG', '5BT', '5SA', '5LS', '5HB', '5RX', '5SR', '5AL', '5BD', '5ER', '5SG', '5DQ', '5BH', '5AQ', '5LW', '5BJ', '5DY', '5QG', '5QT', '5NB', '5JX', '5SF', '5BN', '5DX', '5DB', '5ET', '5HU', '5LA', '5LR', '5LU', '5DD', '5NH', '5PZ', '5LE', '5HS', '5AW', '5AE', '5HN', '5JE', '5EF'}

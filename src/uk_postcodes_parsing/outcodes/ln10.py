@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LN10
+Generated from ONS Postcode Directory
+Contains 199 postcodes
+"""
+
+INCODES = {'5EE', '5DT', '6TD', '6XN', '6YW', '6SA', '6QL', '6GB', '6PB', '6SQ', '6AA', '6WB', '6YY', '6TX', '6TW', '5EZ', '6XX', '6UL', '5HW', '6TN', '6UA', '6AN', '6RQ', '6UQ', '6TE', '6RY', '6TR', '5EY', '6YS', '6PD', '6SF', '6QJ', '6XS', '6PR', '5HT', '6YF', '6UR', '6DA', '6XH', '5HH', '6XW', '6PY', '6SD', '6YP', '6NA', '5DU', '6AL', '5HR', '6TQ', '6PH', '6PF', '6SY', '6BB', '6YG', '5DZ', '6TJ', '5HJ', '6TP', '6WA', '6QG', '6TL', '6XP', '6WD', '6YA', '5HL', '6PT', '6TH', '6UT', '6NU', '5HA', '6UZ', '6AD', '6QN', '6QA', '6RW', '6YB', '6UY', '6TS', '6WE', '6PL', '6RU', '6UW', '6XT', '6YJ', '6AF', '6WP', '6PU', '6UB', '6UN', '5DS', '6PZ', '6YT', '6XU', '6RE', '6RJ', '6BA', '6QQ', '6AS', '6RR', '6SG', '6ST', '6TY', '6NE', '6AJ', '5EJ', '6UJ', '6SL', '6AP', '6SE', '5EA', '6QT', '6SR', '6BN', '6AB', '6RF', '6RL', '5EB', '6UE', '6YN', '6RN', '6AE', '6UX', '6XY', '6SX', '6QE', '6TZ', '6PW', '6YZ', '6TF', '5DW', '6BD', '6RH', '6AH', '6UF', '6UU', '6TB', '6QH', '6TU', '6QW', '6SN', '5HP', '6TT', '5ED', '6UH', '6QZ', '6TA', '6YH', '5EQ', '6TG', '6PE', '6UD', '6AG', '6YE', '6XZ', '6YU', '6QX', '6GD', '6QU', '6PJ', '5EX', '5EG', '6XL', '6SB', '6UG', '5ES', '6SZ', '6AR', '6XJ', '6RD', '5ER', '6SP', '6BP', '6QD', '6RB', '6RS', '6GA', '6RZ', '6YL', '6UP', '6RG', '6BE', '5DY', '6PG', '6QY', '6XR', '6RT', '5ET', '5DX', '6RX', '6YD', '6SH', '5HS', '6YR', '5HN', '6PP', '6YQ', '6RA', '6AQ', '5EF'}

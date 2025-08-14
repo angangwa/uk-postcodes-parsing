@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode WV7
+Generated from ONS Postcode Directory
+Contains 202 postcodes
+"""
+
+INCODES = {'3AL', '3ES', '3HT', '3LD', '3NG', '3PJ', '3JW', '3JT', '3LH', '3NT', '3NY', '3PW', '3BX', '3EH', '3HX', '3AD', '3PG', '3LF', '3PB', '3BU', '3AT', '3DF', '3BS', '3HS', '3PS', '3FB', '3JZ', '3EG', '3AZ', '3JJ', '3LG', '3JP', '3FA', '3LP', '3PT', '3AX', '3JA', '3HB', '3HW', '3LL', '3BT', '3LN', '3RD', '3DE', '3AE', '3LW', '3WF', '3BY', '3FL', '3PP', '3BQ', '3ET', '3AQ', '3QQ', '3LJ', '3LY', '3DT', '3HN', '3BA', '3NN', '3PZ', '3AU', '3HL', '3BZ', '3JL', '3LA', '3YN', '3DP', '3QX', '3SL', '3JR', '3PD', '3BG', '3PA', '3EB', '3ND', '3BD', '3BJ', '3NB', '3AY', '3EE', '3FR', '3PR', '3QE', '3AW', '3DA', '3EQ', '3JY', '3NJ', '3WU', '3JG', '3JN', '3AN', '3EN', '3RL', '3JH', '3JQ', '3NQ', '3NW', '3NX', '3HP', '3HU', '3RJ', '3QZ', '3DQ', '3BN', '3DB', '3NZ', '3PH', '3JF', '3AG', '3QF', '3EY', '3FD', '3QH', '3AF', '3DN', '3RB', '3AJ', '3JD', '3QY', '3DZ', '3LE', '3QG', '3DX', '3EX', '3EZ', '3PN', '3QW', '3JS', '3DS', '3BH', '3AH', '3NP', '3QD', '3RH', '3AS', '3LR', '3DH', '3LS', '3NU', '3RE', '3DJ', '3NA', '3PQ', '3RG', '3DD', '3EW', '3LX', '3BE', '3EP', '3PX', '3LZ', '3BF', '3NE', '3NH', '3PE', '3EL', '3AP', '3PY', '3NL', '3LB', '3QU', '3JB', '3DY', '3JX', '3NF', '3PL', '3BP', '3QT', '3ED', '3LQ', '3RN', '3FE', '3EU', '3LT', '3PF', '3QN', '3JU', '3QS', '3HH', '3HR', '3QP', '3RF', '3DU', '3DG', '3QJ', '3BB', '3RA', '3BL', '3QA', '3AB', '3LU', '3QL', '3DL', '3PU', '3AA', '3EF', '3HJ', '3BW', '3NS', '3DW'}

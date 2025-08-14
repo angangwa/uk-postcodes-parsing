@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LL24
+Generated from ONS Postcode Directory
+Contains 193 postcodes
+"""
+
+INCODES = {'0AS', '0ND', '0HL', '0NS', '0HY', '0BY', '0NN', '0YE', '0DN', '0SH', '0BN', '0YW', '0LF', '0AX', '0DW', '0EA', '0DY', '0UW', '0HB', '0PD', '0LY', '0YG', '0TL', '0AT', '0AE', '0AQ', '0PA', '0AF', '0EU', '0DB', '0PR', '0RH', '0HW', '0PU', '0EW', '0YR', '0LS', '0AD', '0UB', '0RR', '0LA', '0RP', '0LE', '0DG', '0UU', '0YN', '0TB', '0HZ', '0UY', '0RN', '0YF', '0LD', '0NP', '0LG', '0EE', '0HH', '0PW', '0SN', '0AY', '0SL', '0UG', '0PE', '0TY', '0UF', '0NU', '0DU', '0UD', '0AJ', '0RA', '0UE', '0HX', '0AB', '0UA', '0BG', '0RD', '0ZF', '0EP', '0LN', '0TR', '0LP', '0YA', '0YP', '0UJ', '0RT', '0UL', '0YS', '0BL', '0AG', '0LB', '0AN', '0ST', '0BD', '0ET', '0NR', '0SF', '0UN', '0RG', '0PG', '0YY', '0HE', '0UT', '0TN', '0BW', '0LW', '0RB', '0NT', '0HU', '0DH', '0LR', '0UP', '0NH', '0PB', '0SR', '0RL', '0TA', '0SD', '0LL', '0TH', '0TG', '0SA', '0NG', '0LU', '0NF', '0TD', '0NL', '0LH', '0BT', '0TW', '0DT', '0YH', '0YT', '0EB', '0DS', '0NY', '0RE', '0UR', '0DP', '0AZ', '0HD', '0TE', '0PP', '0BU', '0BA', '0DF', '0SB', '0SG', '0HT', '0DA', '0RS', '0LT', '0HN', '0BB', '0EL', '0EN', '0AH', '0BH', '0PN', '0TP', '0HP', '0PF', '0PY', '0HF', '0SS', '0AL', '0SU', '0PS', '0RY', '0EF', '0ED', '0AW', '0PT', '0YB', '0HR', '0BP', '0AR', '0RU', '0NW', '0BS', '0DE', '0TF', '0AP', '0DR', '0RF', '0ES', '0YU', '0HS', '0UH', '0EH', '0YD', '0SW', '0EG', '0HA', '0YL'}

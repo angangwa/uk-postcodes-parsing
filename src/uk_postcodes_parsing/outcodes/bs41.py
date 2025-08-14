@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode BS41
+Generated from ONS Postcode Directory
+Contains 195 postcodes
+"""
+
+INCODES = {'9HT', '9LL', '9BD', '8JP', '9FN', '9HW', '9LX', '9NF', '9DN', '9EW', '8JZ', '8LB', '9FR', '8LF', '9ED', '8JT', '9EF', '8LS', '9DJ', '9NN', '9BA', '9HJ', '9FD', '9DW', '9DQ', '8NF', '8JA', '8LQ', '9AU', '9DY', '9EU', '9EZ', '9HN', '9FH', '9HZ', '9NB', '9HY', '8NG', '8JU', '9ND', '8JN', '8JW', '9EJ', '8JE', '9JJ', '9LR', '8NN', '9EL', '9AS', '9LH', '9AT', '9EQ', '9DH', '8NP', '9EP', '9JD', '9HA', '8NJ', '9BZ', '9BJ', '9DR', '9EX', '9HL', '9YG', '8JL', '8NW', '9LY', '9NW', '9AA', '9NE', '9EY', '8NS', '8NT', '8JR', '9BE', '9HS', '9BG', '8LP', '9BB', '9BU', '9AJ', '9HR', '9EG', '9AQ', '9LN', '9NQ', '9JB', '9JA', '9AB', '9AE', '9DB', '9AL', '9BW', '9FE', '9LP', '8NR', '9DL', '8NB', '9AG', '9JE', '9AZ', '9LG', '9LT', '8JQ', '9FJ', '8JF', '8JS', '9FL', '9DZ', '9BQ', '9JF', '8JD', '9LF', '9NA', '9AP', '9DA', '9LE', '9HU', '9HX', '9JP', '8JB', '8ND', '9AR', '8LU', '9HH', '8LA', '8NH', '9LD', '9AD', '8NQ', '9HP', '9JQ', '9BX', '8LL', '9BY', '9FQ', '9AY', '9ER', '8AA', '8LT', '9LU', '8LE', '9JH', '8JG', '9NG', '9JG', '8NE', '9LZ', '9EA', '8LG', '9NH', '9AW', '8JH', '9ES', '9JN', '9DU', '9AN', '8LW', '9BS', '8NL', '9EN', '9FB', '9BL', '9BH', '8LN', '9EE', '9DG', '9LW', '8LR', '8NA', '9LQ', '8LH', '9DT', '8LJ', '9FG', '9DE', '9BP', '9LA', '9ET', '9BN', '9EH', '9FF', '9FP', '8JY', '9LJ', '8JJ', '9AX', '9DX', '9AH', '8JX', '9DP', '9LB', '9DS', '9LS', '9BT'}

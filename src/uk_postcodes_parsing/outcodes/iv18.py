@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode IV18
+Generated from ONS Postcode Directory
+Contains 198 postcodes
+"""
+
+INCODES = {'0AS', '0ND', '0HL', '0QD', '0NS', '0HY', '0NJ', '0BY', '0JH', '0NE', '0NN', '0DN', '0BN', '0LF', '0AX', '0EA', '0DY', '0PD', '0LY', '0PL', '0AT', '0QN', '0AE', '0PA', '0JR', '0PH', '0AF', '0JP', '0EU', '0DB', '0PR', '0PU', '0JS', '0EW', '0EY', '0LS', '0AD', '0RP', '0DL', '0DG', '0HZ', '0RN', '0GF', '0LD', '0HJ', '0NP', '0LG', '0EE', '0HH', '0LX', '0PW', '0AY', '0BF', '0EX', '0JJ', '0QE', '0PE', '0LJ', '0NU', '0DX', '0DU', '0AJ', '0JZ', '0HX', '0AB', '0QW', '0BG', '0PQ', '0RD', '0EP', '0LN', '0PJ', '0LP', '0JE', '0NZ', '0BL', '0FB', '0AG', '0LB', '0PX', '0BD', '0ET', '0NR', '0QG', '0QR', '0SF', '0DQ', '0PG', '0HE', '0BW', '0LZ', '0LW', '0RB', '0NT', '0HU', '0DH', '0LR', '0NH', '0PB', '0QA', '0SD', '0JD', '0LL', '0SA', '0NG', '0LU', '0NF', '0DD', '0FA', '0QB', '0RQ', '0NL', '0LH', '0NA', '0JY', '0BT', '0JT', '0DT', '0EB', '0DS', '0NY', '0RE', '0EJ', '0JA', '0JW', '0NB', '0DP', '0AZ', '0HD', '0JX', '0PP', '0BU', '0BA', '0DF', '0SB', '0NQ', '0HT', '0PZ', '0DA', '0ER', '0RS', '0LT', '0HN', '0BB', '0EL', '0AH', '0BH', '0PN', '0BZ', '0HP', '0DJ', '0PF', '0PY', '0HF', '0QZ', '0JU', '0AL', '0PS', '0RY', '0BX', '0JN', '0BE', '0EF', '0PT', '0AW', '0JF', '0QS', '0BJ', '0DZ', '0HR', '0AU', '0BQ', '0BP', '0EQ', '0AR', '0GH', '0NW', '0AA', '0BS', '0DE', '0AP', '0LQ', '0DR', '0RF', '0JG', '0JL', '0NX', '0ES', '0JB', '0JQ', '0HS', '0QF', '0EH', '0QL', '0EG', '0QJ', '0HA', '0EZ'}

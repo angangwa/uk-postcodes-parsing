@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode S32
+Generated from ONS Postcode Directory
+Contains 208 postcodes
+"""
+
+INCODES = {'5PJ', '3YH', '5QW', '3AD', '5QF', '5RG', '3ZA', '5RB', '5RH', '2HH', '3YD', '1BN', '3ZB', '4TH', '2HN', '1AL', '1AZ', '4TD', '2HY', '3XS', '1BT', '1AS', '1BQ', '5QJ', '2JN', '1BF', '5RP', '1BU', '2HF', '3WW', '3YR', '2AA', '3XA', '5QN', '1DP', '5AB', '5QX', '3YJ', '3YG', '1AE', '5QL', '3YT', '4TT', '2HP', '1AA', '5RJ', '5QS', '3YN', '1BZ', '5QY', '5RN', '1AY', '3XX', '5QP', '1DG', '2JB', '3YF', '3YL', '3WT', '1AX', '2HA', '1BG', '2HD', '2HT', '2JE', '3XE', '2HE', '1AP', '1BP', '1DE', '1BE', '1DQ', '1AG', '3WU', '5QZ', '2JD', '4AB', '2JA', '5RD', '5QE', '1AQ', '1BH', '1EG', '3WY', '1AH', '2HG', '4TG', '3XN', '4TA', '2HX', '1EQ', '3ZH', '2HU', '4TL', '5AA', '3XF', '1DY', '1BB', '3ZE', '3XU', '5AD', '1BJ', '5QU', '3ZF', '3YW', '4WW', '5QB', '3XZ', '2JH', '1DU', '1BX', '4TE', '4TY', '1AJ', '5QR', '4TJ', '1AD', '3ZJ', '3XP', '3XY', '5QQ', '3XH', '1DR', '3YS', '4TS', '2JJ', '5RL', '1DZ', '3ZD', '5QA', '3YQ', '5RA', '3YX', '5RF', '2JQ', '3ZP', '3YY', '3YE', '3XJ', '3WZ', '4UA', '2HL', '2JL', '1DL', '5RE', '3XG', '1AW', '4TX', '1EH', '1BL', '3XT', '3YA', '4TQ', '2HR', '1AR', '2JG', '5QD', '5RW', '4AA', '1BS', '4TN', '4UB', '4TF', '1DA', '1BW', '3WD', '3XL', '1AT', '4TU', '1AU', '3YB', '3YP', '4TZ', '1BD', '1BR', '1AF', '1DW', '2HW', '3XR', '2HB', '3XW', '4TB', '2JF', '1DS', '2HJ', '3XQ', '3XB', '1DT', '2HS', '3XD', '3ZN', '5QG', '1BA', '5QT', '3AB', '2HQ', '5PZ', '1DH', '1BY', '1DB', '3YU', '5AE', '1AN', '1DD', '3AA', '3ZL', '5QH', '2HZ'}

@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode TF13
+Generated from ONS Postcode Directory
+Contains 202 postcodes
+"""
+
+INCODES = {'6BL', '6HZ', '6LQ', '6QL', '6EZ', '6PB', '6HD', '6AA', '6AT', '6DN', '6BS', '6HJ', '6BX', '6NX', '6LD', '6BQ', '6NS', '6DD', '6EU', '6JQ', '6EY', '6JW', '6FB', '6AN', '6JJ', '6LP', '6AW', '6AZ', '6PS', '6DG', '6AY', '6BY', '6JL', '6FA', '6PX', '6JF', '6HB', '6JU', '6PD', '6BT', '6QJ', '6NF', '6PR', '6DA', '6DS', '6FH', '6EL', '6JE', '6LY', '6PY', '6NA', '6JD', '6AL', '6LT', '6BJ', '6NW', '6DB', '6HX', '6ED', '6BB', '6HY', '6QG', '6LN', '6JS', '6FU', '6NN', '6PT', '6JZ', '6LR', '6NU', '6AD', '6QN', '6QA', '6BZ', '6EH', '6ES', '6PA', '6ER', '6BG', '6EQ', '6EP', '6PL', '6JX', '6HA', '6JT', '6QF', '6NJ', '6HN', '6PU', '6DQ', '6HE', '6PZ', '6LS', '6HQ', '6LA', '6LX', '6ND', '6FD', '6BA', '6HG', '6DT', '6JH', '6JR', '6AS', '6QQ', '6NG', '6FF', '6HP', '6NE', '6AJ', '6BH', '6EE', '6HS', '6EX', '6AP', '6EG', '6DP', '6HH', '6QT', '6DH', '6BN', '6AB', '6DZ', '6FG', '6AE', '6JG', '6LL', '6LW', '6QE', '6JB', '6BF', '6JN', '6LZ', '6PW', '6LB', '6BD', '6HF', '6AH', '6LG', '6QH', '6DY', '6HU', '6DJ', '6AX', '6JP', '6QW', '6NP', '6NR', '6NQ', '6NT', '6EJ', '6BW', '6PE', '6EF', '6QS', '6JA', '6AG', '6QP', '6NB', '6QX', '6QU', '6PJ', '6FE', '6NH', '6ET', '6DX', '6EA', '6DE', '6AR', '6EB', '6DU', '6LH', '6LU', '6NZ', '6HT', '6JY', '6DF', '6BP', '6DL', '6HR', '6LJ', '6QD', '6QR', '6LF', '6GA', '6LE', '6BE', '6DW', '6PG', '6EN', '6NL', '6BU', '6HL', '6NY', '6HW', '6DR', '6EW', '6PN', '6PP', '6RA', '6AQ', '6QB'}

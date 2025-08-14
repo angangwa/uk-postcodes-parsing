@@ -239,47 +239,36 @@ class TestSQLiteFallbackBehavior:
         conn.close()
         return db_path
 
-    @patch("uk_postcodes_parsing.postcode_database.get_database")
-    def test_ons_check_sqlite_success(self, mock_get_db):
-        """Test ONS check uses SQLite when available"""
-        # Mock successful database lookup
-        mock_db = MagicMock()
-        mock_result = MagicMock()
-        mock_db.lookup.return_value = mock_result
-        mock_get_db.return_value = mock_db
-
+    def test_ons_check_outcodes_success(self):
+        """Test ONS check uses outcode files for validation"""
+        # Test with a known valid postcode that should exist in outcodes
         result = is_in_ons_postcode_directory("SW1A 1AA")
-
+        
+        # This should work using our outcode-based system
         assert result is True
-        mock_db.lookup.assert_called_once_with("SW1A 1AA")
 
-    @patch("uk_postcodes_parsing.postcode_database.get_database")
-    def test_ons_check_sqlite_not_found(self, mock_get_db):
-        """Test ONS check returns False when postcode not in SQLite"""
-        mock_db = MagicMock()
-        mock_db.lookup.return_value = None  # Not found
-        mock_get_db.return_value = mock_db
-
+    def test_ons_check_outcodes_not_found(self):
+        """Test ONS check returns False when postcode not in outcode files"""
+        # Test with clearly invalid postcode
         result = is_in_ons_postcode_directory("FAKE 123")
-
+        
         assert result is False
-        mock_db.lookup.assert_called_once_with("FAKE 123")
 
-    @patch("uk_postcodes_parsing.postcode_database.get_database")
-    @patch("uk_postcodes_parsing.ukpostcode.POSTCODE_NOV_2024")
-    def test_ons_check_fallback_to_python_set(self, mock_python_set, mock_get_db):
-        """Test fallback to Python set when SQLite unavailable"""
-        # Mock database failure
-        mock_get_db.side_effect = Exception("Database unavailable")
-
-        # Mock Python set contains check
-        mock_python_set.__contains__ = MagicMock(return_value=True)
-
-        result = is_in_ons_postcode_directory("SW1A 1AA")
-
-        # Should fall back to Python set
-        assert result is True
-        mock_python_set.__contains__.assert_called_once_with("SW1A 1AA")
+    def test_ons_check_outcodes_behavior(self):
+        """Test outcode-based validation with known postcodes"""
+        # Test with known valid and invalid postcodes
+        test_cases = [
+            ("SW1A 1AA", True),   # House of Commons - definitely exists
+            ("E1 6AN", True),     # London - exists in our data
+            ("E1 9AB", False),    # Same outcode but invalid incode
+            ("M1 1AA", False),    # Valid format but doesn't exist
+            ("ZZ1 1ZZ", False),   # Valid format but fake postcode
+            ("INVALID", False),   # Not valid postcode format at all
+        ]
+        
+        for postcode, expected in test_cases:
+            result = is_in_ons_postcode_directory(postcode)
+            assert result == expected, f"Expected {postcode} to be {expected}, got {result}"
 
     @patch("uk_postcodes_parsing.postcode_database.get_database")
     def test_parsed_postcode_ons_check_with_sqlite(self, mock_get_db):

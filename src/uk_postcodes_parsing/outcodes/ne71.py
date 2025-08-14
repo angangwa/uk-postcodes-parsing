@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode NE71
+Generated from ONS Postcode Directory
+Contains 190 postcodes
+"""
+
+INCODES = {'6BL', '6TD', '6XN', '6XE', '6LQ', '6QL', '6EZ', '6PB', '6HD', '6AA', '6AT', '6DN', '6BS', '6HJ', '6BX', '6TW', '6LD', '6BQ', '6NS', '6EU', '6JQ', '6RP', '6EY', '6TN', '6JW', '6AN', '6JJ', '6LP', '6AW', '6AZ', '6DG', '6AY', '6TE', '6BY', '6JL', '6TR', '6JF', '6PD', '6QJ', '6NF', '6DA', '6XH', '6XW', '6EL', '6JE', '6NA', '6JD', '6AL', '6TQ', '6BJ', '6SY', '6NW', '6DB', '6HX', '6ED', '6TJ', '6TP', '6HY', '6QG', '6LN', '6TL', '6XP', '6XG', '6TH', '6NU', '6AD', '6QN', '6RW', '6SU', '6TS', '6BZ', '6ES', '6XA', '6PA', '6ER', '6BG', '6EQ', '6EP', '6AF', '6XF', '6XB', '6QF', '6NJ', '6HN', '6DQ', '6HE', '6LS', '6HQ', '6LA', '6RE', '6ND', '6RJ', '6BA', '6HG', '6DT', '6JH', '6QQ', '6AS', '6ST', '6HP', '6XD', '6NE', '6AJ', '6BH', '6EE', '6SL', '6HS', '6EX', '6QT', '6HH', '6BN', '6RF', '6DZ', '6RL', '6RN', '6AE', '6JG', '6LW', '6SX', '6QE', '6JB', '6BF', '6JN', '6LZ', '6TF', '6XQ', '6BD', '6HF', '6AH', '6RH', '6TB', '6DY', '6HU', '6DJ', '6AX', '6QW', '6SN', '6NP', '6TU', '6TT', '6NR', '6NT', '6QZ', '6TA', '6BW', '6TG', '6PE', '6QS', '6JA', '6AG', '6QP', '6NB', '6QX', '6QU', '6XL', '6ET', '6DX', '6EA', '6SZ', '6AR', '6EB', '6DU', '6LH', '6XJ', '6RD', '6NZ', '6HT', '6SP', '6DL', '6BP', '6AU', '6HR', '6QR', '6RB', '6LF', '6LE', '6RG', '6BE', '6QY', '6XR', '6EN', '6NL', '6BU', '6HL', '6NY', '6HW', '6DR', '6EW', '6RA', '6AQ'}

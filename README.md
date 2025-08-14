@@ -52,7 +52,7 @@ for pc in postcodes:
 - **1.8M active UK postcodes** with comprehensive metadata
 - **99.3% coordinate coverage** - latitude/longitude for nearly all postcodes
 - **25+ data fields per postcode**: administrative, political, healthcare, statistical
-- **796MB database** with automatic download and cross-platform storage
+- **Smart download**: 40MB compressed, 523MB locally with environment-aware prompting
 
 ### 📍 **Spatial Queries & Analysis**
 - **Find nearest postcodes** to any coordinates
@@ -62,7 +62,9 @@ for pc in postcodes:
 
 ### ⚡ **Zero Dependencies & High Performance**
 - **Pure Python**: Uses only standard library, no external dependencies
-- **Automatic setup**: Database downloads on first use
+- **Smart setup**: Environment-aware database downloads with user consent
+- **Optimized storage**: XZ compression reduces download by 95% (40MB vs 800MB)
+- **Fast validation**: Basic postcode validation without database dependency
 - **Cross-platform**: Windows, macOS, Linux support
 - **Thread-safe**: Concurrent access supported
 
@@ -72,7 +74,11 @@ for pc in postcodes:
 pip install uk-postcodes-parsing
 ```
 
-The postcode database (~796MB) downloads automatically on first use:
+The postcode database (~40MB compressed, 523MB locally) uses smart download:
+
+**Interactive environments** (terminal, Jupyter): Prompts before downloading
+**Non-interactive environments** (scripts, CI/CD): Provides clear setup instructions
+**Auto-download mode**: Set `UK_POSTCODES_AUTO_DOWNLOAD=1` for automatic downloads
 
 **Storage Locations:**
 - **Windows**: `%APPDATA%\uk_postcodes_parsing\postcodes.db`
@@ -83,8 +89,11 @@ The postcode database (~796MB) downloads automatically on first use:
 # Use a locally-built database instead of downloading
 ukp.setup_database(local_db_path='/path/to/your/postcodes.db')
 
-# Or set environment variable
+# Or set environment variable for database path
 export UK_POSTCODES_DB_PATH=/path/to/your/postcodes.db
+
+# Enable automatic downloads (for CI/CD, scripts)
+export UK_POSTCODES_AUTO_DOWNLOAD=1
 ```
 
 ## Usage Examples
@@ -364,6 +373,38 @@ Each `PostcodeResult` contains 25+ fields:
 
 See full field list in API documentation.
 
+## Environment Configuration
+
+### Environment Variables
+
+**`UK_POSTCODES_AUTO_DOWNLOAD`**
+- **Purpose**: Enable automatic database downloads without prompts
+- **Values**: `1`, `true`, `yes` (case-insensitive) to enable
+- **Use case**: CI/CD pipelines, automated scripts, serverless functions
+```bash
+export UK_POSTCODES_AUTO_DOWNLOAD=1
+```
+
+**`UK_POSTCODES_DB_PATH`**  
+- **Purpose**: Use custom database file instead of downloading
+- **Value**: Absolute path to your `.db` file
+- **Use case**: Custom-built databases, offline environments
+```bash
+export UK_POSTCODES_DB_PATH=/path/to/custom/postcodes.db
+```
+
+### Download Behavior
+
+**Interactive Environments** (Terminal, Jupyter):
+- Prompts user before downloading: "Download 40MB database? [y/N]"
+- Shows download progress and setup time
+- One-time setup, cached locally
+
+**Non-Interactive Environments** (Scripts, CI/CD):
+- Provides clear error with setup instructions
+- No automatic downloads without `UK_POSTCODES_AUTO_DOWNLOAD=1`
+- Prevents unexpected bandwidth usage
+
 ## Advanced Features
 
 ### Performance & Threading
@@ -371,8 +412,11 @@ See full field list in API documentation.
 - **Connection pooling**: Efficient database access
 - **Caching**: Outcode queries cached for performance
 
-### Error Handling
-- **Graceful fallback**: Falls back to Python set if database unavailable (for parsing capability only)  
+### Error Handling & Optimization
+- **Fast validation**: Basic postcode validation works without database using outcode-based system
+- **Environment-aware setup**: Interactive prompts vs clear error messages for automation
+- **XZ compression**: 95% smaller downloads with automatic decompression
+- **Graceful fallback**: Clear error messages guide users to proper database setup  
 
 ## Migration from v1.x
 
