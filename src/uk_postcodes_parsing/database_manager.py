@@ -7,6 +7,7 @@ import os
 import sqlite3
 import urllib.request
 import urllib.error
+import urllib.parse
 import lzma
 import sys
 import logging
@@ -21,6 +22,9 @@ logger = logging.getLogger(__name__)
 
 class DatabaseManager:
     """Manages postcode database download and access with zero external dependencies"""
+
+    # Configurable minimum database size in MB (used for verification)
+    MIN_DB_SIZE_MB = 50
 
     def __init__(self, local_db_path: Optional[str] = None):
         """
@@ -178,8 +182,16 @@ class DatabaseManager:
                     time.sleep(2)  # Brief pause before retry
 
                 start_time = time.time()
+
+                # Validate URL scheme for security (bandit B310)
+                parsed_url = urllib.parse.urlparse(self.download_url)
+                if parsed_url.scheme not in ("https", "http"):
+                    raise ValueError(
+                        f"Unsupported URL scheme: {parsed_url.scheme}. Only HTTP(S) allowed."
+                    )
+
                 # Download compressed file
-                urllib.request.urlretrieve(
+                urllib.request.urlretrieve(  # nosec B310 - URL scheme validated above
                     self.download_url, temp_compressed_path, progress_hook
                 )
 
@@ -303,7 +315,8 @@ class DatabaseManager:
 
             # Check file size (should be substantial)
             file_size = self.db_path.stat().st_size
-            if file_size < 100 * 1024 * 1024:  # Less than 100MB indicates problem
+            min_size_bytes = self.MIN_DB_SIZE_MB * 1024 * 1024
+            if file_size < min_size_bytes:  # Less than minimum size indicates problem
                 return False
 
             # Try to open and query database

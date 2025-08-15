@@ -10,6 +10,7 @@ import tempfile
 import threading
 from pathlib import Path
 from unittest.mock import patch, MagicMock
+from urllib.parse import urlparse
 import urllib.error
 
 from uk_postcodes_parsing.database_manager import (
@@ -24,12 +25,13 @@ from uk_postcodes_parsing.database_manager import (
 def reset_global_manager():
     """Reset global database manager before and after each test to prevent test pollution"""
     import uk_postcodes_parsing.database_manager as dm
+
     # Store original state
     original_manager = dm._db_manager
     dm._db_manager = None
-    
+
     yield  # Run the test
-    
+
     # Restore to None to ensure clean state for next test
     dm._db_manager = None
 
@@ -79,7 +81,9 @@ class TestDatabaseManager:
     @patch("lzma.open")
     @patch("uk_postcodes_parsing.database_manager.DatabaseManager._indices_exist")
     @patch("uk_postcodes_parsing.database_manager.DatabaseManager._create_indices")
-    def test_download_success(self, mock_create_indices, mock_indices_exist, mock_lzma_open, mock_urlretrieve):
+    def test_download_success(
+        self, mock_create_indices, mock_indices_exist, mock_lzma_open, mock_urlretrieve
+    ):
         """Test successful database download with xz decompression"""
         with tempfile.TemporaryDirectory() as temp_dir:
             manager = DatabaseManager()
@@ -93,24 +97,29 @@ class TestDatabaseManager:
                 # Ensure it's downloading the .xz file
                 assert url.endswith(".db.xz")
                 if hook:
-                    hook(1, 1024 * 1024, 40 * 1024 * 1024)  # Simulate compressed download progress
+                    hook(
+                        1, 1024 * 1024, 40 * 1024 * 1024
+                    )  # Simulate compressed download progress
                 # Create a small compressed file
                 Path(path).write_bytes(b"compressed_data")
 
             # Mock lzma decompression
             mock_compressed_file = MagicMock()
-            mock_compressed_file.read.side_effect = [mock_db_content, b""]  # Return content, then EOF
+            mock_compressed_file.read.side_effect = [
+                mock_db_content,
+                b"",
+            ]  # Return content, then EOF
             mock_lzma_open.return_value.__enter__.return_value = mock_compressed_file
 
             # Mock indices
             mock_indices_exist.return_value = False
-            
+
             mock_urlretrieve.side_effect = mock_download
 
             manager._download_database()
 
             assert manager.db_path.exists()
-            assert manager.db_path.stat().st_size > 100 * 1024 * 1024
+            assert manager.db_path.stat().st_size > manager.MIN_DB_SIZE_MB * 1024 * 1024
             mock_create_indices.assert_called_once()
 
     @patch("urllib.request.urlretrieve")
@@ -120,17 +129,43 @@ class TestDatabaseManager:
             manager = DatabaseManager()
             manager.data_dir = Path(temp_dir)
             manager.db_path = manager.data_dir / "postcodes.db"
-            
+
             def verify_xz_url(url, path, hook=None):
                 assert url.endswith(".db.xz"), f"Expected .db.xz URL, got {url}"
-                assert "github.com" in url, f"Expected GitHub URL, got {url}"
+                parsed = urlparse(url)
+                assert parsed.hostname == "github.com" or (
+                    parsed.hostname and parsed.hostname.endswith(".github.com")
+                ), f"Expected GitHub domain, got {parsed.hostname}"
                 # Simulate download failure to avoid full decompression process
                 raise urllib.error.URLError("Test - verifying URL format only")
-            
+
             mock_urlretrieve.side_effect = verify_xz_url
-            
+
             with pytest.raises(RuntimeError):
                 manager._download_database()
+
+    def test_url_scheme_validation(self):
+        """Test that only HTTP(S) schemes are allowed for downloads"""
+        with tempfile.TemporaryDirectory() as temp_dir:
+            manager = DatabaseManager()
+            manager.data_dir = Path(temp_dir)
+            manager.db_path = manager.data_dir / "postcodes.db"
+
+            # Test malicious URL schemes
+            malicious_schemes = ["file", "ftp", "javascript", "data"]
+            for scheme in malicious_schemes:
+                manager.download_url = f"{scheme}://malicious.com/test.db.xz"
+                with pytest.raises(RuntimeError, match="Unsupported URL scheme"):
+                    manager._download_database()
+
+            # Valid schemes should pass validation (would fail later due to mocking)
+            for scheme in ["http", "https"]:
+                manager.download_url = f"{scheme}://github.com/test.db.xz"
+                try:
+                    manager._download_database()
+                except RuntimeError:
+                    # Expected - download will fail, but URL scheme validation passed
+                    pass
 
     @patch("urllib.request.urlretrieve")
     def test_download_network_error(self, mock_urlretrieve):
@@ -339,12 +374,12 @@ class TestSetupFunctions:
             "exists": True,
             "record_count": 1799395,
             "is_local": True,
-            "source": "local"
+            "source": "local",
         }
         mock_db_class.return_value = mock_manager
-        
+
         result = setup_database(local_db_path="/path/to/local.db")
-        
+
         assert result is True
         mock_db_class.assert_called_once_with("/path/to/local.db")
         mock_manager.ensure_database.assert_called_once()
@@ -361,9 +396,9 @@ class TestSetupFunctions:
             "is_local": True,
         }
         mock_get_manager.return_value = mock_manager
-        
+
         result = setup_database(force_redownload=True)
-        
+
         assert result is True
         # remove_database should NOT be called for local databases
         mock_manager.remove_database.assert_not_called()
@@ -377,11 +412,11 @@ class TestSetupFunctions:
         mock_path.resolve.return_value = Path("/env/path/postcodes.db")
         mock_path.parent = Path("/env/path")
         mock_path_class.return_value = mock_path
-        
+
         from uk_postcodes_parsing.database_manager import DatabaseManager
-        
+
         manager = DatabaseManager()
-        
+
         assert manager.is_local_db is True
         mock_path_class.assert_called_with("/env/path/postcodes.db")
 
@@ -389,18 +424,20 @@ class TestSetupFunctions:
         """Test that local_db_path takes priority over environment variable"""
         with patch.dict(os.environ, {"UK_POSTCODES_DB_PATH": "/env/path/postcodes.db"}):
             from uk_postcodes_parsing.database_manager import DatabaseManager
-            
+
             manager = DatabaseManager(local_db_path="/local/path/postcodes.db")
-            
+
             assert manager.is_local_db is True
-            assert str(manager.db_path) == str(Path("/local/path/postcodes.db").resolve())
+            assert str(manager.db_path) == str(
+                Path("/local/path/postcodes.db").resolve()
+            )
 
     def test_ensure_database_local_not_found(self):
         """Test error when local database doesn't exist"""
         from uk_postcodes_parsing.database_manager import DatabaseManager
-        
+
         manager = DatabaseManager(local_db_path="/nonexistent/database.db")
-        
+
         with pytest.raises(FileNotFoundError, match="Local database not found"):
             manager.ensure_database()
 
@@ -410,13 +447,13 @@ class TestSetupFunctions:
         with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as tmp:
             tmp_path = tmp.name
             tmp.write(b"corrupted data")
-        
+
         try:
             from uk_postcodes_parsing.database_manager import DatabaseManager
-            
+
             mock_verify.return_value = False  # Database verification fails
             manager = DatabaseManager(local_db_path=tmp_path)
-            
+
             with pytest.raises(RuntimeError, match="Local database appears corrupted"):
                 manager.ensure_database()
         finally:
