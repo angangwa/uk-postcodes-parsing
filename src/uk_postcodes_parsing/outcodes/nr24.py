@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode NR24
+Generated from ONS Postcode Directory
+Contains 209 postcodes
+"""
+
+INCODES = {'2SN', '2LU', '2LT', '2EP', '2RF', '2ES', '2RR', '2LJ', '2EH', '2PF', '2PN', '2AG', '2QY', '2HH', '2ET', '2BS', '2HN', '2AY', '2HY', '2JY', '2JZ', '2QB', '2BF', '2JN', '2DE', '2RJ', '2DL', '2LB', '2EW', '2HF', '2GA', '2LQ', '2AT', '2NS', '2NB', '2AA', '2SE', '2BD', '2LP', '2DF', '2PS', '2HP', '2JP', '2NA', '2LN', '2PL', '2LD', '2NQ', '2DG', '2JB', '2BY', '2PJ', '2AQ', '2HA', '2FB', '2SJ', '2PP', '2RB', '2JT', '2HT', '2SA', '2JE', '2AJ', '2HE', '2EZ', '2LX', '2QD', '2PQ', '2RN', '2LL', '2EB', '2LZ', '2AL', '2NW', '2DJ', '2NJ', '2LH', '2PA', '2LY', '2JD', '2JA', '2DD', '2QF', '2DX', '2QL', '2HG', '2QN', '2HX', '2QE', '2BN', '2HU', '2AR', '2LS', '2NX', '2JS', '2QZ', '2ER', '2EL', '2AW', '2NY', '2JR', '2NT', '2PG', '2AE', '2DR', '2QU', '2JH', '2EQ', '2RP', '2SH', '2PB', '2RX', '2SL', '2NG', '2PE', '2PZ', '2DW', '2EA', '2LE', '2SB', '2NR', '2SD', '2NN', '2EX', '2RW', '2NP', '2JJ', '2QX', '2RL', '2AD', '2ZZ', '2RU', '2AU', '2NE', '2JQ', '2QA', '2EN', '2RS', '2EY', '2HL', '2JL', '2RE', '2DB', '2RQ', '2DQ', '2PY', '2LF', '2AN', '2QW', '2NZ', '2NL', '2ED', '2LA', '2BT', '2QG', '2DH', '2HR', '2JW', '2GD', '2JG', '2EG', '2PW', '2PU', '2DZ', '2LG', '2PH', '2BW', '2NU', '2AS', '2DU', '2JX', '2LR', '2HW', '2AX', '2NH', '2EF', '2AF', '2QJ', '2JF', '2HJ', '2AB', '2AP', '2DA', '2DN', '2HS', '2BB', '2LW', '2AH', '2SF', '2DY', '2QQ', '2QT', '2PD', '2RD', '2JU', '2PX', '2BE', '2HQ', '2QH', '2DS', '2BA', '2NF', '2EE', '2EU', '2ND', '2EJ', '2SG', '2HZ', '2DP'}

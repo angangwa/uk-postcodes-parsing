@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode IP10
+Generated from ONS Postcode Directory
+Contains 191 postcodes
+"""
+
+INCODES = {'0AS', '0QD', '0NS', '0HY', '0NJ', '0BY', '0JH', '0NE', '0NN', '0DN', '0BN', '0LF', '0AX', '0DW', '0EA', '0DY', '0HB', '0PD', '0LY', '0PL', '0TL', '0AT', '0QN', '0AE', '0AQ', '0HQ', '0PA', '0JR', '0PH', '0JP', '0EU', '0DB', '0PR', '0HW', '0PU', '0JS', '0EW', '0EY', '0LS', '0AD', '0LA', '0LE', '0DL', '0DG', '0FH', '0GB', '0HZ', '0NP', '0LG', '0EE', '0LX', '0PW', '0AY', '0BF', '0EX', '0JJ', '0GD', '0PE', '0QE', '0QQ', '0LJ', '0NU', '0DX', '0DU', '0RA', '0HX', '0AB', '0QW', '0BG', '0PQ', '0EP', '0LN', '0PJ', '0LP', '0JE', '0FJ', '0NZ', '0AG', '0PX', '0AN', '0BD', '0ET', '0NR', '0QG', '0QR', '0DQ', '0PG', '0HE', '0BW', '0LZ', '0LW', '0NT', '0DH', '0LR', '0NH', '0PB', '0QA', '0JD', '0HG', '0LL', '0DD', '0QB', '0NL', '0LH', '0NA', '0BT', '0JT', '0DT', '0FP', '0EB', '0DS', '0NY', '0RE', '0EJ', '0JA', '0JW', '0QP', '0DP', '0AZ', '0GQ', '0HD', '0JX', '0PP', '0BU', '0BA', '0DF', '0NQ', '0PZ', '0DA', '0ER', '0LT', '0HN', '0BB', '0EL', '0GA', '0AH', '0BH', '0FN', '0PN', '0QU', '0BZ', '0HP', '0DJ', '0PF', '0PY', '0HF', '0QH', '0QZ', '0JU', '0AL', '0PS', '0BX', '0JN', '0BE', '0EF', '0PT', '0AW', '0JF', '0QS', '0QT', '0BJ', '0DZ', '0HR', '0AU', '0BP', '0EQ', '0AR', '0FL', '0NW', '0AA', '0BS', '0DE', '0AP', '0LQ', '0DR', '0JG', '0JL', '0NX', '0ES', '0JB', '0JQ', '0HS', '0QF', '0QX', '0EH', '0QY', '0EG', '0FG', '0QJ', '0HA', '0EZ'}

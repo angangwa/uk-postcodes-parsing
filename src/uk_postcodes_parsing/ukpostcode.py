@@ -19,10 +19,8 @@ from uk_postcodes_parsing.postcode_utils import (
     to_sub_district,
 )
 from uk_postcodes_parsing.fix import fix, fix_with_options
-from uk_postcodes_parsing.postcodes_nov_2024 import POSTCODE_NOV_2024
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("uk-postcodes-parsing.ukpostcode")
+logger = logging.getLogger(__name__)
 
 # Test for a valid postcode embedded in text
 POSTCODE_CORPUS_REGEX = re.compile(r"[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}", re.I)
@@ -31,8 +29,6 @@ FIXABLE_POSTCODE_CORPUS_REGEX = re.compile(
 )
 
 SPECIAL_CASE_POSTCODES = ("GIR", "NPT", "BX", "BF")
-
-logger.debug("Imported POSTCODE_NOV_2022 with length: %s", len(POSTCODE_NOV_2024))
 
 
 @dataclass(order=True)
@@ -134,7 +130,7 @@ def parse_all_options(postcode) -> List[Postcode]:
         Postcode: Parsed postcode.
     """
     if postcode.strip().upper().startswith(SPECIAL_CASE_POSTCODES):  # Edge case logging
-        logger.info("Found special case postcode: %s", postcode)
+        logger.debug("Found special case postcode: %s", postcode)
     if is_valid(postcode):
         return [Postcode(**_parse(postcode), original=postcode)]
     else:
@@ -157,16 +153,16 @@ def parse(postcode: str, attempt_fix: bool = True) -> Optional[Postcode]:
     if not postcode:
         return None
     if postcode.strip().upper().startswith(SPECIAL_CASE_POSTCODES):  # Edge case logging
-        logger.info("Found special case postcode: %s", postcode)
+        logger.debug("Found special case postcode: %s", postcode)
     if is_valid(postcode):
         return Postcode(**_parse(postcode), original=postcode)
     if attempt_fix:
         fixed = fix(postcode)
         if is_valid(fixed):
-            logger.info("Postcode Fixed: '%s' => '%s'", postcode, fixed)
+            logger.debug("Postcode Fixed: '%s' => '%s'", postcode, fixed)
             return Postcode(**_parse(fixed), original=postcode)
-        logger.error("Unable to fix postcode")
-    logger.error("Failed to parse postcode: %s", postcode)
+        logger.warning("Unable to fix postcode: %s", postcode)
+    logger.warning("Failed to parse postcode: %s", postcode)
     return None
 
 
@@ -213,16 +209,26 @@ def is_in_ons_postcode_directory(postcode: str) -> bool:
     Returns:
         bool: True if the postcode is valid, False otherwise
     """
-    # Try SQLite database first (faster, more efficient)
     try:
-        from .postcode_database import get_database
+        # Extract outcode and incode - these functions handle normalization
+        outcode = to_outcode(postcode)
+        incode = to_incode(postcode)
 
-        db = get_database()
-        result = db.lookup(postcode)
-        return result is not None
-    except Exception:
-        # Fall back to Python file if database not available
-        logger.debug(
-            "SQLite database not available, falling back to Python file lookup"
-        )
-        return postcode in POSTCODE_NOV_2024
+        if not outcode or not incode:
+            return False
+
+        # Try to import the outcode module dynamically
+        try:
+            import importlib
+
+            module_name = f"uk_postcodes_parsing.outcodes.{outcode.lower()}"
+            module = importlib.import_module(module_name)
+            incodes = getattr(module, "INCODES", set())
+            return incode in incodes
+        except (ImportError, AttributeError):
+            # If outcode file doesn't exist, postcode is invalid
+            return False
+
+    except Exception as e:
+        logger.debug(f"Error checking postcode in outcodes: {e}")
+        return False

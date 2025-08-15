@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode EX37
+Generated from ONS Postcode Directory
+Contains 201 postcodes
+"""
+
+INCODES = {'9RH', '9RQ', '9PE', '9LL', '9BD', '9QN', '9SB', '9HW', '9LX', '9PD', '9NF', '9DN', '9EW', '9QH', '9QW', '9ED', '9QL', '9NS', '9JL', '9EF', '9DJ', '9BA', '9ST', '9TF', '9RG', '9NU', '9FD', '9DW', '9DQ', '9HF', '9HN', '9TT', '9AU', '9DY', '9QJ', '9EU', '9EZ', '9PX', '9HZ', '9QT', '9NB', '9HY', '9ND', '9TR', '9EJ', '9NT', '9BR', '9JJ', '9EL', '9AS', '9LH', '9PZ', '9AT', '9EQ', '9DH', '9EP', '9JD', '9HA', '9BZ', '9BJ', '9TW', '9EX', '9LY', '9AA', '9NE', '9EY', '9TA', '9QD', '9RX', '9BE', '9JU', '9BG', '9BB', '9SF', '9BU', '9AJ', '9RN', '9TG', '9HR', '9EG', '9PP', '9PT', '9SG', '9AQ', '9LN', '9HD', '9PY', '9JA', '9SS', '9AB', '9AE', '9DB', '9AL', '9BW', '9JW', '9SR', '9DL', '9DD', '9AG', '9JE', '9TL', '9AZ', '9LG', '9LT', '9AF', '9RL', '9QE', '9DZ', '9BQ', '9TY', '9TE', '9PU', '9TN', '9LF', '9NA', '9RB', '9TU', '9AP', '9DA', '9QS', '9YU', '9HG', '9LE', '9HU', '9QB', '9JP', '9AR', '9LD', '9TP', '9PA', '9SA', '9AD', '9HP', '9RU', '9JQ', '9EB', '9HB', '9BX', '9BY', '9SE', '9AY', '9ER', '9RT', '9LU', '9PF', '9SD', '9QP', '9JH', '9NG', '9PB', '9JG', '9RD', '9LZ', '9EA', '9JR', '9SP', '9AW', '9ES', '9JN', '9DU', '9JS', '9AN', '9PR', '9PS', '9RE', '9BS', '9EN', '9FB', '9PQ', '9HE', '9BL', '9BH', '9JT', '9EE', '9DG', '9RY', '9LQ', '9RJ', '9DT', '9PW', '9QR', '9DE', '9BP', '9LA', '9PG', '9TB', '9QA', '9ET', '9BN', '9RA', '9RZ', '9TS', '9LJ', '9AX', '9DX', '9AH', '9DF', '9DP', '9LB', '9DS', '9BT'}

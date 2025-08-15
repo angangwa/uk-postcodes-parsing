@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode S98
+Generated from ONS Postcode Directory
+Contains 209 postcodes
+"""
+
+INCODES = {'1SD', '1FB', '1HG', '1ND', '1LQ', '1JS', '1UU', '1EU', '1DX', '1GY', '1ED', '1EY', '1QS', '1YN', '1BN', '1FH', '1SZ', '1AZ', '1SA', '1PX', '1RE', '1BT', '1AS', '1YJ', '1QJ', '1PG', '1RY', '1TR', '1LP', '1PD', '1QU', '1EE', '1FQ', '1TU', '1GQ', '1LE', '1PL', '1HS', '1PT', '1YG', '1FR', '1QQ', '1AE', '1SE', '1LF', '1EA', '1JP', '1QH', '1LJ', '1LN', '1PN', '1RZ', '1SS', '1TG', '1BZ', '1AY', '1TD', '1NT', '1TE', '1AX', '1LA', '1BG', '1FX', '1FJ', '1YP', '1AP', '1LG', '1NZ', '1DE', '1QW', '1DF', '1YH', '1BE', '1ST', '1YQ', '1FW', '1DQ', '1JT', '1LL', '1RB', '1FA', '1JY', '1SH', '1AQ', '1BH', '1GW', '6AD', '1GD', '1EQ', '1PA', '1YT', '1TL', '1EZ', '1DY', '1XD', '1RU', '1LH', '1EW', '1BJ', '1PS', '1RQ', '1SW', '1NY', '1EL', '1RN', '1PW', '1EN', '1FL', '1HQ', '1UZ', '1RF', '1RD', '1PQ', '1TF', '1DU', '1BX', '1JW', '1AJ', '1RS', '1PR', '1QD', '1UA', '1FD', '1RG', '1SJ', '1QT', '6AB', '1DR', '1PJ', '1SN', '1NS', '1PY', '1QY', '1AB', '1TP', '1DZ', '1HR', '1LB', '1QF', '1NR', '1TN', '1GF', '1RJ', '1RR', '1YL', '1FS', '1XB', '1PE', '1DL', '1YB', '1YE', '1EP', '1AW', '1LD', '1EH', '1BL', '1PF', '1SB', '1PH', '1SQ', '1QR', '1PP', '1SF', '1TZ', '1BS', '1ER', '1YA', '1FF', '1AT', '1JR', '1EF', '1AU', '1SG', '1BD', '1GG', '1AF', '1YD', '1EX', '1GE', '1QG', '1ET', '1SL', '1DS', '6HR', '1DT', '1PB', '1RP', '1QE', '1SU', '1RA', '1TH', '1FP', '1QP', '1EJ', '1JE', '1JZ', '1NG', '1SR', '1RH', '1NX', '1ES', '1BY', '1DB', '1RT', '1DD', '1JQ', '1TY', '1FE', '1NU'}

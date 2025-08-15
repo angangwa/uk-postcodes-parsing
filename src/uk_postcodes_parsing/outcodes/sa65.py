@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode SA65
+Generated from ONS Postcode Directory
+Contains 202 postcodes
+"""
+
+INCODES = {'9HT', '9RH', '9PE', '9LL', '9BD', '9RQ', '9SB', '9SJ', '9LX', '9PD', '9NF', '9DN', '9QH', '9ED', '9NS', '9JL', '9EF', '9DJ', '9YF', '9BA', '9HJ', '9RG', '9NU', '9DW', '9TT', '9HN', '9AU', '9DY', '9NZ', '9QJ', '9PX', '9QT', '9NB', '9HY', '9ND', '9TR', '9UA', '9EJ', '9NT', '9LR', '9JJ', '9EL', '9AS', '9LH', '9AT', '9EQ', '9EP', '9JD', '9HA', '9RF', '9DR', '9BJ', '9QY', '9HL', '9NR', '9NL', '9LY', '9NW', '9SH', '9AA', '9TA', '9QD', '9RS', '9BE', '9JU', '9HS', '9BG', '9BB', '9SF', '9BU', '9RN', '9TG', '9HR', '9EG', '9PT', '9SG', '9QU', '9LN', '9HD', '9NQ', '9PY', '9JB', '9JA', '9SS', '9AB', '9AE', '9DB', '9TD', '9AL', '9SR', '9LP', '9DL', '9DD', '9AG', '9JE', '9TL', '9LG', '9LT', '9AF', '9RL', '9QE', '9DZ', '9TY', '9TE', '9PU', '9TN', '9LF', '9NA', '9RB', '9TU', '9AP', '9DA', '9QS', '9HG', '9LE', '9HU', '9QB', '9HX', '9JP', '9AR', '9HH', '9LD', '9TP', '9PA', '9SA', '9AD', '9HP', '9QX', '9RU', '9SL', '9NY', '9TX', '9EB', '9PN', '9SE', '9AY', '9ER', '9PL', '9RR', '9RT', '9LU', '9QZ', '9SD', '9JH', '9NG', '9PB', '9JG', '9RD', '9LZ', '9EA', '9JR', '9SP', '9AW', '9JN', '9DU', '9JS', '9TJ', '9AN', '9PR', '9PS', '9RP', '9RE', '9BS', '9EN', '9SN', '9QF', '9HE', '9BL', '9BH', '9JT', '9EE', '9LW', '9RY', '9LQ', '9RJ', '9DT', '9DE', '9BP', '9LA', '0AR', '9NP', '9NX', '9PG', '9TB', '0AA', '9ET', '9QA', '9EH', '9RA', '9TS', '9LJ', '9AX', '9DX', '9TH', '9DF', '9QG', '9DP', '9LB', '9DS', '9LS', '9BT', '9NJ'}

@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode SW1Y
+Generated from ONS Postcode Directory
+Contains 187 postcodes
+"""
+
+INCODES = {'5JH', '5AP', '6BL', '6QL', '4RJ', '6HD', '6AA', '6DN', '6HJ', '6BS', '5BS', '5EZ', '6DD', '6WW', '4AH', '4JU', '4LR', '4QN', '5AN', '5BL', '6AW', '4XA', '6PX', '6JF', '4LG', '5EY', '6HB', '5EP', '4LH', '4AJ', '5AU', '5EW', '4LB', '4AD', '4SP', '5AF', '4EE', '4QL', '6DS', '6JE', '6PY', '6JD', '6AL', '6LT', '4RL', '4QU', '4DG', '5HX', '4AR', '6PF', '4QX', '6DB', '5HZ', '6BB', '5NP', '4UF', '6QG', '4EL', '4SQ', '5HD', '5AY', '4TP', '6AD', '6QA', '4HH', '6JX', '6AF', '5AT', '6HA', '5BF', '4UH', '5JG', '6JT', '6QF', '4HA', '4PH', '6LS', '5AS', '5JQ', '6LA', '5AA', '6LX', '6RE', '5JN', '6RJ', '5AD', '4JS', '4JZ', '4BN', '5ZQ', '6DT', '4AE', '6JH', '6ST', '5BQ', '4HT', '4NB', '6AJ', '6EE', '4BE', '5HY', '4TE', '4AL', '4NE', '5NG', '4NW', '5EA', '6HH', '6QT', '4EX', '4HG', '4SW', '6BN', '6AB', '4EH', '5AH', '6RL', '5LP', '4RX', '6AE', '4UY', '6JB', '4BP', '4RG', '4PD', '4LE', '5AG', '4DL', '6LB', '6HF', '6AH', '6HU', '6DJ', '5DG', '6JP', '6QW', '6NP', '4AN', '4TQ', '5ED', '4JH', '4AA', '4RP', '4UJ', '6AG', '6QP', '4HX', '4JR', '4RF', '6QU', '4EN', '4PE', '5DL', '6NH', '5ES', '4UR', '4AU', '4HE', '6DE', '4JY', '4NQ', '5BD', '5ER', '4QQ', '6DF', '6AU', '6HR', '4DN', '5AQ', '5BJ', '4QF', '4RW', '4EA', '6QY', '4QE', '4JE', '5BN', '5HU', '5LU', '5NQ', '6BU', '6NY', '4DP', '5HS', '6PP', '5BG', '6QB'}

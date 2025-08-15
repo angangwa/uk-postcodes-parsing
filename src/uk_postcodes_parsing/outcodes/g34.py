@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode G34
+Generated from ONS Postcode Directory
+Contains 208 postcodes
+"""
+
+INCODES = {'9HT', '9RH', '9PE', '0ND', '9BD', '9QN', '9RQ', '9HW', '0HY', '9LX', '9PD', '0NJ', '0JH', '0NN', '0DN', '9QH', '0GN', '0AX', '0DW', '9ED', '9QL', '0GP', '9JL', '9EF', '9NN', '0PL', '9BA', '9HJ', '0AT', '9RG', '9FD', '0AE', '9HF', '0AQ', '0HQ', '9DY', '9QJ', '9EZ', '9PX', '9HZ', '9HY', '0DB', '0HW', '9LR', '9JJ', '0PU', '9AS', '9PZ', '0EW', '9JD', '0AD', '9RF', '9DR', '9BJ', '0DG', '9NL', '9LY', '0HZ', '9NW', '9QQ', '9AA', '9NE', '0NP', '9QD', '0HH', '0PW', '0AY', '9BF', '0JJ', '9BE', '9HS', '9BG', '9BB', '9AJ', '0DX', '9HR', '0DU', '9EG', '0AJ', '9PT', '0JZ', '0AB', '9PY', '9JB', '0BG', '9JA', '9AB', '9AE', '9AL', '9BW', '9JW', '0EP', '0PJ', '9DL', '0NZ', '9AG', '9JE', '9AZ', '9LT', '9AF', '0AG', '0PX', '0AN', '9QE', '0NR', '9DZ', '9BQ', '0DQ', '9PU', '0BW', '9RB', '9DA', '9HG', '9HQ', '9HU', '9QB', '9HX', '0NH', '0QA', '9AR', '0JD', '9HH', '0NG', '0DD', '9LD', '0QB', '0NL', '9AD', '9JQ', '0JY', '9EB', '0BT', '0DT', '0DS', '9BY', '0EJ', '0JA', '0NB', '0DP', '0AZ', '9RR', '9LU', '0PP', '0BU', '0DF', '9QP', '9JH', '0NQ', '0HT', '0PZ', '0DA', '0LT', '0HN', '9LZ', '0EL', '9EA', '9NH', '0AH', '0BH', '0PN', '9NJ', '9DU', '0HP', '9AN', '0DJ', '9PR', '9LB', '9PS', '9RP', '9FB', '9PQ', '0AL', '9QF', '9HE', '9BL', '9BH', '0BX', '9EE', '9LW', '0EF', '0ED', '0JF', '9LQ', '9DT', '9QR', '0HR', '0BQ', '0BP', '9LA', '9NP', '9JY', '0NW', '0AA', '0DE', '9QA', '9BN', '9EH', '0DR', '9LJ', '0JL', '9AX', '9JX', '9QG', '0EH', '9DP', '0EG', '9PW', '0EZ'}

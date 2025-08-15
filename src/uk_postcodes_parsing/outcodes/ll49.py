@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LL49
+Generated from ONS Postcode Directory
+Contains 196 postcodes
+"""
+
+INCODES = {'9HT', '9RH', '9PE', '9LL', '9BD', '9SB', '9UU', '9HW', '9PD', '9NF', '9DN', '9EW', '9UP', '9ED', '9NS', '9EF', '9YE', '9NN', '9YF', '9BA', '9ST', '9TF', '9RG', '9NU', '9DW', '9HF', '9TT', '9HN', '9AU', '9DY', '9NZ', '9EU', '9NB', '9HY', '9ND', '9TR', '9UA', '9EJ', '9SY', '9LR', '9JJ', '9YL', '9YN', '9EL', '9AS', '9AT', '9EQ', '9DH', '9EP', '9UG', '9HA', '9RF', '9DR', '9BJ', '9TW', '9YR', '9YG', '9NL', '9LY', '9NW', '9UY', '9SH', '9UR', '9AA', '9NE', '9EY', '9TA', '9SU', '9RS', '9GB', '9YJ', '9BF', '9BE', '9YH', '9HS', '9BG', '9BB', '9SF', '9BU', '9AJ', '9RN', '9SW', '9TG', '9HR', '9EG', '9PP', '9PT', '9SG', '9AQ', '9LN', '9HD', '9PY', '9JA', '9SS', '9DB', '9AE', '9TD', '9AL', '9BW', '9SR', '9LP', '9DL', '9DD', '9AG', '9AF', '9RL', '9UE', '9TY', '9TE', '9PU', '9TN', '9NA', '9RB', '9TU', '9AP', '9YU', '9HG', '9LE', '9HU', '9YA', '9HX', '9AR', '9UT', '9LD', '9TP', '9PA', '9SA', '9AD', '9UW', '9RU', '9SL', '9YD', '9NY', '9EB', '9HB', '9UH', '9YS', '9BY', '9SE', '9AY', '0AZ', '9RR', '9RT', '9LU', '9PF', '9SD', '0BA', '9NG', '9PB', '9RD', '9EA', '9SP', '9ZP', '9NH', '9JN', '9YQ', '9DU', '9AN', '9PR', '9PS', '9RP', '9RE', '9EN', '9PQ', '9SN', '9RW', '9BL', '9BH', '9EE', '9DG', '9LW', '9RY', '9YB', '9PH', '9UD', '9UF', '9DT', '9PW', '9PG', '9LA', '9TB', '9UB', '9BN', '9EH', '9YW', '9RA', '9TS', '9GA', '9AX', '9AH', '9DF', '9DP', '9LB', '9DS', '9BT', '9NJ'}

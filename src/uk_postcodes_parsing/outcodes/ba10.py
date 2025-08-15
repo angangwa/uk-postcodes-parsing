@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode BA10
+Generated from ONS Postcode Directory
+Contains 179 postcodes
+"""
+
+INCODES = {'0AS', '0ND', '0HL', '0QD', '0NS', '0HY', '0NJ', '0BY', '0JH', '0NE', '0NN', '0DN', '0BN', '0LF', '0DW', '0EA', '0DY', '0HB', '0PD', '0PL', '0AT', '0QN', '0AE', '0HQ', '0JR', '0PH', '0AF', '0JP', '0EU', '0DB', '0PR', '0HW', '0PU', '0JS', '0EW', '0EY', '0LA', '0LE', '0DL', '0DG', '0HZ', '0LD', '0HJ', '0NP', '0LG', '0EE', '0HH', '0PW', '0AY', '0JJ', '0QE', '0PE', '0QQ', '0NU', '0DX', '0DU', '0AJ', '0JZ', '0HX', '0AB', '0BG', '0FD', '0PQ', '0EP', '0LN', '0PJ', '0LP', '0JE', '0NZ', '0FB', '0AG', '0LB', '0AN', '0PX', '0ET', '0NR', '0QG', '0QR', '0DQ', '0PG', '0HE', '0BW', '0LW', '0NT', '0HU', '0DH', '0LR', '0NH', '0QA', '0FE', '0JD', '0HG', '0NG', '0NF', '0DD', '0FA', '0QB', '0NL', '0NA', '0JY', '0BR', '0BT', '0JT', '0DT', '0EB', '0DS', '0NY', '0EJ', '0JA', '0JW', '0NB', '0QP', '0DP', '0AZ', '0HD', '0PP', '0BU', '0BA', '0DF', '0NQ', '0HT', '0PZ', '0DA', '0ER', '0HN', '0BB', '0EL', '0EN', '0AH', '0BH', '0PN', '0BZ', '0HP', '0DJ', '0PF', '0PY', '0HF', '0QH', '0JU', '0AL', '0PS', '0BX', '0JN', '0BE', '0EF', '0ED', '0AW', '0JF', '0PT', '0BJ', '0DZ', '0HR', '0AU', '0BQ', '0BP', '0EQ', '0AR', '0NW', '0AA', '0BS', '0DE', '0AP', '0LQ', '0JG', '0JL', '0NX', '0ES', '0FF', '0JB', '0JQ', '0HS', '0QF', '0EH', '0QL', '0EG', '0FG', '0QJ', '0HA', '0EZ'}

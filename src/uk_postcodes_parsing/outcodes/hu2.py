@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode HU2
+Generated from ONS Postcode Directory
+Contains 196 postcodes
+"""
+
+INCODES = {'8RU', '9PE', '0HL', '0QD', '8AR', '0HY', '8HD', '9PD', '8BT', '8QQ', '8LB', '0DY', '0HB', '8RB', '8AU', '8NZ', '8DR', '0AT', '8DQ', '0AQ', '0PA', '8NF', '8PN', '0PH', '0JP', '8HF', '8TD', '8JU', '8JN', '8BG', '9JJ', '0PU', '8PW', '8RA', '8AE', '8DL', '8DN', '0AD', '0LA', '8HZ', '9BJ', '0DG', '8AP', '8JL', '8BE', '8HL', '8NW', '8HH', '8EF', '9AA', '8NY', '0HJ', '8DG', '0LG', '0HH', '8BQ', '8DF', '8DH', '8JR', '9BE', '8BH', '8DW', '8AZ', '8SH', '0QE', '0PE', '0QQ', '9BG', '9BB', '0DX', '0DU', '8BA', '0AJ', '0JZ', '0HX', '0AB', '8DA', '0BG', '8TB', '9AB', '8BL', '9AE', '9DB', '9BW', '8DY', '0PJ', '0LN', '9LP', '8NR', '9AG', '9LG', '9AF', '8JQ', '0LB', '0AN', '8RD', '8BD', '8BB', '8HY', '0BD', '8JS', '8BJ', '0HE', '8JD', '0BW', '8AG', '9AP', '9DA', '8AY', '9LE', '0DH', '0LR', '9JP', '0PB', '8GA', '8BP', '8AW', '8PX', '0HG', '0LL', '8RR', '8LA', '8NH', '0QB', '9PA', '8BS', '9AD', '0LH', '8AL', '0DT', '9BX', '8HU', '8HP', '0QP', '9AY', '8AA', '0HD', '0JX', '0PP', '9PF', '0BA', '8ED', '9JH', '8PP', '0PZ', '8DE', '9PB', '0HN', '0BB', '8HR', '9JR', '8AF', '8EP', '9AN', '8HE', '0DJ', '8AH', '0PY', '8QS', '9PR', '8LD', '9BL', '0PS', '9BH', '8LN', '9LW', '0BE', '8NA', '8HQ', '8DT', '9PH', '8EB', '8LH', '8DZ', '0DZ', '0HR', '0BQ', '8TH', '9BP', '8TA', '9PG', '8EH', '0HA', '8HX', '8AN', '8TJ', '8AX', '0AA', '8JY', '8EA', '8JJ', '8PE', '0JB', '8JX', '0QL', '0LF'}

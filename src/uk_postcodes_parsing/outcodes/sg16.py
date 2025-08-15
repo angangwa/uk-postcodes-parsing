@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode SG16
+Generated from ONS Postcode Directory
+Contains 193 postcodes
+"""
+
+INCODES = {'6BL', '6HZ', '6LQ', '6EZ', '6GB', '6PB', '6HD', '6AA', '6AT', '6DN', '6BS', '6GF', '6BX', '6GR', '6HJ', '6BQ', '6LD', '6DD', '6EU', '6JQ', '6EY', '6JW', '6FB', '6AN', '6JJ', '6FX', '6LP', '6AW', '6AZ', '6DG', '6AY', '6FT', '6FQ', '6BY', '6JL', '6FA', '6JF', '6HB', '6JU', '6PD', '6BT', '6NF', '6DA', '6FP', '6DS', '6FH', '6EL', '6JE', '6LY', '6NA', '6JD', '6AL', '6PH', '6BJ', '6PF', '6NW', '6DB', '6HX', '6ED', '6BB', '6HY', '6LN', '6JS', '6GQ', '6FU', '6NN', '6GE', '6JZ', '6AD', '6FN', '6BZ', '6EH', '6ES', '6PA', '6ER', '6BG', '6EQ', '6EP', '6PL', '6JX', '6AF', '6HA', '6QB', '6FR', '6JT', '6NJ', '6HN', '6DQ', '6HE', '6HQ', '6LA', '6LX', '6ND', '6FD', '6BA', '6GU', '6HG', '6DT', '6JH', '6JR', '6AS', '6NG', '6FF', '6HP', '6GZ', '6AJ', '6NE', '6BH', '6GL', '6HS', '6EX', '6AP', '6FS', '6GW', '6EG', '6DP', '6HH', '6DH', '6BN', '6AB', '6DZ', '6FZ', '6FG', '6AE', '6JG', '6LL', '6JB', '6JN', '6LZ', '6LB', '6BD', '6HF', '6AH', '6DY', '6HU', '6DJ', '6AX', '6JP', '6NQ', '6EJ', '6BW', '6PE', '6EF', '6GJ', '6AG', '6GN', '6JA', '6NB', '6FY', '6GD', '6GY', '6FW', '6PJ', '6FE', '6NH', '6ET', '6DX', '6EA', '6DE', '6AR', '6EB', '6DU', '6LH', '6LU', '6GH', '6NZ', '6HT', '6JY', '6DF', '6BP', '6AU', '6HR', '6LJ', '6LF', '6GA', '6LE', '6BE', '6PG', '6EN', '6FL', '6GG', '6GT', '6NL', '6BU', '6HL', '6GS', '6HW', '6DR', '6EW', '6GP', '6AQ', '6GX', '6FJ'}

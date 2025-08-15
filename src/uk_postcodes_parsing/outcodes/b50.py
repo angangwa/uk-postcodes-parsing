@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode B50
+Generated from ONS Postcode Directory
+Contains 210 postcodes
+"""
+
+INCODES = {'4BF', '4NH', '4FD', '4LS', '4LW', '4BD', '4DF', '4HS', '4PA', '4PG', '4AH', '4EB', '4LQ', '4DZ', '4LR', '4LU', '4QN', '4HU', '4GN', '4HJ', '4PR', '4LG', '4NY', '4DY', '4BG', '4LH', '4AJ', '4ND', '4NA', '4GU', '4LB', '4AD', '4EE', '4QL', '4AY', '4NG', '4JA', '4FQ', '4PN', '4AS', '4HD', '4DG', '4AR', '4PJ', '4BW', '4AP', '4LA', '4NT', '4DS', '4PP', '4FR', '4PF', '4DB', '4GZ', '4LY', '4JP', '4EL', '4FJ', '4NF', '4PU', '4JD', '4BL', '4EW', '4EZ', '4FP', '4DU', '4BA', '4LJ', '4GE', '4PB', '4BJ', '4HZ', '4ES', '4DT', '4JG', '4HH', '4AB', '4BY', '4QD', '4DW', '4JB', '4EP', '4GS', '4GL', '4JT', '4HA', '4HN', '4AX', '4PH', '4DD', '4DQ', '4FG', '4LZ', '4BU', '4JZ', '4BN', '4JS', '4GX', '4JJ', '4LT', '4JF', '4ER', '4LF', '4BS', '4AE', '4AG', '4GD', '4HT', '4NB', '4AW', '4HR', '4BE', '4HL', '4GJ', '4GP', '4AL', '4GW', '4NZ', '4NE', '4FW', '4DJ', '4HQ', '4NW', '4QB', '4EX', '4HG', '4EQ', '4FY', '4EH', '4LL', '4JQ', '4NL', '4DH', '4FH', '4BT', '4LN', '4BP', '4AZ', '4PD', '4LE', '4BZ', '4DL', '4DA', '4JL', '4FF', '4NX', '4BQ', '4PS', '4AN', '4GB', '4GQ', '4BB', '4GT', '4QG', '4GY', '4EY', '4JH', '4AA', '4NP', '4NS', '4HX', '4NJ', '4JR', '4GF', '4FX', '4QJ', '4EN', '4PQ', '4PE', '4AT', '4AQ', '4JN', '4GH', '4EU', '4AU', '4HE', '4GA', '4AF', '4DX', '4HF', '4JY', '4NQ', '4NN', '4NR', '4HB', '4QA', '4QQ', '4FZ', '4ED', '4HW', '4HP', '4DN', '4EF', '4HY', '4EJ', '4LP', '4QF', '4EA', '4QE', '4DR', '4JE', '4LX', '4PT', '4DP', '4QH', '4DE', '4EG', '4GR', '4BX', '4NU'}

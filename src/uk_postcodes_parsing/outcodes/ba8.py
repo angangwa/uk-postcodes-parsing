@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode BA8
+Generated from ONS Postcode Directory
+Contains 210 postcodes
+"""
+
+INCODES = {'0AS', '0ND', '0QD', '0NJ', '0BY', '0JH', '0NE', '0DN', '0SH', '0BN', '0LF', '0AX', '0DW', '0EA', '0HB', '0PL', '0RZ', '0AT', '0QN', '0AE', '0AQ', '0HQ', '0PA', '0JR', '0ZQ', '0PH', '0AF', '0JP', '0EU', '0DB', '0PR', '0RH', '0HW', '0PU', '0JS', '0EW', '0TU', '0LS', '0AD', '0RR', '0LA', '0RP', '0LE', '0DL', '0TB', '0SP', '0RJ', '0RN', '0TS', '0LD', '0HJ', '0TT', '0LG', '0EE', '0PW', '0SN', '0AY', '0SL', '0JJ', '0QE', '0QQ', '0LJ', '0SQ', '0AJ', '0RA', '0JZ', '0AB', '0QW', '0BG', '0PQ', '0RD', '0EP', '0LN', '0PJ', '0LP', '0JE', '0RT', '0TQ', '0BL', '0AG', '0LB', '0AN', '0ST', '0BD', '0ET', '0QG', '0QR', '0SF', '0RG', '0DQ', '0RW', '0PG', '0HE', '0TN', '0BW', '0LW', '0RB', '0DH', '0LR', '0NH', '0PB', '0QA', '0RL', '0RX', '0SD', '0JD', '0HG', '0LL', '0SR', '0TA', '0SA', '0NG', '0TD', '0NF', '0TG', '0TH', '0DD', '0RQ', '0QB', '0LH', '0NA', '0JY', '0BR', '0BT', '0JT', '0EB', '0DS', '0SJ', '0RE', '0EJ', '0JA', '0JW', '0NB', '0QP', '0SE', '0DP', '0AZ', '0TJ', '0HD', '0JX', '0SY', '0TE', '0PP', '0BU', '0BA', '0DF', '0SB', '0SG', '0NQ', '0DA', '0ER', '0RS', '0LT', '0HN', '0BB', '0EL', '0EN', '0AH', '0BH', '0PN', '0HP', '0DJ', '0PF', '0HF', '0QH', '0QZ', '0JU', '0SS', '0AL', '0SZ', '0PS', '0RY', '0BX', '0JN', '0BE', '0EF', '0ED', '0AW', '0JF', '0PT', '0QT', '0BJ', '0HR', '0AU', '0BQ', '0BP', '0EQ', '0AR', '0RU', '0AA', '0BS', '0DE', '0TF', '0AP', '0LQ', '0DR', '0RF', '0JG', '0JL', '0ES', '0JB', '0JQ', '0QF', '0QY', '0EH', '0QL', '0SW', '0EG', '0QJ', '0HA'}

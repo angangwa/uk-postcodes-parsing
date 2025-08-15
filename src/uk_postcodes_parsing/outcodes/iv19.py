@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode IV19
+Generated from ONS Postcode Directory
+Contains 197 postcodes
+"""
+
+INCODES = {'1QN', '1FB', '1HE', '1HG', '1NA', '1ND', '1JD', '1LQ', '1JS', '1EU', '1HW', '1DX', '1ED', '1EY', '1HB', '1QS', '1HU', '1BN', '1HX', '1QL', '1AL', '1AZ', '1DN', '1PX', '1NF', '1RE', '1BT', '1NL', '1BQ', '1GZ', '1QJ', '1PG', '1BF', '1BU', '1NE', '1NH', '1LZ', '1PZ', '1LP', '1PD', '1QU', '1EE', '1LE', '1DP', '1HN', '1PL', '1HS', '1LS', '1PT', '1AE', '1HF', '1LF', '1JP', '1QH', '1LJ', '1LN', '1AA', '1JG', '1BZ', '1JN', '1AY', '1DG', '1NT', '1AX', '1LA', '1BG', '1PU', '1NP', '1AP', '1LG', '1NZ', '1BP', '1DE', '1DF', '1QW', '1BE', '1RL', '1DQ', '1JT', '1LL', '1FA', '1JY', '9AE', '1AQ', '1BH', '1EG', '1AH', '1FG', '1GD', '1EQ', '1QA', '1EZ', '1DY', '1BB', '1LH', '1EW', '1BJ', '1PS', '1DJ', '1NY', '1EL', '1HD', '1NN', '1PW', '1EN', '1HQ', '1GA', '1NQ', '1PQ', '1DU', '1LY', '1BX', '1JW', '1AJ', '1PR', '1JL', '1FD', '1GB', '1QT', '1DR', '1JA', '1LW', '1NS', '1PY', '1QY', '1AB', '1HJ', '1JB', '1DZ', '1HR', '1LB', '1LU', '1HA', '1NR', '1QF', '1HL', '1RJ', '1HH', '1PE', '1JJ', '1JX', '1DL', '1HP', '1EP', '1AW', '1LD', '1NW', '1EH', '1BL', '1HY', '1AR', '1QR', '1PP', '1BS', '1ER', '1EB', '1NB', '1DA', '1FF', '1BW', '1AT', '1JR', '1EF', '1GL', '1AU', '1BD', '1JU', '1AF', '1DW', '1NJ', '1EX', '1QG', '1ET', '1DS', '1DT', '1PB', '1HT', '1RA', '1LT', '1LR', '1BA', '1QP', '1EJ', '1JE', '1JZ', '1LX', '1NG', '1QX', '1NX', '1DH', '1BY', '1DB', '1ES', '1AN', '1DD', '1FE', '1NU'}

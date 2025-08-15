@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LD7
+Generated from ONS Postcode Directory
+Contains 195 postcodes
+"""
+
+INCODES = {'1SD', '1HE', '1HG', '1NA', '1ND', '1UU', '1EU', '1HW', '1ED', '1EY', '1HB', '1UE', '1UY', '1YN', '1HU', '1HX', '1AL', '1DN', '1SA', '1NF', '1RE', '1BT', '1AS', '1NL', '1UG', '1PG', '1NE', '1PZ', '1NH', '1RY', '1TR', '1LP', '1PD', '1EE', '1TU', '1LE', '1DP', '1HN', '1PL', '1HS', '1LS', '1PT', '1YG', '1AE', '1SE', '1HF', '1LF', '1EA', '1SS', '1TB', '1LJ', '1HZ', '1LN', '1PN', '1AA', '1UF', '1DG', '1TD', '1NT', '1TE', '1AX', '1LA', '1BG', '1PU', '1NP', '1YP', '1AP', '1LG', '1DE', '1TW', '1DF', '1YH', '1BE', '1RL', '1ST', '1YU', '1DQ', '1AG', '1RB', '1UP', '1UW', '1SH', '1UT', '1AQ', '1EG', '1RW', '1PA', '1YT', '1DY', '1BB', '1EW', '1PS', '1DJ', '1SW', '1NY', '1RN', '1HD', '1NN', '1PW', '1EN', '1HQ', '1RF', '1NQ', '1RD', '9AP', '1LY', '1RS', '1AJ', '1TT', '1PR', '1AD', '1UA', '1RG', '1DR', '1SN', '1NS', '1LW', '1PY', '1UD', '1UR', '1HJ', '1TP', '1TA', '1YR', '1LB', '1UB', '1LU', '1HA', '1NR', '1TN', '1HL', '1RR', '1YL', '1HH', '1PE', '1DL', '1HP', '1YB', '1YE', '1EP', '1AW', '1LD', '1NW', '1EH', '1BL', '1PF', '1SB', '1PH', '1HY', '1AR', '1PP', '1SF', '1BS', '1SY', '1ER', '1EB', '1NB', '1YA', '1UH', '1AT', '1EF', '1AU', '1YY', '1SG', '1BD', '1YF', '1DW', '1NJ', '1YD', '1ET', '1SL', '1DS', '1SP', '1DT', '1PB', '1RP', '1SU', '1HT', '1RA', '1LT', '1LR', '1BA', '1YS', '1SR', '1NG', '1RH', '1DH', '1ES', '1DB', '1RT', '1AN', '1YW', '1TY', '1TS', '1NU'}

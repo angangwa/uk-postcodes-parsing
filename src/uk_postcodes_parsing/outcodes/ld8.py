@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode LD8
+Generated from ONS Postcode Directory
+Contains 191 postcodes
+"""
+
+INCODES = {'2SN', '2LU', '2LT', '2TU', '2TR', '2EP', '2YT', '2RF', '2TL', '2ES', '2RR', '2UN', '2SS', '2LJ', '2EH', '2PF', '2TD', '2PN', '2AG', '2TN', '2HH', '2ET', '2BS', '2SP', '2WF', '2HN', '2AY', '2HY', '2TA', '2TP', '2UB', '2DE', '2RJ', '2DL', '2LB', '2EW', '2HF', '2SZ', '2AT', '2NS', '2NB', '2AA', '2SE', '2BD', '2LP', '2PS', '2HP', '2UF', '2NA', '2LN', '2PL', '2SU', '2LD', '2NQ', '2DG', '2PT', '2RT', '2BY', '2AQ', '2HA', '2SJ', '2SW', '2PP', '2BL', '2RB', '2TE', '2BH', '2HD', '2UH', '2SA', '2AJ', '2HE', '2RN', '2RY', '2UA', '2LL', '2EB', '2NW', '2AZ', '2NJ', '2LH', '2PA', '2LY', '2BU', '2DD', '2BP', '2DX', '2HG', '2TF', '2HX', '2BG', '2HU', '2TB', '2AR', '2LS', '2NX', '2RA', '2ER', '2EL', '2AW', '2NY', '2ST', '2NT', '2PG', '2AE', '2DR', '2SY', '2EQ', '2RP', '2SH', '2PB', '2SL', '2NG', '2PE', '2DW', '2EA', '2LE', '2SB', '2NR', '2SD', '2NN', '2SR', '2RW', '2NP', '2RL', '2AD', '2RU', '2AU', '2NE', '2EN', '2RS', '2EY', '2SQ', '2HL', '2RE', '2DB', '2RG', '2PY', '2LF', '2AN', '2NL', '2ED', '2LA', '2BT', '2TG', '2HR', '2DH', '2EG', '2PW', '2SX', '2PU', '2TW', '2LG', '2RH', '2PH', '2BW', '2NU', '2AS', '2PR', '2DU', '2LR', '2DT', '2HW', '2AX', '2NH', '2HB', '2EF', '2AF', '2UG', '2TH', '2AB', '2HS', '2AP', '2DA', '2DN', '2BB', '2LW', '2AH', '2DY', '2PD', '2RD', '2BE', '2DS', '2BA', '2NF', '2EE', '2EU', '2ND', '2SF', '2SG', '2DP'}

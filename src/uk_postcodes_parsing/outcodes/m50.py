@@ -1,0 +1,7 @@
+"""
+Postcodes for outcode M50
+Generated from ONS Postcode Directory
+Contains 195 postcodes
+"""
+
+INCODES = {'3AL', '2SN', '1FB', '3SG', '3YH', '2TR', '3AD', '1UU', '3BR', '3AT', '2XE', '3BS', '1DX', '2PF', '3TW', '2AG', '2HH', '3AZ', '1GU', '2HN', '3WP', '1AZ', '1DN', '3SP', '1RE', '3AX', '1ZD', '2GN', '2GL', '3BT', '3AE', '2XZ', '2HF', '3AR', '1WH', '2AA', '3AQ', '3SD', '3YJ', '3BA', '3TZ', '3AU', '3SF', '2HP', '2UF', '3DP', '1AY', '1DG', '3YL', '2AQ', '2HA', '3BG', '3SE', '2BH', '2HD', '2HT', '3ZT', '3XE', '2AJ', '2HE', '3WL', '3BD', '2PQ', '1DE', '3AY', '3SU', '2AL', '3AW', '2LH', '3WX', '3SA', '2QL', '3SH', '2HG', '3AN', '2GR', '2AR', '3XF', '1BB', '3ZE', '3XU', '1EW', '3TU', '2ST', '1DJ', '1SW', '2NT', '2XH', '3BN', '3YW', '2AE', '3SN', '3XZ', '2WH', '3TT', '1RF', '1RD', '3UP', '2WQ', '3UQ', '1DU', '2EQ', '2RP', '1BX', '3AG', '3AF', '3DN', '3RB', '3AJ', '3TX', '2GZ', '3XP', '1DR', '3SR', '2XU', '2NP', '2AD', '3AH', '3ZP', '2UW', '3YY', '2UD', '3WZ', '2HL', '3AS', '2GQ', '3SB', '1DL', '2TJ', '3DJ', '3XG', '2AN', '1EP', '1AW', '2QW', '3TY', '2XS', '3XT', '3BE', '2TG', '2PW', '2PU', '2ZY', '1SY', '1EB', '3BF', '2UE', '3AP', '2GT', '2AS', '3SS', '1AU', '2GE', '2GF', '2XD', '3XR', '3UT', '2HB', '3BP', '3XW', '2AF', '3ZW', '1DS', '2UG', '2HJ', '2TH', '2AB', '3UB', '3SJ', '3XB', '1DT', '2AP', '3XQ', '2BB', '2AH', '2GY', '3TS', '2QP', '1BA', '2UX', '3BB', '3RA', '3BL', '3AB', '2QH', '1DH', '1DB', '1YX', '3DL', '3ST', '3SQ', '2BA', '3AA', '2WR', '3BW'}

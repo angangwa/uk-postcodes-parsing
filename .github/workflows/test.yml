@@ -11,11 +11,15 @@ on:
 
 jobs:
   test:
+    # Avoid running tests twice on push when already open on a pull request.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.11", "3.12", "3.13"]
+    env:
+      UK_POSTCODES_AUTO_DOWNLOAD: 1
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -29,7 +33,7 @@ jobs:
           pip install black pytest pandas
       - name: Lint check with black
         run: |
-          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
+          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py --exclude src/uk_postcodes_parsing/outcodes
       - name: Setup database for tests
         run: |
           python tests/database_setup_check.py
