@@ -10,6 +10,8 @@ Perfect for **document processing**, **OCR applications**, **address validation*
 
 🚀 **Lightweight & Fast**: Core text parsing and ONSPD validation requires no database. Rich geographic data requires a one-time small download.
 
+**[Stats](https://clickpy.clickhouse.com/dashboard/uk-postcodes-parsing)**
+
 ## Quick Start
 
 ```bash
@@ -336,7 +338,7 @@ pip install pytest && pytest tests/ -v
 
 ## Data Source & Updates
 
-- **Source**: ONS Postcode Directory (ONSPD) - February 2024
+- **Source**: ONS Postcode Directory (ONSPD) - February 2025
 - **Coverage**: All active UK postcodes including Channel Islands, Isle of Man
 - **License**: Data derived using postcodes.io extraction methodology (MIT License)
 - **Updates**: Database can be regenerated with newer ONSPD releases using included tools
