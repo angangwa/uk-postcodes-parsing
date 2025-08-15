@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "uk_postcodes_parsing"
-version = "2.0.4"
+version = "2.1.0"
 authors = [
   { name="Anirudh Gangwal", email="anirudh.gangwal.2015@gmail.com" },
 ]

@@ -8,6 +8,8 @@
 
 Perfect for **document processing**, **OCR applications**, **address validation**, and **location services**.
 
+🚀 **Lightweight & Fast**: Core text parsing and ONSPD validation requires no database. Rich geographic data requires a one-time small download.
+
 ## Quick Start
 
 ```bash
@@ -35,7 +37,7 @@ for pc in postcodes:
 # SW1A 1AA: Westminster, London
 #   📍 51.501, -0.142
 #   🏛️ Cities of London and Westminster
-# M1 1AD: Manchester, North West  
+# M1 1AD: Manchester, North West
 #   📍 53.484, -2.245
 #   🏛️ Manchester Central
 ```
@@ -52,7 +54,7 @@ for pc in postcodes:
 - **1.8M active UK postcodes** with comprehensive metadata
 - **99.3% coordinate coverage** - latitude/longitude for nearly all postcodes
 - **25+ data fields per postcode**: administrative, political, healthcare, statistical
-- **Smart download**: 40MB compressed, 523MB locally with environment-aware prompting
+- **Smart download**: 40MB compressed download, expands to ~700MB with optimized indices for fast queries
 
 ### 📍 **Spatial Queries & Analysis**
 - **Find nearest postcodes** to any coordinates
@@ -62,23 +64,17 @@ for pc in postcodes:
 
 ### ⚡ **Zero Dependencies & High Performance**
 - **Pure Python**: Uses only standard library, no external dependencies
-- **Smart setup**: Environment-aware database downloads with user consent
-- **Optimized storage**: XZ compression reduces download by 95% (40MB vs 800MB)
 - **Fast validation**: Basic postcode validation without database dependency
 - **Cross-platform**: Windows, macOS, Linux support
 - **Thread-safe**: Concurrent access supported
 
-## Installation & Setup
+## Setup
 
-```bash
-pip install uk-postcodes-parsing
-```
+Full database and compressed database available in each [Release](https://github.com/angangwa/uk-postcodes-parsing/releases).
 
-The postcode database (~40MB compressed, 523MB locally) uses smart download:
-
-**Interactive environments** (terminal, Jupyter): Prompts before downloading
-**Non-interactive environments** (scripts, CI/CD): Provides clear setup instructions
-**Auto-download mode**: Set `UK_POSTCODES_AUTO_DOWNLOAD=1` for automatic downloads
+**Smart database Download:**
+- **Interactive environments** (terminal, Jupyter): Prompts before downloading
+- **Non-interactive environments**: Set `UK_POSTCODES_AUTO_DOWNLOAD=1` for automatic downloads (scripts, CI/CD)
 
 **Storage Locations:**
 - **Windows**: `%APPDATA%\uk_postcodes_parsing\postcodes.db`
@@ -110,11 +106,13 @@ document = """
 Dear Customer,
 
 Your orders will be shipped to:
-- London Office: SW1A 1AA (next to Big Ben)  
+- London Office: SW1A 1AA (next to Big Ben)
 - Manchester Branch: M1 1AD
 - Edinburgh Office: EH1 1AD (city center)
 
 For OCR'd text with errors: "Please send to SW1A OAA" (O instead of 0)
+
+Advanced OCR with multiple fixes: "Send to EH16 50Y or M1 IAD"
 """
 
 # Extract all postcodes
@@ -133,6 +131,10 @@ for pc in postcodes:
         if pc.fix_distance < 0:  # Was corrected
             print(f"   ⚠️  Fixed from: {pc.original}")
         print()
+
+# Advanced OCR: Get all possible corrections for uncertain text
+uncertain_postcodes = ukp.parse_from_corpus("OOO 4SS", attempt_fix=True, try_all_fix_options=True)
+print(f"Possible corrections: {[p.postcode for p in uncertain_postcodes]}")
 ```
 
 ### 🗺️ Direct Postcode Lookup
@@ -145,7 +147,7 @@ import uk_postcodes_parsing as ukp
 result = ukp.lookup_postcode("SW1A 1AA")
 if result:
     print(f"Postcode: {result.postcode}")
-    print(f"Coordinates: {result.latitude}, {result.longitude}")  
+    print(f"Coordinates: {result.latitude}, {result.longitude}")
     print(f"District: {result.district}")
     print(f"County: {result.county}")
     print(f"Region: {result.region}")
@@ -173,7 +175,7 @@ print("Nearest postcodes:")
 for postcode, distance in nearest:
     print(f"{postcode.postcode}: {distance:.2f}km - {postcode.district}")
 
-# Reverse geocoding - coordinates to postcode  
+# Reverse geocoding - coordinates to postcode
 postcode = ukp.reverse_geocode(lat, lon)
 print(f"Closest postcode: {postcode.postcode}")
 
@@ -197,7 +199,7 @@ results = ukp.search_postcodes("SW1A", limit=5)
 print(f"Found {len(results)} postcodes starting with SW1A")
 
 # Get all postcodes in administrative areas
-westminster = ukp.get_area_postcodes("district", "Westminster", limit=1000000)
+westminster = ukp.get_area_postcodes("district", "Westminster", limit=1_000_000)
 print(f"Westminster district has {len(westminster)} postcodes")
 
 # Search by constituency
@@ -209,38 +211,6 @@ sw1a_postcodes = ukp.get_outcode_postcodes("SW1A")
 print(f"SW1A outcode has {len(sw1a_postcodes)} postcodes")
 ```
 
-### 🛠️ OCR Error Correction & Text Processing
-
-Advanced text processing for OCR and document digitization:
-
-```python
-import uk_postcodes_parsing as ukp
-
-# OCR often confuses similar characters
-ocr_text = "Contact office at SW1A OAA or try EH16 50Y for Scotland"
-
-# Parse with error correction
-postcodes = ukp.parse_from_corpus(ocr_text, attempt_fix=True)
-
-for pc in postcodes:
-    print(f"Original: '{pc.original}'")
-    print(f"Corrected: '{pc.postcode}'")
-    print(f"Confidence: {pc.fix_distance} (0=perfect, negative=corrected)")
-    print(f"Valid: {pc.is_in_ons_postcode_directory}")
-    print()
-
-# For uncertain cases, get all possible corrections
-uncertain_text = "OOO 4SS"  # Multiple possible fixes
-all_options = ukp.parse_from_corpus(
-    uncertain_text, 
-    attempt_fix=True, 
-    try_all_fix_options=True
-)
-
-print(f"Possible corrections for '{uncertain_text}':")
-for option in all_options:
-    print(f"  {option.postcode} (confidence: {option.fix_distance})")
-```
 
 ### 🔧 Regex-Based Validation Utilities
 
@@ -248,7 +218,7 @@ For lightweight validation without database dependency, use the postcode_utils m
 
 ```python
 from uk_postcodes_parsing.postcode_utils import (
-    is_valid, to_normalised, to_outcode, to_incode, 
+    is_valid, to_normalised, to_outcode, to_incode,
     to_area, to_district, to_sector, to_unit
 )
 
@@ -279,7 +249,7 @@ import uk_postcodes_parsing as ukp
 # Get database information
 info = ukp.get_database_info()
 print(f"Database has {info['record_count']:,} postcodes")
-print(f"Database size: {info['size_mb']:.1f} MB") 
+print(f"Database size: {info['size_mb']:.1f} MB")
 print(f"Source: {info['metadata']['source_date']}")
 
 # Explicit database setup (usually automatic)
@@ -301,77 +271,22 @@ print(f"Coverage: {stats['coordinate_coverage_percent']}%")
 print(f"Countries: {stats['countries']}")
 ```
 
-## Complete API Reference
+## API Reference
 
-### Text Parsing Functions
-```python
-# Extract postcodes from text
-postcodes = ukp.parse_from_corpus(text, attempt_fix=False, try_all_fix_options=False)
-
-# Parse single postcode  
-postcode = ukp.parse(postcode_string, attempt_fix=False)
-
-# Check if postcode is valid
-is_valid = ukp.is_in_ons_postcode_directory(postcode_string)
-```
-
-### Rich Lookup Functions  
-```python
-# Get comprehensive postcode data
-result = ukp.lookup_postcode(postcode_string)  # Returns PostcodeResult or None
-
-# Search by prefix
-results = ukp.search_postcodes(query, limit=10)  # Returns List[PostcodeResult]
-
-# Get postcodes in administrative areas
-results = ukp.get_area_postcodes(area_type, area_value, limit=None)
-# area_type: "district", "constituency", "region", "country", etc.
-```
-
-### Spatial Query Functions
-```python  
-# Find nearest postcodes
-results = ukp.find_nearest(latitude, longitude, radius_km=10, limit=10)
-# Returns List[Tuple[PostcodeResult, distance]]
-
-# Reverse geocoding
-result = ukp.reverse_geocode(latitude, longitude)  # Returns PostcodeResult or None
-
-# Get postcodes by outcode
-results = ukp.get_outcode_postcodes(outcode)  # Returns List[PostcodeResult]
-```
-
-### Database Management
-```python
-# Setup database (usually automatic)
-success = ukp.setup_database(force_redownload=False)
-
-# Get database info
-info = ukp.get_database_info()
-```
+**Text Parsing**: `parse_from_corpus()`, `parse()`, `is_in_ons_postcode_directory()`
+**Rich Lookup**: `lookup_postcode()`, `search_postcodes()`, `get_area_postcodes()`
+**Spatial Queries**: `find_nearest()`, `reverse_geocode()`, `get_outcode_postcodes()`
+**Database**: `setup_database()`, `get_database_info()`
 
 ## Data Fields
 
 Each `PostcodeResult` contains 25+ fields:
 
-**Geographic:**
-- `latitude`, `longitude` (99.3% coverage)
-- `eastings`, `northings` (British National Grid)
-
-**Administrative:**  
-- `district`, `county`, `region`, `country`
-- `ward`, `parish`, `constituency`
-
-**Healthcare:**
-- `healthcare_region`, `nhs_health_authority`
-
-**Statistical:**
-- `lower_output_area`, `middle_output_area`
-
-**Postal:**
-- `postcode`, `incode`, `outcode`
-
-See full field list in API documentation.
+**Geographic**: `latitude`, `longitude`, `eastings`, `northings` (99.3% coverage)
+**Administrative**: `district`, `county`, `region`, `country`, `constituency`
+**Healthcare**: `healthcare_region`, `nhs_health_authority`
+**Statistical**: `lower_output_area`, `middle_output_area`
+**Postal**: `postcode`, `incode`, `outcode`
 
 ## Environment Configuration
 
@@ -385,7 +300,7 @@ See full field list in API documentation.
 export UK_POSTCODES_AUTO_DOWNLOAD=1
 ```
 
-**`UK_POSTCODES_DB_PATH`**  
+**`UK_POSTCODES_DB_PATH`**
 - **Purpose**: Use custom database file instead of downloading
 - **Value**: Absolute path to your `.db` file
 - **Use case**: Custom-built databases, offline environments
@@ -402,88 +317,22 @@ export UK_POSTCODES_DB_PATH=/path/to/custom/postcodes.db
 
 **Non-Interactive Environments** (Scripts, CI/CD):
 - Provides clear error with setup instructions
-- No automatic downloads without `UK_POSTCODES_AUTO_DOWNLOAD=1`
+- Use `UK_POSTCODES_AUTO_DOWNLOAD=1`
 - Prevents unexpected bandwidth usage
-
-## Advanced Features
-
-### Performance & Threading
-- **Thread-safe**: Use from multiple threads safely
-- **Connection pooling**: Efficient database access
-- **Caching**: Outcode queries cached for performance
-
-### Error Handling & Optimization
-- **Fast validation**: Basic postcode validation works without database using outcode-based system
-- **Environment-aware setup**: Interactive prompts vs clear error messages for automation
-- **XZ compression**: 95% smaller downloads with automatic decompression
-- **Graceful fallback**: Clear error messages guide users to proper database setup
-
-### Logging
-
-The library uses Python's standard logging module (quiet by default):
-
-```python
-import logging
-
-# Enable debug messages (shows postcode fixes, internal operations)
-logging.getLogger('uk_postcodes_parsing').setLevel(logging.DEBUG)
-
-# Or enable for all logging in your app
-logging.basicConfig(level=logging.DEBUG)
-```
-
-## Migration from v1.x
-
-v2.0 is **100% backward compatible**. All existing code continues to work unchanged.
-
-**New capabilities** (use these for new code):
-```python
-# v2.0 - Recommended import pattern
-import uk_postcodes_parsing as ukp
-
-# All functions available at top level
-postcodes = ukp.parse_from_corpus(text)
-result = ukp.lookup_postcode("SW1A 1AA") 
-nearest = ukp.find_nearest(51.5, -0.14)
-```
-
-**Legacy imports** (still work):
-```python  
-# v1.x - Still supported
-from uk_postcodes_parsing import ukpostcode
-from uk_postcodes_parsing.fix import fix
-```
 
 ## Contributing & Development
 
-### Local development
-
-```
-# Install library in dev mode
+```bash
+# Install in development mode
 pip install -e .
 
-# Local changes take immediate effect
+# Run tests
+pip install pytest && pytest tests/ -v
+
+# pre-commit install
 ```
 
-
-
-### Running Tests
-```bash
-# Install test dependencies
-pip install pytest
-
-# Run all tests
-pytest tests/ -v
-
-# Run specific test categories
-pytest tests/test_compatibility.py -v  # Validation tests
-pytest tests/test_spatial_queries.py -v  # Spatial functionality
-```
-
-### Documentation
-- [ONSPD Usage Guide](docs/ONSPD_USAGE_GUIDE.md) - Build custom database from ONSPD data
-- [ONSPD Technical Guide](docs/ONSPD_TECHNICAL_GUIDE.md) - Technical implementation details
-- [Test Documentation](tests/README.md) - Testing approach
+**Database Creation**: [ONSPD Usage Guide](docs/ONSPD_USAGE_GUIDE.md) | [Technical Guide](docs/ONSPD_TECHNICAL_GUIDE.md)
 
 ## Data Source & Updates
 
@@ -503,9 +352,10 @@ This library was originally inspired by the excellent work at [postcodes.io](htt
 - **Test data**: Reference test cases adapted from their validation suite (MIT License)
 - **Field mappings**: Administrative area mappings and data structure insights
 
-**How we differ:**
-- **Text extraction focus**: Advanced OCR error correction and corpus parsing
+**How this library differ:**
+
 - **Python-native**: Pure Python implementation with no external dependencies
+- **Text extraction focus**: Text corpus parsing
 - **Offline-first**: Local database with automatic setup, no API dependencies
 - **Document processing**: Optimized for batch text processing and document digitization
 
@@ -513,9 +363,6 @@ This library was originally inspired by the excellent work at [postcodes.io](htt
 
 All postcode data is derived from the [ONS Postcode Directory](https://geoportal.statistics.gov.uk/datasets/ons-postcode-directory-latest-centroids/about) under the [Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
-### AI Assisted disclosure
-
-This project leveraged AI-assisted development tools.
 
 ## License
 
@@ -541,7 +388,7 @@ This library uses the **ONS Postcode Directory (ONSPD)** dataset, which carries 
 
 #### Summary for Most Users
 - **Personal/Research**: ✅ All data free to use
-- **Internal Business**: ✅ All data free for internal company use  
+- **Internal Business**: ✅ All data free for internal company use
 - **Public-facing Commercial**: ✅ Great Britain data free, Northern Ireland may require licence
 
 ⚠️ **Important**: This is a best-effort summary. For authoritative licensing information and compliance with your specific use case, please consult the official [ONS licensing documentation](https://www.ons.gov.uk/methodology/geography/licences) and seek legal advice if needed.

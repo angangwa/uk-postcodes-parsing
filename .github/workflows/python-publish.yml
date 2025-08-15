@@ -19,7 +19,7 @@ on:
 
 permissions:
   contents: write  # Need write for creating releases
-  
+
 jobs:
   create-release:
     name: Create GitHub Release
@@ -33,19 +33,24 @@ jobs:
     - uses: actions/checkout@v3
       with:
         lfs: true  # Fetch Git LFS files including postcodes.db
-        
+
     - name: Checkout LFS objects
       run: git lfs pull
-      
-    - name: Verify database exists
+
+    - name: Verify database files exist
       run: |
+        if [ ! -f postcodes.db.xz ]; then
+          echo "Error: postcodes.db.xz not found in repository"
+          exit 1
+        fi
         if [ ! -f postcodes.db ]; then
           echo "Error: postcodes.db not found in repository"
           exit 1
         fi
-        ls -lh postcodes.db
-        echo "Database size: $(stat -f%z postcodes.db 2>/dev/null || stat -c%s postcodes.db) bytes"
-        
+        ls -lh postcodes.db*
+        echo "Compressed database size: $(stat -f%z postcodes.db.xz 2>/dev/null || stat -c%s postcodes.db.xz) bytes"
+        echo "Full database size: $(stat -f%z postcodes.db 2>/dev/null || stat -c%s postcodes.db) bytes"
+
     - name: Get version from tag
       id: get_version
       run: |
@@ -59,7 +64,7 @@ jobs:
         VERSION_NUMBER=${VERSION#v}
         echo "VERSION_NUMBER=$VERSION_NUMBER" >> $GITHUB_OUTPUT
         echo "Releasing version: $VERSION ($VERSION_NUMBER)"
-        
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -70,21 +75,31 @@ jobs:
         release_name: Release ${{ steps.get_version.outputs.VERSION }}
         body: |
           ## UK Postcodes Parsing ${{ steps.get_version.outputs.VERSION }}
-          
+
           ### Installation
           ```bash
           pip install uk-postcodes-parsing==${{ steps.get_version.outputs.VERSION_NUMBER }}
           ```
-          
+
           ### Database
-          The postcodes.db file is attached below and will be automatically downloaded on first use.
-          
+          Both compressed (postcodes.db.xz) and full (postcodes.db) database files are attached below. The compressed file is downloaded automatically on first use for optimal setup.
+
           ### Changes
           - See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details
         draft: false
         prerelease: false
-        
-    - name: Upload Database to Release
+
+    - name: Upload Compressed Database to Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./postcodes.db.xz
+        asset_name: postcodes.db.xz
+        asset_content_type: application/x-xz
+
+    - name: Upload Full Database to Release (Backward Compatibility)
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -100,23 +115,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.x'
-        
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install build twine
-        
+
     - name: Build package
       run: python -m build
-      
+
     - name: Check package
       run: twine check dist/*
-      
+
     - name: Publish to PyPI
       env:
         TWINE_USERNAME: __token__
