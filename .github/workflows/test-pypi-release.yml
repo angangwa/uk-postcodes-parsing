@@ -25,18 +25,20 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ['3.10', '3.11', '3.12', '3.13']
+    env:
+      UK_POSTCODES_AUTO_DOWNLOAD: 1
     steps:
     - uses: actions/checkout@v3
       with:
         sparse-checkout: |
           tests
           pyproject.toml
-          
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Wait for PyPI availability with retry
       shell: bash
       run: |
@@ -45,76 +47,76 @@ jobs:
         MAX_WAIT_SECONDS=$((MAX_WAIT_MINUTES * 60))
         WAIT_INTERVAL=30
         ELAPSED=0
-        
+
         echo "Testing PyPI availability for uk-postcodes-parsing==$VERSION"
         echo "Maximum wait time: $MAX_WAIT_MINUTES minutes"
-        
+
         while [ $ELAPSED -lt $MAX_WAIT_SECONDS ]; do
           echo "Attempt $((ELAPSED/WAIT_INTERVAL + 1)): Checking PyPI for version $VERSION..."
-          
+
           if pip index versions uk-postcodes-parsing | grep -q "$VERSION"; then
             echo "Version $VERSION found on PyPI!"
             break
           fi
-          
+
           echo "Version not yet available, waiting $WAIT_INTERVAL seconds..."
           sleep $WAIT_INTERVAL
           ELAPSED=$((ELAPSED + WAIT_INTERVAL))
         done
-        
+
         if [ $ELAPSED -ge $MAX_WAIT_SECONDS ]; then
           echo "❌ Timeout: Version $VERSION not found on PyPI after $MAX_WAIT_MINUTES minutes"
           echo "Available versions:"
           pip index versions uk-postcodes-parsing || echo "Failed to list versions"
           exit 1
         fi
-        
+
     - name: Install published package
       run: |
         python -m pip install --upgrade pip
         pip install uk-postcodes-parsing==${{ inputs.version }}
         pip install pytest pandas
-        
+
     - name: Verify installation
       shell: bash
       run: |
         python -c "
         import uk_postcodes_parsing as ukp
         print(f'Installed version: {ukp.__version__}')
-        
+
         # Verify version matches
         expected_version = '${{ inputs.version }}'
         assert ukp.__version__ == expected_version, f'Version mismatch: {ukp.__version__} != {expected_version}'
         print('Version verification passed')
         "
-        
+
     - name: Run tests
       run: |
         pytest tests/ -v --tb=short
-        
+
     - name: Test basic functionality
       shell: bash
       run: |
         python -c "
         import uk_postcodes_parsing as ukp
         print('Testing basic functionality...')
-        
+
         # Test database setup
         success = ukp.setup_database()
         assert success, 'Database setup failed'
         print('Database setup successful')
-        
+
         # Test basic lookup
         result = ukp.lookup_postcode('SW1A 1AA')
         assert result is not None, 'Lookup failed for SW1A 1AA'
         assert result.district == 'Westminster', f'Expected Westminster, got {result.district}'
         print('Basic lookup successful')
-        
+
         # Test search functionality
         results = ukp.search_postcodes('SW1A', limit=5)
         assert len(results) > 0, 'Search returned no results'
         print(f'Search returned {len(results)} results')
-        
+
         print('All basic functionality tests passed')
         "
 
