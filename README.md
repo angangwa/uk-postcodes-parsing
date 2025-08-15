@@ -8,7 +8,7 @@
 
 Perfect for **document processing**, **OCR applications**, **address validation**, and **location services**.
 
-[PyPI Download Stats](https://clickpy.clickhouse.com/dashboard/uk-postcodes-parsing)
+See [Package Download Stats](https://clickpy.clickhouse.com/dashboard/uk-postcodes-parsing)
 
 ## Quick Start
 
