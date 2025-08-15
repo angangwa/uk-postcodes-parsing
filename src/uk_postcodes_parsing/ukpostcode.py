@@ -31,8 +31,6 @@ FIXABLE_POSTCODE_CORPUS_REGEX = re.compile(
 SPECIAL_CASE_POSTCODES = ("GIR", "NPT", "BX", "BF")
 
 
-
-
 @dataclass(order=True)
 class Postcode:
     """Class to hold the parsed postcode.
@@ -215,21 +213,22 @@ def is_in_ons_postcode_directory(postcode: str) -> bool:
         # Extract outcode and incode - these functions handle normalization
         outcode = to_outcode(postcode)
         incode = to_incode(postcode)
-        
+
         if not outcode or not incode:
             return False
-        
+
         # Try to import the outcode module dynamically
         try:
             import importlib
+
             module_name = f"uk_postcodes_parsing.outcodes.{outcode.lower()}"
             module = importlib.import_module(module_name)
-            incodes = getattr(module, 'INCODES', set())
+            incodes = getattr(module, "INCODES", set())
             return incode in incodes
         except (ImportError, AttributeError):
             # If outcode file doesn't exist, postcode is invalid
             return False
-            
+
     except Exception as e:
         logger.debug(f"Error checking postcode in outcodes: {e}")
         return False

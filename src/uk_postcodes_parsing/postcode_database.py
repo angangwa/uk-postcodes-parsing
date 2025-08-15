@@ -291,7 +291,17 @@ class PostcodeDatabase:
         return results
 
     def get_area_postcodes(
-        self, area_type: Literal["country", "region", "district", "county", "constituency", "healthcare_region"], area_value: str, limit: Optional[int] = None
+        self,
+        area_type: Literal[
+            "country",
+            "region",
+            "district",
+            "county",
+            "constituency",
+            "healthcare_region",
+        ],
+        area_value: str,
+        limit: Optional[int] = None,
     ) -> List[PostcodeResult]:
         """Get postcodes in a specific administrative area"""
         area_mappings = {
@@ -468,7 +478,11 @@ def reverse_geocode(latitude: float, longitude: float) -> Optional[PostcodeResul
 
 
 def get_area_postcodes(
-    area_type: Literal["country", "region", "district", "county", "constituency", "healthcare_region"], area_value: str, limit: Optional[int] = None
+    area_type: Literal[
+        "country", "region", "district", "county", "constituency", "healthcare_region"
+    ],
+    area_value: str,
+    limit: Optional[int] = None,
 ) -> List[PostcodeResult]:
     """Get postcodes in administrative area using global database instance"""
     try:

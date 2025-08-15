@@ -57,15 +57,17 @@ class DatabaseManager:
 
         self.download_url = "https://github.com/angangwa/uk-postcodes-parsing/releases/latest/download/postcodes.db.xz"
         self._download_lock = threading.Lock()
-        
+
         # Check for auto-download environment variable
-        self.auto_download = os.environ.get("UK_POSTCODES_AUTO_DOWNLOAD", "").lower() in ("1", "true", "yes")
+        self.auto_download = os.environ.get(
+            "UK_POSTCODES_AUTO_DOWNLOAD", ""
+        ).lower() in ("1", "true", "yes")
 
     def _is_interactive_environment(self) -> bool:
         """Detect if we're in an interactive environment"""
         try:
             # Check for Jupyter/IPython
-            if 'ipykernel' in sys.modules or 'IPython' in sys.modules:
+            if "ipykernel" in sys.modules or "IPython" in sys.modules:
                 return True
             # Check if stdin is a TTY (terminal)
             return sys.stdin.isatty() and sys.stdout.isatty()
@@ -76,15 +78,17 @@ class DatabaseManager:
         """Prompt user for download permission in interactive environments"""
         if not self._is_interactive_environment():
             return False
-            
+
         try:
             print("\nUK Postcodes Database Required")
             print("=" * 40)
-            print("This function requires the full postcode database (~40MB compressed).")
+            print(
+                "This function requires the full postcode database (~40MB compressed)."
+            )
             print("This is a one-time download that will be cached locally.")
             print("")
             response = input("Download now? [y/N]: ").strip().lower()
-            return response in ('y', 'yes')
+            return response in ("y", "yes")
         except (EOFError, KeyboardInterrupt):
             return False
 
@@ -103,7 +107,7 @@ class DatabaseManager:
                 should_download = True
             elif self._is_interactive_environment():
                 should_download = self._prompt_user_for_download()
-            
+
             if not should_download:
                 # Provide helpful error message for non-interactive environments
                 error_msg = (
@@ -139,8 +143,12 @@ class DatabaseManager:
         if self.is_local_db:
             raise RuntimeError("Cannot download when using local database path")
 
-        logger.info("Downloading UK postcodes database (first time setup, ~40MB compressed)...")
-        logger.debug("This will be decompressed to ~523MB locally with indices created on first use...")
+        logger.info(
+            "Downloading UK postcodes database (first time setup, ~40MB compressed)..."
+        )
+        logger.debug(
+            "This will be decompressed to ~523MB locally with indices created on first use..."
+        )
         logger.debug("This may take a few minutes depending on your connection...")
 
         self.data_dir.mkdir(parents=True, exist_ok=True)
@@ -171,20 +179,22 @@ class DatabaseManager:
 
                 start_time = time.time()
                 # Download compressed file
-                urllib.request.urlretrieve(self.download_url, temp_compressed_path, progress_hook)
-                
+                urllib.request.urlretrieve(
+                    self.download_url, temp_compressed_path, progress_hook
+                )
+
                 download_elapsed = time.time() - start_time
                 compressed_size_mb = temp_compressed_path.stat().st_size / (1024 * 1024)
                 print(
                     f"\n[OK] Download complete! ({compressed_size_mb:.1f} MB in {download_elapsed:.1f}s)"
                 )
-                
+
                 # Decompress the file
                 logger.debug("Decompressing database...")
                 decompress_start = time.time()
-                
-                with lzma.open(temp_compressed_path, 'rb') as compressed_file:
-                    with open(temp_path, 'wb') as output_file:
+
+                with lzma.open(temp_compressed_path, "rb") as compressed_file:
+                    with open(temp_path, "wb") as output_file:
                         # Read and write in chunks for memory efficiency
                         chunk_size = 1024 * 1024  # 1MB chunks
                         while True:
@@ -192,13 +202,13 @@ class DatabaseManager:
                             if not chunk:
                                 break
                             output_file.write(chunk)
-                
+
                 # Move decompressed file to final location
                 if temp_path.exists():
                     if self.db_path.exists():
                         self.db_path.unlink()  # Remove existing file
                     temp_path.rename(self.db_path)
-                
+
                 # Clean up compressed temp file
                 if temp_compressed_path.exists():
                     temp_compressed_path.unlink()
@@ -208,7 +218,7 @@ class DatabaseManager:
                 print(
                     f"[OK] Decompression complete! ({final_size_mb:.1f} MB in {decompress_elapsed:.1f}s)"
                 )
-                
+
                 # Create indices if they don't exist
                 if not self._indices_exist():
                     logger.debug("Creating database indices for optimal performance...")
@@ -216,7 +226,7 @@ class DatabaseManager:
                     self._create_indices()
                     index_elapsed = time.time() - index_start
                     logger.debug(f"[OK] Indices created in {index_elapsed:.1f}s")
-                
+
                 total_elapsed = time.time() - start_time
                 print(f"[OK] Database setup complete! Total time: {total_elapsed:.1f}s")
                 return  # Success!
@@ -251,7 +261,9 @@ class DatabaseManager:
         try:
             conn = sqlite3.connect(str(self.db_path), timeout=5.0)
             try:
-                cursor = conn.execute("SELECT name FROM sqlite_master WHERE type='index' AND name LIKE 'idx_%'")
+                cursor = conn.execute(
+                    "SELECT name FROM sqlite_master WHERE type='index' AND name LIKE 'idx_%'"
+                )
                 indices = cursor.fetchall()
                 # We expect at least 7 custom indices
                 return len(indices) >= 7
@@ -259,30 +271,30 @@ class DatabaseManager:
                 conn.close()
         except Exception:
             return False
-    
+
     def _create_indices(self):
         """Create database indices for optimal performance"""
         conn = sqlite3.connect(str(self.db_path), timeout=30.0)
         try:
             # Create indices for fast lookups
             indices = [
-                'CREATE INDEX IF NOT EXISTS idx_pc_compact ON postcodes(pc_compact)',
-                'CREATE INDEX IF NOT EXISTS idx_outcode ON postcodes(outcode)',
-                'CREATE INDEX IF NOT EXISTS idx_incode ON postcodes(incode)', 
-                'CREATE INDEX IF NOT EXISTS idx_location ON postcodes(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL',
-                'CREATE INDEX IF NOT EXISTS idx_country ON postcodes(country)',
-                'CREATE INDEX IF NOT EXISTS idx_district ON postcodes(district)',
-                'CREATE INDEX IF NOT EXISTS idx_constituency ON postcodes(constituency)',
-                'CREATE INDEX IF NOT EXISTS idx_eastings_northings ON postcodes(eastings, northings) WHERE eastings IS NOT NULL AND northings IS NOT NULL'
+                "CREATE INDEX IF NOT EXISTS idx_pc_compact ON postcodes(pc_compact)",
+                "CREATE INDEX IF NOT EXISTS idx_outcode ON postcodes(outcode)",
+                "CREATE INDEX IF NOT EXISTS idx_incode ON postcodes(incode)",
+                "CREATE INDEX IF NOT EXISTS idx_location ON postcodes(latitude, longitude) WHERE latitude IS NOT NULL AND longitude IS NOT NULL",
+                "CREATE INDEX IF NOT EXISTS idx_country ON postcodes(country)",
+                "CREATE INDEX IF NOT EXISTS idx_district ON postcodes(district)",
+                "CREATE INDEX IF NOT EXISTS idx_constituency ON postcodes(constituency)",
+                "CREATE INDEX IF NOT EXISTS idx_eastings_northings ON postcodes(eastings, northings) WHERE eastings IS NOT NULL AND northings IS NOT NULL",
             ]
-            
+
             for index_sql in indices:
                 conn.execute(index_sql)
-            
+
             conn.commit()
         finally:
             conn.close()
-    
+
     def _verify_database(self) -> bool:
         """Verify database is valid and contains expected data"""
         try:
@@ -437,7 +449,9 @@ def setup_database(
 
         if manager.is_local_db:
             if force_redownload:
-                logger.debug("Note: force_redownload is ignored when using local database")
+                logger.debug(
+                    "Note: force_redownload is ignored when using local database"
+                )
             logger.debug(f"Using local database: {manager.db_path}")
         else:
             if force_redownload and manager.db_path.exists():

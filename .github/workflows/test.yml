@@ -29,7 +29,7 @@ jobs:
           pip install black pytest pandas
       - name: Lint check with black
         run: |
-          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py
+          black src/uk_postcodes_parsing/ --check --exclude src/uk_postcodes_parsing/postcodes_nov_2024.py --exclude src/uk_postcodes_parsing/outcodes
       - name: Setup database for tests
         run: |
           python tests/database_setup_check.py
