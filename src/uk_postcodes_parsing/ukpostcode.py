@@ -20,8 +20,7 @@ from uk_postcodes_parsing.postcode_utils import (
 )
 from uk_postcodes_parsing.fix import fix, fix_with_options
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("uk-postcodes-parsing.ukpostcode")
+logger = logging.getLogger(__name__)
 
 # Test for a valid postcode embedded in text
 POSTCODE_CORPUS_REGEX = re.compile(r"[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}", re.I)
@@ -133,7 +132,7 @@ def parse_all_options(postcode) -> List[Postcode]:
         Postcode: Parsed postcode.
     """
     if postcode.strip().upper().startswith(SPECIAL_CASE_POSTCODES):  # Edge case logging
-        logger.info("Found special case postcode: %s", postcode)
+        logger.debug("Found special case postcode: %s", postcode)
     if is_valid(postcode):
         return [Postcode(**_parse(postcode), original=postcode)]
     else:
@@ -156,16 +155,16 @@ def parse(postcode: str, attempt_fix: bool = True) -> Optional[Postcode]:
     if not postcode:
         return None
     if postcode.strip().upper().startswith(SPECIAL_CASE_POSTCODES):  # Edge case logging
-        logger.info("Found special case postcode: %s", postcode)
+        logger.debug("Found special case postcode: %s", postcode)
     if is_valid(postcode):
         return Postcode(**_parse(postcode), original=postcode)
     if attempt_fix:
         fixed = fix(postcode)
         if is_valid(fixed):
-            logger.info("Postcode Fixed: '%s' => '%s'", postcode, fixed)
+            logger.debug("Postcode Fixed: '%s' => '%s'", postcode, fixed)
             return Postcode(**_parse(fixed), original=postcode)
-        logger.error("Unable to fix postcode")
-    logger.error("Failed to parse postcode: %s", postcode)
+        logger.warning("Unable to fix postcode: %s", postcode)
+    logger.warning("Failed to parse postcode: %s", postcode)
     return None
 
 

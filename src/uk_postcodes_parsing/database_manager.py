@@ -9,11 +9,14 @@ import urllib.request
 import urllib.error
 import lzma
 import sys
+import logging
 from pathlib import Path
 from typing import Optional
 import hashlib
 import threading
 import time
+
+logger = logging.getLogger(__name__)
 
 
 class DatabaseManager:
@@ -125,7 +128,7 @@ class DatabaseManager:
                     f"Please rebuild the database or use the default download."
                 )
 
-            print("Database appears corrupted, re-downloading...")
+            logger.warning("Database appears corrupted, re-downloading...")
             with self._download_lock:
                 self._download_database()
 
@@ -136,9 +139,9 @@ class DatabaseManager:
         if self.is_local_db:
             raise RuntimeError("Cannot download when using local database path")
 
-        print("Downloading UK postcodes database (first time setup, ~40MB compressed)...")
-        print("This will be decompressed to ~523MB locally with indices created on first use...")
-        print("This may take a few minutes depending on your connection...")
+        logger.info("Downloading UK postcodes database (first time setup, ~40MB compressed)...")
+        logger.debug("This will be decompressed to ~523MB locally with indices created on first use...")
+        logger.debug("This may take a few minutes depending on your connection...")
 
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -161,8 +164,8 @@ class DatabaseManager:
         for attempt in range(max_retries):
             try:
                 if attempt > 0:
-                    print(
-                        f"\nRetrying download (attempt {attempt + 1}/{max_retries})..."
+                    logger.debug(
+                        f"Retrying download (attempt {attempt + 1}/{max_retries})..."
                     )
                     time.sleep(2)  # Brief pause before retry
 
@@ -177,7 +180,7 @@ class DatabaseManager:
                 )
                 
                 # Decompress the file
-                print("Decompressing database...")
+                logger.debug("Decompressing database...")
                 decompress_start = time.time()
                 
                 with lzma.open(temp_compressed_path, 'rb') as compressed_file:
@@ -208,11 +211,11 @@ class DatabaseManager:
                 
                 # Create indices if they don't exist
                 if not self._indices_exist():
-                    print("Creating database indices for optimal performance...")
+                    logger.debug("Creating database indices for optimal performance...")
                     index_start = time.time()
                     self._create_indices()
                     index_elapsed = time.time() - index_start
-                    print(f"[OK] Indices created in {index_elapsed:.1f}s")
+                    logger.debug(f"[OK] Indices created in {index_elapsed:.1f}s")
                 
                 total_elapsed = time.time() - start_time
                 print(f"[OK] Database setup complete! Total time: {total_elapsed:.1f}s")
@@ -227,7 +230,7 @@ class DatabaseManager:
 
                 if attempt < max_retries - 1:
                     # Will retry
-                    print(f"\nDownload failed: {e}")
+                    logger.warning(f"Download failed: {e}")
                     continue
                 else:
                     # Final attempt failed
@@ -359,7 +362,7 @@ class DatabaseManager:
         """Remove the database file (for testing or reset purposes)"""
         if self.db_path.exists():
             self.db_path.unlink()
-            print(f"Removed database: {self.db_path}")
+            logger.debug(f"Removed database: {self.db_path}")
 
 
 # Global instance for the module
@@ -383,10 +386,10 @@ def get_database_manager(local_db_path: Optional[str] = None) -> DatabaseManager
             Path(local_db_path).resolve()
         ):
             # Warn if trying to change database path after initialization
-            print(
-                f"Warning: Database manager already initialized with {_db_manager.db_path}"
+            logger.warning(
+                f"Database manager already initialized with {_db_manager.db_path}"
             )
-            print(f"Ignoring new path: {local_db_path}")
+            logger.warning(f"Ignoring new path: {local_db_path}")
 
     return _db_manager
 
@@ -434,13 +437,13 @@ def setup_database(
 
         if manager.is_local_db:
             if force_redownload:
-                print("Note: force_redownload is ignored when using local database")
-            print(f"Using local database: {manager.db_path}")
+                logger.debug("Note: force_redownload is ignored when using local database")
+            logger.debug(f"Using local database: {manager.db_path}")
         else:
             if force_redownload and manager.db_path.exists():
-                print(f"Removing existing database for redownload...")
+                logger.debug(f"Removing existing database for redownload...")
                 manager.remove_database()
-            print("Setting up UK postcodes database...")
+            logger.debug("Setting up UK postcodes database...")
         manager.ensure_database()
 
         # Verify the database is working

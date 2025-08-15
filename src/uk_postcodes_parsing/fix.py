@@ -3,8 +3,7 @@ import logging
 from typing import List
 from uk_postcodes_parsing.postcode_utils import is_valid_outcode
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("uk-postcodes-parsing.fix")
+logger = logging.getLogger(__name__)
 
 
 FIXABLE_REGEX = re.compile(

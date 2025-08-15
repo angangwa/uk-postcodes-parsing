@@ -1,3 +1,8 @@
+import logging
+
+# Set up library logging with NullHandler to prevent warnings
+logging.getLogger(__name__).addHandler(logging.NullHandler())
+
 # Core parsing functionality (backward compatible)
 from uk_postcodes_parsing.ukpostcode import (
     parse,

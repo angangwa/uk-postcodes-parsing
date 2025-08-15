@@ -416,7 +416,21 @@ export UK_POSTCODES_DB_PATH=/path/to/custom/postcodes.db
 - **Fast validation**: Basic postcode validation works without database using outcode-based system
 - **Environment-aware setup**: Interactive prompts vs clear error messages for automation
 - **XZ compression**: 95% smaller downloads with automatic decompression
-- **Graceful fallback**: Clear error messages guide users to proper database setup  
+- **Graceful fallback**: Clear error messages guide users to proper database setup
+
+### Logging
+
+The library uses Python's standard logging module (quiet by default):
+
+```python
+import logging
+
+# Enable debug messages (shows postcode fixes, internal operations)
+logging.getLogger('uk_postcodes_parsing').setLevel(logging.DEBUG)
+
+# Or enable for all logging in your app
+logging.basicConfig(level=logging.DEBUG)
+```
 
 ## Migration from v1.x
 
