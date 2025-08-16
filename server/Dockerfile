@@ -7,10 +7,19 @@ FROM python:3.11-slim AS builder
 # Set working directory
 WORKDIR /app
 
-# Install build dependencies
+# Install build dependencies, wget for downloading, and xz-utils for decompression
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
+    wget \
+    xz-utils \
+    ca-certificates \
     && rm -rf /var/lib/apt/lists/*
+
+# Download compressed database from GitHub releases (40MB instead of 797MB)
+# This eliminates the need for Git LFS entirely
+RUN wget -q https://github.com/angangwa/uk-postcodes-parsing/releases/latest/download/postcodes.db.xz \
+    && xz -d postcodes.db.xz \
+    && echo "Database decompressed successfully"
 
 # Copy requirements first for better caching
 COPY server/requirements.txt .
@@ -42,18 +51,14 @@ ENV PATH=/home/apiuser/.local/bin:$PATH
 # Copy application code as a package
 COPY --chown=apiuser:apiuser server/app/ /app/
 
-# Create data directory and copy database
-# The database should be in the parent directory (uk-postcodes-parsing root)
+# Create data directory
 RUN mkdir -p /app/data && chown apiuser:apiuser /app/data
-COPY --chown=apiuser:apiuser postcodes.db /app/data/postcodes.db
 
-# Alternative: If using compressed database, uncomment below:
-# COPY --chown=apiuser:apiuser ../postcodes.db.xz /app/data/postcodes.db.xz
-# RUN apt-get update && apt-get install -y --no-install-recommends xz-utils && \
-#     xz -d /app/data/postcodes.db.xz && \
-#     apt-get remove -y xz-utils && \
-#     apt-get autoremove -y && \
-#     rm -rf /var/lib/apt/lists/*
+# Copy decompressed database from builder stage
+COPY --from=builder --chown=apiuser:apiuser /app/postcodes.db /app/data/postcodes.db
+
+# Note: The library will automatically create indices on first use if they don't exist
+# This adds ~10 seconds to the first startup but ensures optimal query performance
 
 # Switch to non-root user
 USER apiuser

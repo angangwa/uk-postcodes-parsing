@@ -20,11 +20,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        with:
-          lfs: true
-
-      - name: Checkout LFS objects
-        run: git lfs pull
+        # No LFS needed - library auto-downloads from releases
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v4

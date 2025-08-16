@@ -29,20 +29,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          lfs: true  # Fetch Git LFS files including postcodes.db
-
-      - name: Checkout LFS objects
-        run: git lfs pull
-
-      - name: Verify database files exist
-        run: |
-          if [ ! -f postcodes.db ]; then
-            echo "Error: postcodes.db not found in repository"
-            exit 1
-          fi
-          ls -lh postcodes.db
-          echo "Database size: $(stat -f%z postcodes.db 2>/dev/null || stat -c%s postcodes.db) bytes"
+        # No LFS needed - Dockerfile downloads from GitHub releases
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
