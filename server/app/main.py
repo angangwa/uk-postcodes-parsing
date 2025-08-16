@@ -193,9 +193,9 @@ async def validate_postcodes(request: PostcodeValidationRequest):
         results=validation_results,
         total_valid=total_valid,
         total_checked=len(request.postcodes),
-        validation_rate=total_valid / len(request.postcodes)
-        if request.postcodes
-        else 0,
+        validation_rate=(
+            total_valid / len(request.postcodes) if request.postcodes else 0
+        ),
     )
 
 
@@ -362,4 +362,6 @@ async def general_exception_handler(request, exc):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host=settings.host, port=settings.port)  # nosec B104 - required for Docker
+    uvicorn.run(
+        app, host=settings.host, port=settings.port
+    )  # nosec B104 - required for Docker
