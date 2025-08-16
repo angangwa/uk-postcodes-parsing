@@ -352,7 +352,7 @@ pip install pytest && pytest tests/ -v
 
 ### postcodes.io
 
-This library was originally inspired by the excellent work at [postcodes.io](https://postcodes.io) by [Ideal Postcodes](https://github.com/ideal-postcodes). While postcodes.io focuses on providing a comprehensive REST API service, this library evolved to specialize in **text parsing and document processing** use cases.
+This library was originally inspired by the excellent work at [postcodes.io](https://postcodes.io) by [Ideal Postcodes](https://github.com/ideal-postcodes). This library extends the capabilites for **text parsing and document processing** use cases.
 
 **Key contributions from postcodes.io:**
 - **Database processing logic**: Our ONSPD data processing pipeline is based on their proven methodology
