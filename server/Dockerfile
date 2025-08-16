@@ -7,19 +7,17 @@ FROM python:3.11-slim AS builder
 # Set working directory
 WORKDIR /app
 
-# Install build dependencies, wget for downloading, and xz-utils for decompression
+# Install build dependencies and wget for downloading
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     wget \
-    xz-utils \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Download compressed database from GitHub releases (40MB instead of 797MB)
-# This eliminates the need for Git LFS entirely
-RUN wget -q https://github.com/angangwa/uk-postcodes-parsing/releases/latest/download/postcodes.db.xz \
-    && xz -d postcodes.db.xz \
-    && echo "Database decompressed successfully"
+# Download full database with indices from GitHub releases
+# This eliminates the need for Git LFS and ensures indices are present
+RUN wget -q https://github.com/angangwa/uk-postcodes-parsing/releases/latest/download/postcodes.db \
+    && echo "Database downloaded successfully (with indices)"
 
 # Copy requirements first for better caching
 COPY server/requirements.txt .
@@ -57,8 +55,8 @@ RUN mkdir -p /app/data && chown apiuser:apiuser /app/data
 # Copy decompressed database from builder stage
 COPY --from=builder --chown=apiuser:apiuser /app/postcodes.db /app/data/postcodes.db
 
-# Note: The library will automatically create indices on first use if they don't exist
-# This adds ~10 seconds to the first startup but ensures optimal query performance
+# Note: Database already includes indices, so startup is immediate
+# Image size: ~800MB but provides zero-delay startup and offline capability
 
 # Switch to non-root user
 USER apiuser
