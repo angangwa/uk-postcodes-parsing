@@ -1,0 +1,14 @@
+# Core FastAPI dependencies
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+pydantic-settings>=2.0.0
+
+# UK Postcodes library (core functionality only)
+# Installing from local path for development
+# For production, use: uk-postcodes-parsing>=2.1.0
+uk-postcodes-parsing>=2.1.0
+
+# Note: python-multipart is NOT needed because:
+# - All endpoints use JSON payloads (no form data)
+# - No file uploads
+# - No HTML form handling

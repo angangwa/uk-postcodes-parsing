@@ -70,6 +70,10 @@ for pc in postcodes:
 - **Cross-platform**: Windows, macOS, Linux support
 - **Thread-safe**: Concurrent access supported
 
+### 🌐 **FastAPI Server**
+- **REST API**: FastAPI server exposing all library functionality via HTTP
+- **[See server documentation](server/README.md)** for setup and usage
+
 ## Setup
 
 Full database and compressed database available in each [Release](https://github.com/angangwa/uk-postcodes-parsing/releases).
