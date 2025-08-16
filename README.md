@@ -72,6 +72,7 @@ for pc in postcodes:
 
 ### 🌐 **FastAPI Server**
 - **REST API**: FastAPI server exposing all library functionality via HTTP
+- **Docker Hub**: `docker run -p 8000:8000 anirudhgangwal/uk-postcodes-parsing:latest`
 - **[See server documentation](server/README.md)** for setup and usage
 
 ## Setup
