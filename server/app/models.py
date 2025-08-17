@@ -4,7 +4,7 @@ Contains request/response models that are specific to the REST API
 """
 
 from pydantic import BaseModel, Field
-from typing import List, Optional, Union, Dict, Any
+from typing import List, Optional, Union, Dict
 
 # Import settings to use configured limits
 from .config import settings
@@ -243,18 +243,6 @@ class TextParseRequest(BaseModel):
     )
 
 
-class AreaPostcodesRequest(BaseModel):
-    """Request model for getting postcodes by area"""
-
-    area_type: str = Field(
-        ..., description="Type of area (district, county, region, etc.)"
-    )
-    area_value: str = Field(..., description="Area name/value")
-    limit: Optional[int] = Field(
-        default=None, ge=1, le=settings.max_area_results, description="Maximum results"
-    )
-
-
 class PostcodeValidationRequest(BaseModel):
     """Request model for postcode validation"""
 
@@ -266,11 +254,36 @@ class PostcodeValidationRequest(BaseModel):
     )
 
 
+# Specialized Response Result Models
+class PostcodeErrorModel(BaseModel):
+    """Model for postcode lookup errors"""
+
+    error: str
+    postcode: Optional[str] = None
+    detail: Optional[str] = None
+
+
+class SpatialSearchResultModel(BaseModel):
+    """Model for a single spatial search result"""
+
+    postcode: PostcodeModel
+    distance_km: float
+
+
+class BulkPostcodeResult(BaseModel):
+    """Result for a single bulk postcode lookup"""
+
+    success: bool
+    postcode: Optional[PostcodeModel] = None
+    error: Optional[str] = None
+    requested_postcode: str
+
+
 # Response Models (API-specific)
 class PostcodeSearchResponse(BaseModel):
     """Response model for postcode search"""
 
-    results: List[Union[PostcodeModel, dict]]
+    results: List[Union[PostcodeModel, PostcodeErrorModel]]
     total_found: int
     query: str
 
@@ -278,7 +291,7 @@ class PostcodeSearchResponse(BaseModel):
 class SpatialSearchResponse(BaseModel):
     """Response model for spatial search"""
 
-    results: List[dict]  # List of {postcode: PostcodeModel, distance: float}
+    results: List[SpatialSearchResultModel]
     total_found: int
     search_center: dict  # {latitude: float, longitude: float}
     radius_km: float
@@ -287,7 +300,7 @@ class SpatialSearchResponse(BaseModel):
 class BulkPostcodeResponse(BaseModel):
     """Response model for bulk lookup"""
 
-    results: List[Optional[Union[PostcodeModel, dict]]]
+    results: List[BulkPostcodeResult]
     found_count: int
     total_requested: int
     success_rate: float
@@ -333,23 +346,6 @@ class DistanceCalculationResponse(BaseModel):
     postcode2: str
     distance_km: Optional[float]
     error: Optional[str] = None
-
-
-# Error Response Models
-class ErrorResponse(BaseModel):
-    """Standard error response"""
-
-    error: str
-    detail: Optional[str] = None
-    error_code: Optional[str] = None
-
-
-class ValidationErrorResponse(BaseModel):
-    """Validation error response with detailed field errors"""
-
-    error: str = "Validation Error"
-    detail: str
-    errors: List[dict]
 
 
 # Health and Status Models

@@ -76,10 +76,14 @@ class TestPostcodeEndpoints:
         assert "total_requested" in data
         assert "success_rate" in data
         assert len(data["results"]) == len(postcodes)
-        # First two should be found, third should be None
-        assert data["results"][0] is not None
-        assert data["results"][1] is not None
-        assert data["results"][2] is None
+        # First two should be successful, third should fail
+        assert data["results"][0]["success"] is True
+        assert data["results"][0]["postcode"] is not None
+        assert data["results"][1]["success"] is True
+        assert data["results"][1]["postcode"] is not None
+        assert data["results"][2]["success"] is False
+        assert data["results"][2]["postcode"] is None
+        assert data["results"][2]["error"] == "Postcode not found"
 
     def test_validate_postcodes(self, client, sample_postcodes):
         """Test postcode validation"""

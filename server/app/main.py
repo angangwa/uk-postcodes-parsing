@@ -5,7 +5,7 @@ Simple, clean REST API that wraps the uk_postcodes_parsing library
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List, Optional, Literal
+from typing import List, Literal
 from datetime import datetime
 import logging
 import os
@@ -27,19 +27,22 @@ from .models import (
     BulkPostcodeResponse,
     TextParseRequest,
     TextParseResponse,
-    AreaPostcodesRequest,
     AreaPostcodesResponse,
     PostcodeValidationRequest,
     PostcodeValidationResponse,
     DistanceCalculationRequest,
     DistanceCalculationResponse,
-    ErrorResponse,
     HealthResponse,
     DatabaseInfoResponse,
 )
 
 # Import server models for responses
-from .models import PostcodeModel, ParsedPostcodeModel
+from .models import (
+    PostcodeModel,
+    ParsedPostcodeModel,
+    SpatialSearchResultModel,
+    BulkPostcodeResult,
+)
 
 # Setup logging
 logging.basicConfig(level=logging.DEBUG if settings.debug else logging.INFO)
@@ -144,7 +147,13 @@ async def bulk_lookup(request: BulkPostcodeRequest):
     """
     results = [ukp.lookup_postcode(pc) for pc in request.postcodes]
     pydantic_results = [
-        PostcodeModel.from_postcode_result(r) if r else None for r in results
+        BulkPostcodeResult(
+            success=r is not None,
+            postcode=PostcodeModel.from_postcode_result(r) if r else None,
+            error=None if r else "Postcode not found",
+            requested_postcode=pc,
+        )
+        for pc, r in zip(request.postcodes, results)
     ]
     found_count = sum(1 for r in results if r)
 
@@ -232,10 +241,10 @@ async def find_nearest(request: SpatialSearchRequest):
     )
 
     formatted_results = [
-        {
-            "postcode": PostcodeModel.from_postcode_result(postcode),
-            "distance_km": distance,
-        }
+        SpatialSearchResultModel(
+            postcode=PostcodeModel.from_postcode_result(postcode),
+            distance_km=distance,
+        )
         for postcode, distance in results
     ]
 
