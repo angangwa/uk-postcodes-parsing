@@ -3,14 +3,13 @@
 [![Test](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/test.yml)
 [![Upload Python Package](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml/badge.svg)](https://github.com/anirudhgangwal/ukpostcodes/actions/workflows/python-publish.yml)
 [![Test PyPI Release](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml/badge.svg)](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml)
+[![PyPI Downloads](https://static.pepy.tech/badge/uk-postcodes-parsing)](https://pepy.tech/projects/uk-postcodes-parsing)
 
 **Extract UK postcodes from text and get rich geographic data.** The only Python library that combines intelligent text parsing with comprehensive postcode database lookup.
 
 Perfect for **document processing**, **OCR applications**, **address validation**, and **location services**.
 
 🚀 **Lightweight & Fast**: Core text parsing and ONSPD validation requires no database. Rich geographic data requires a one-time small download.
-
-**[Stats](https://clickpy.clickhouse.com/dashboard/uk-postcodes-parsing)**
 
 ## Quick Start
 
