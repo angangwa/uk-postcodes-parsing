@@ -94,7 +94,12 @@ class PostcodeModel(BaseModel):
         Returns:
             PostcodeModel: Pydantic model with type validation
         """
-        data = result.to_dict()
+        if not hasattr(result, "to_dict") or not callable(getattr(result, "to_dict", None)):
+            raise TypeError(f"Expected result to have a callable 'to_dict' method, got {type(result).__name__}")
+        try:
+            data = result.to_dict()
+        except Exception as e:
+            raise RuntimeError(f"Error calling 'to_dict' on result: {e}") from e
 
         return cls(
             postcode=data["postcode"],
