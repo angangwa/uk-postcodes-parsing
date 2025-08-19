@@ -5,7 +5,6 @@
 [![Test PyPI Release](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml/badge.svg)](https://github.com/angangwa/uk-postcodes-parsing/actions/workflows/test-pypi-release.yml)
 [![PyPI Downloads](https://static.pepy.tech/badge/uk-postcodes-parsing)](https://pepy.tech/projects/uk-postcodes-parsing)
 
-
 **Extract UK postcodes from text and get rich geographic data.** The only Python library that combines intelligent text parsing with comprehensive postcode database lookup.
 
 Perfect for **document processing**, **OCR applications**, **address validation**, and **location services**.
@@ -69,6 +68,11 @@ for pc in postcodes:
 - **Fast validation**: Basic postcode validation without database dependency
 - **Cross-platform**: Windows, macOS, Linux support
 - **Thread-safe**: Concurrent access supported
+
+### 🌐 **FastAPI Server**
+- **REST API**: FastAPI server exposing all library functionality via HTTP
+- **Docker Hub**: `docker run -p 8000:8000 anirudhgangwal/uk-postcodes-parsing:latest`
+- **[See server documentation](server/README.md)** for setup and usage
 
 ## Setup
 
@@ -347,7 +351,7 @@ pip install pytest && pytest tests/ -v
 
 ### postcodes.io
 
-This library was originally inspired by the excellent work at [postcodes.io](https://postcodes.io) by [Ideal Postcodes](https://github.com/ideal-postcodes). While postcodes.io focuses on providing a comprehensive REST API service, this library evolved to specialize in **text parsing and document processing** use cases.
+This library was originally inspired by the excellent work at [postcodes.io](https://postcodes.io) by [Ideal Postcodes](https://github.com/ideal-postcodes). This library extends the capabilites for **text parsing and document processing** use cases.
 
 **Key contributions from postcodes.io:**
 - **Database processing logic**: Our ONSPD data processing pipeline is based on their proven methodology
